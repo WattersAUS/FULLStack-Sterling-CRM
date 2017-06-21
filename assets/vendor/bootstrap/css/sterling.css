@@ -1,0 +1,129 @@
+/*!
+ * Sterling v1.0.0 
+ * 2017 Noise Design
+ * Author Ian Downes
+ */
+
+.pt100
+{padding-top:100px}
+
+.mt100
+{margin-top:100px}
+
+#ss-page-wrapper
+{padding:0 10px;}
+
+.navbar-top-links li
+{width:70px;
+text-align:center;}
+
+.nav_txt
+{font-size:10px;}
+
+.sub_nav_txt
+{font-size:9px;
+color:#fff;}
+
+.sub-navbar li
+{width:50px;}
+
+.navbar-top-links li
+{width:none;}
+
+h1
+{font-size:28px;}
+
+.page-header
+{margin:20px 0 20px !important;}
+
+.navbar-static-top
+{margin-botom:20px;}
+
+.button-space
+{margin:3px 3px;}
+
+.fltlft
+{float:left;}
+
+.fltrt
+{float:right;}
+
+.panel-margin3
+{margin:3px 3px;
+height:20px;
+padding-left:3px;}
+
+.result-name
+{font-size:10px;
+display:block;
+width:50%;}
+
+.result-cat
+{font-size:10px;
+display:block;
+width:25%;}
+
+.result-tel
+{font-size:10px;
+display:block;
+width:25%;}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 10px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider_txt_pos
+{margin:-8px 0 5px 0;}

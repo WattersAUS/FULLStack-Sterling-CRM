@@ -1,0 +1,424 @@
+﻿Timestamp	Filename	Error	Message
+2017-04-07 13:39:31.562 +0100	NewStarterRequest.fmp12	0	*** Started consistency check, total of 497 block(s) to check
+2017-04-07 13:39:31.568 +0100	NewStarterRequest.fmp12	0	*** Completed consistency check, checked 497 block(s)
+2017-04-07 13:41:03.318 +0100	NewStarterRequest.fmp12	0	*** Started consistency check, total of 497 block(s) to check
+2017-04-07 13:41:03.321 +0100	NewStarterRequest.fmp12	0	*** Completed consistency check, checked 497 block(s)
+2017-04-07 13:51:18.985 +0100	NewStarterRequest.fmp12	0	*** Started consistency check, total of 497 block(s) to check
+2017-04-07 13:51:18.988 +0100	NewStarterRequest.fmp12	0	*** Completed consistency check, checked 497 block(s)
+2017-04-07 13:53:32.089 +0100	NewStarterRequest.fmp12	0	*** Started consistency check, total of 497 block(s) to check
+2017-04-07 13:53:32.093 +0100	NewStarterRequest.fmp12	0	*** Completed consistency check, checked 497 block(s)
+2017-04-07 14:13:08.576 +0100	NewStarterRequest.fmp12	0	*** Started recovery of 'NewStarterRequest.fmp12'
+2017-04-07 14:13:08.577 +0100	NewStarterRequest.fmp12	0	Scanning blocks and rebuilding file...
+2017-04-07 14:13:08.577 +0100	NewStarterRequest.fmp12	300	ERROR: Recovery of 'NewStarterRequest.fmp12' failed
+2017-04-07 14:13:18.452 +0100	NewStarterRequest.fmp12	0	*** Started recovery of 'NewStarterRequest.fmp12'
+2017-04-07 14:13:18.453 +0100	NewStarterRequest.fmp12	0	Scanning blocks and rebuilding file...
+2017-04-07 14:13:18.530 +0100	NewStarterRequest.fmp12	0	Scan complete, found 494 page(s) to process
+2017-04-07 14:13:18.538 +0100	NewStarterRequest.fmp12	0	Rebuild processed 494 page(s), completing end of file
+2017-04-07 14:13:18.544 +0100	NewStarterRequest.fmp12	0	Completed copy or rebuild of file blocks
+2017-04-07 14:13:18.602 +0100	NewStarterRequest.fmp12	0	Recovering: font catalog
+2017-04-07 14:13:18.603 +0100	NewStarterRequest.fmp12	0	  Rebuilding font catalog order list: name 
+2017-04-07 14:13:18.603 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Helvetica' (0)
+2017-04-07 14:13:18.603 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Lucida Grande' (1)
+2017-04-07 14:13:18.604 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'tahoma,sans-serif' (2)
+2017-04-07 14:13:18.604 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Arial' (3)
+2017-04-07 14:13:18.604 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Helvetica' (4)
+2017-04-07 14:13:18.604 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'arial,sans-serif' (5)
+2017-04-07 14:13:18.604 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'georgia,serif' (6)
+2017-04-07 14:13:18.604 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'verdana,sans-serif' (7)
+2017-04-07 14:13:18.605 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Verdana' (8)
+2017-04-07 14:13:18.605 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'helvetica neue,sans-serif' (9)
+2017-04-07 14:13:18.605 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Helvetica Neue Light' (10)
+2017-04-07 14:13:18.605 +0100	NewStarterRequest.fmp12	0	  Recovering: font '.Helvetica Neue DeskInterface' (11)
+2017-04-07 14:13:18.605 +0100	NewStarterRequest.fmp12	0	  Recovering: font '.Lucida Grande UI' (12)
+2017-04-07 14:13:18.606 +0100	NewStarterRequest.fmp12	0	  Recovering: font '.SF NS Text' (13)
+2017-04-07 14:13:18.606 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Calibri' (14)
+2017-04-07 14:13:18.606 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Lucida Sans Unicode' (15)
+2017-04-07 14:13:18.606 +0100	NewStarterRequest.fmp12	0	  Recovering: font 'Helvetica Neue' (16)
+2017-04-07 14:13:18.607 +0100	NewStarterRequest.fmp12	0	Recovering schema
+2017-04-07 14:13:18.607 +0100	NewStarterRequest.fmp12	0	Recovering schema catalogs
+2017-04-07 14:13:18.607 +0100	NewStarterRequest.fmp12	0	Recovering: table catalog
+2017-04-07 14:13:18.607 +0100	NewStarterRequest.fmp12	0	  Rebuilding table catalog order list: name 
+2017-04-07 14:13:18.607 +0100	NewStarterRequest.fmp12	0	  Rebuilding table catalog order list: custom 
+2017-04-07 14:13:18.608 +0100	NewStarterRequest.fmp12	0	  Recovering: table 'Contacts' (129)
+2017-04-07 14:13:18.608 +0100	NewStarterRequest.fmp12	0	  Recovering: table 'Interface' (131)
+2017-04-07 14:13:18.608 +0100	NewStarterRequest.fmp12	0	  Recovering: table 'Stuff' (132)
+2017-04-07 14:13:18.608 +0100	NewStarterRequest.fmp12	0	Recovering: table alias catalog
+2017-04-07 14:13:18.609 +0100	NewStarterRequest.fmp12	0	  Rebuilding table alias catalog order list: name 
+2017-04-07 14:13:18.609 +0100	NewStarterRequest.fmp12	0	  Rebuilding table alias catalog order list: custom 
+2017-04-07 14:13:18.610 +0100	NewStarterRequest.fmp12	0	  Deleted relational dependencies
+2017-04-07 14:13:18.610 +0100	NewStarterRequest.fmp12	0	  Recovering: table alias 'Contacts' (1065089)
+2017-04-07 14:13:18.610 +0100	NewStarterRequest.fmp12	0	  Recovering: table alias 'Interface' (1065093)
+2017-04-07 14:13:18.610 +0100	NewStarterRequest.fmp12	0	  Recovering: table alias 'Stuff' (1065094)
+2017-04-07 14:13:18.610 +0100	NewStarterRequest.fmp12	0	Recovering: relation catalog
+2017-04-07 14:13:18.611 +0100	NewStarterRequest.fmp12	0	Recovering fields for table 'Contacts'
+2017-04-07 14:13:18.611 +0100	NewStarterRequest.fmp12	0	Recovering: field catalog 'Contacts'
+2017-04-07 14:13:18.614 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Contacts' order list: name 
+2017-04-07 14:13:18.617 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Contacts' order list: custom 
+2017-04-07 14:13:18.618 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Contacts' order list: type 
+2017-04-07 14:13:18.620 +0100	NewStarterRequest.fmp12	0	  Recovering data for table 'Contacts'
+2017-04-07 14:13:18.620 +0100	NewStarterRequest.fmp12	0	Recovering: library catalog 'Contacts'
+2017-04-07 14:13:18.620 +0100	NewStarterRequest.fmp12	0	  Rebuilding library catalog 'Contacts' order list: quick reference 
+2017-04-07 14:13:18.620 +0100	NewStarterRequest.fmp12	0	  Rebuilding library catalog 'Contacts' order list: type 
+2017-04-07 14:13:18.621 +0100	NewStarterRequest.fmp12	0	  Evaluating library (129)
+2017-04-07 14:13:18.621 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'CONTACT ID MATCHING FIELD' (1)
+2017-04-07 14:13:18.621 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Title' (2)
+2017-04-07 14:13:18.622 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'First' (3)
+2017-04-07 14:13:18.622 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Last' (4)
+2017-04-07 14:13:18.622 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Initial' (5)
+2017-04-07 14:13:18.622 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Name' (6)
+2017-04-07 14:13:18.622 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Name for Labels' (7)
+2017-04-07 14:13:18.623 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Photo Container' (8)
+2017-04-07 14:13:18.623 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Company' (10)
+2017-04-07 14:13:18.623 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Job Title' (11)
+2017-04-07 14:13:18.623 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Website' (12)
+2017-04-07 14:13:18.623 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Group' (13)
+2017-04-07 14:13:18.623 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Office Email' (14)
+2017-04-07 14:13:18.624 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Personal Email' (15)
+2017-04-07 14:13:18.624 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Video' (16)
+2017-04-07 14:13:18.624 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Notes' (17)
+2017-04-07 14:13:18.624 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Office Phone' (18)
+2017-04-07 14:13:18.624 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Mobile' (19)
+2017-04-07 14:13:18.625 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Personal Phone' (20)
+2017-04-07 14:13:18.625 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Fax' (21)
+2017-04-07 14:13:18.625 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Work Address 1' (22)
+2017-04-07 14:13:18.625 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Work Address 2' (23)
+2017-04-07 14:13:18.625 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Work City' (24)
+2017-04-07 14:13:18.626 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Work State' (25)
+2017-04-07 14:13:18.626 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Work Postal Code' (26)
+2017-04-07 14:13:18.626 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Work Country' (27)
+2017-04-07 14:13:18.626 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Work Address Short' (28)
+2017-04-07 14:13:18.626 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Home Address 1' (29)
+2017-04-07 14:13:18.627 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Home Address 2' (30)
+2017-04-07 14:13:18.627 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Home City' (31)
+2017-04-07 14:13:18.627 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Home State' (32)
+2017-04-07 14:13:18.627 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Home Postal Code' (33)
+2017-04-07 14:13:18.627 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Home Country' (34)
+2017-04-07 14:13:18.628 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Map from URL Container' (35)
+2017-04-07 14:13:18.628 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Result Label Plural' (36)
+2017-04-07 14:13:18.628 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Sort Selection' (37)
+2017-04-07 14:13:18.629 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Sort List Key' (38)
+2017-04-07 14:13:18.629 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Location GPS' (39)
+2017-04-07 14:13:18.629 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Reverse Geocoding Address' (40)
+2017-04-07 14:13:18.629 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'QuickFind' (42)
+2017-04-07 14:13:18.630 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Phone List' (43)
+2017-04-07 14:13:18.630 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Email List' (44)
+2017-04-07 14:13:18.630 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Status Filter' (45)
+2017-04-07 14:13:18.631 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Address for Labels' (46)
+2017-04-07 14:13:18.631 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Side Placeholder Header' (47)
+2017-04-07 14:13:18.631 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Home Address Short' (51)
+2017-04-07 14:13:18.631 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Address List' (52)
+2017-04-07 14:13:18.632 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Video App' (55)
+2017-04-07 14:13:18.632 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Back Button Placeholder | iPad' (56)
+2017-04-07 14:13:18.632 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Side Placeholder List' (59)
+2017-04-07 14:13:18.633 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Side Placeholder' (60)
+2017-04-07 14:13:18.633 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Address Placeholder' (61)
+2017-04-07 14:13:18.633 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Email Placeholder' (62)
+2017-04-07 14:13:18.633 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Phone | iOS' (63)
+2017-04-07 14:13:18.634 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Email | iOS' (64)
+2017-04-07 14:13:18.634 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Phone Placeholder' (65)
+2017-04-07 14:13:18.634 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Additional' (66)
+2017-04-07 14:13:18.634 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Direct Replacement' (67)
+2017-04-07 14:13:18.634 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Replacing Who' (68)
+2017-04-07 14:13:18.635 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Start Date' (69)
+2017-04-07 14:13:18.635 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'ProAd Access' (70)
+2017-04-07 14:13:18.635 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Seating Position' (71)
+2017-04-07 14:13:18.635 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Machine type' (72)
+2017-04-07 14:13:18.636 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'NeedMobile' (77)
+2017-04-07 14:13:18.636 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Needlandline' (78)
+2017-04-07 14:13:18.636 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Office' (79)
+2017-04-07 14:13:18.636 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Line Manager' (80)
+2017-04-07 14:13:18.636 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'NickName' (81)
+2017-04-07 14:13:18.636 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Machine NewOLD' (82)
+2017-04-07 14:13:18.637 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'email password' (83)
+2017-04-07 14:13:18.637 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'vpn password' (84)
+2017-04-07 14:13:18.637 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'linemanager_email' (85)
+2017-04-07 14:13:18.637 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'creator' (86)
+2017-04-07 14:13:18.637 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'creationdate' (87)
+2017-04-07 14:13:18.637 +0100	NewStarterRequest.fmp12	0	Recovering fields for table 'Interface'
+2017-04-07 14:13:18.638 +0100	NewStarterRequest.fmp12	0	Recovering: field catalog 'Interface'
+2017-04-07 14:13:18.638 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Interface' order list: name 
+2017-04-07 14:13:18.638 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Interface' order list: custom 
+2017-04-07 14:13:18.638 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Interface' order list: type 
+2017-04-07 14:13:18.638 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'ID' (1)
+2017-04-07 14:13:18.639 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'BuildNumber' (4)
+2017-04-07 14:13:18.639 +0100	NewStarterRequest.fmp12	0	Recovering fields for table 'Stuff'
+2017-04-07 14:13:18.639 +0100	NewStarterRequest.fmp12	0	Recovering: field catalog 'Stuff'
+2017-04-07 14:13:18.639 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Stuff' order list: name 
+2017-04-07 14:13:18.639 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Stuff' order list: custom 
+2017-04-07 14:13:18.640 +0100	NewStarterRequest.fmp12	0	  Rebuilding field catalog 'Stuff' order list: type 
+2017-04-07 14:13:18.640 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'ID' (1)
+2017-04-07 14:13:18.640 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'f1' (3)
+2017-04-07 14:13:18.640 +0100	NewStarterRequest.fmp12	0	  Recovering: field 'Note' (18)
+2017-04-07 14:13:18.652 +0100	NewStarterRequest.fmp12	0	Recovering indexes for table 'Contacts'
+2017-04-07 14:13:18.653 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'CONTACT ID MATCHING FIELD'; 14 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.653 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Title'; 3 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.653 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Title'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.654 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'First'; 7 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.654 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'First'; 6 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.654 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Last'; 7 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.654 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Last'; 6 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.655 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Initial'; 5 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.655 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Name'; 7 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.655 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Name'; 12 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.656 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Name for Labels'; 7 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.656 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Name for Labels'; 12 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.657 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Company'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.657 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Company'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.657 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Job Title'; 5 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.657 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Job Title'; 6 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.658 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Website'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.658 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Group'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.659 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Office Email'; 7 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.659 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Office Email'; 7 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.659 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Personal Email'; 3 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.660 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Personal Email'; 4 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.660 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Video'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.662 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Notes'; 22 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.663 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Office Phone'; 4 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.663 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Office Phone'; 3 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.664 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Mobile'; 5 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.664 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Mobile'; 4 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.664 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Personal Phone'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.664 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Personal Phone'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.665 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Fax'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.665 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Work Address 1'; 3 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.665 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Work Address 1'; 5 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.666 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Work Address 2'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.666 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Work Address 2'; 3 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.667 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Work City'; 3 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.667 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Work City'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.667 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Work State'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.667 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Work State'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.668 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Work Postal Code'; 3 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.668 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Work Postal Code'; 4 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.669 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Work Country'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.669 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Work Country'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.670 +0100	NewStarterRequest.fmp12	0	  Rebuilt word index for field 'Work Address Short'; 9 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.670 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Home Address 1'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.671 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Home Address 2'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.671 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Home City'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.672 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Home State'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.672 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Home Postal Code'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.673 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'Home Country'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.673 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'NickName'; 2 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.673 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'email password'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.674 +0100	NewStarterRequest.fmp12	0	  Rebuilt value index for field 'vpn password'; 1 item(s) now exist, difference from old index is 0
+2017-04-07 14:13:18.674 +0100	NewStarterRequest.fmp12	0	Recovering indexes for table 'Interface'
+2017-04-07 14:13:18.674 +0100	NewStarterRequest.fmp12	0	Recovering indexes for table 'Stuff'
+2017-04-07 14:13:18.675 +0100	NewStarterRequest.fmp12	0	Recovering: custom function catalog
+2017-04-07 14:13:18.675 +0100	NewStarterRequest.fmp12	0	  Rebuilding custom function catalog order list: name 
+2017-04-07 14:13:18.676 +0100	NewStarterRequest.fmp12	0	  Rebuilding custom function catalog order list: custom 
+2017-04-07 14:13:18.676 +0100	NewStarterRequest.fmp12	0	  Recovering: custom function 'GetAddress' (2)
+2017-04-07 14:13:18.676 +0100	NewStarterRequest.fmp12	0	  Recovering: custom function 'GetInsideChunk' (3)
+2017-04-07 14:13:18.676 +0100	NewStarterRequest.fmp12	0	  Recovering: custom function 'GetMap' (4)
+2017-04-07 14:13:18.677 +0100	NewStarterRequest.fmp12	0	  Recovering: custom function 'GetXMLChunk' (5)
+2017-04-07 14:13:18.677 +0100	NewStarterRequest.fmp12	0	  Recovering: custom function 'GetXMLValue' (6)
+2017-04-07 14:13:18.677 +0100	NewStarterRequest.fmp12	0	  Recovering: custom function 'MapAddressWeb' (8)
+2017-04-07 14:13:18.677 +0100	NewStarterRequest.fmp12	0	  Recovering: custom function 'GetMapWebDirect' (9)
+2017-04-07 14:13:18.678 +0100	NewStarterRequest.fmp12	0	Recovering: user account catalog
+2017-04-07 14:13:18.679 +0100	NewStarterRequest.fmp12	0	  Rebuilding user account catalog order list: name 
+2017-04-07 14:13:18.679 +0100	NewStarterRequest.fmp12	0	  Rebuilding user account catalog order list: custom 
+2017-04-07 14:13:18.679 +0100	NewStarterRequest.fmp12	0	  Recovering: user account '<No Access>' (1)
+2017-04-07 14:13:18.680 +0100	NewStarterRequest.fmp12	0	  Recovering: user account '<No Access>' (2)
+2017-04-07 14:13:18.681 +0100	NewStarterRequest.fmp12	0	Recovering: privilege set catalog
+2017-04-07 14:13:18.682 +0100	NewStarterRequest.fmp12	0	  Rebuilding privilege set catalog order list: name 
+2017-04-07 14:13:18.682 +0100	NewStarterRequest.fmp12	0	  Rebuilding privilege set catalog order list: custom 
+2017-04-07 14:13:18.682 +0100	NewStarterRequest.fmp12	0	  Rebuilding privilege set catalog order list: quick reference 
+2017-04-07 14:13:18.683 +0100	NewStarterRequest.fmp12	0	Recovering: extended privileges catalog
+2017-04-07 14:13:18.683 +0100	NewStarterRequest.fmp12	0	  Rebuilding extended privileges catalog order list: name 
+2017-04-07 14:13:18.684 +0100	NewStarterRequest.fmp12	0	  Recovering: extended privilege 'fmxdbc' (2)
+2017-04-07 14:13:18.684 +0100	NewStarterRequest.fmp12	0	  Recovering: extended privilege 'fmapp' (3)
+2017-04-07 14:13:18.684 +0100	NewStarterRequest.fmp12	0	  Recovering: extended privilege 'fmreauthenticate10' (4)
+2017-04-07 14:13:18.684 +0100	NewStarterRequest.fmp12	0	  Recovering: extended privilege 'fmxml' (5)
+2017-04-07 14:13:18.685 +0100	NewStarterRequest.fmp12	0	  Recovering: extended privilege 'fmphp' (6)
+2017-04-07 14:13:18.685 +0100	NewStarterRequest.fmp12	0	  Recovering: extended privilege 'fmwebdirect' (7)
+2017-04-07 14:13:18.685 +0100	NewStarterRequest.fmp12	0	  Recovering: extended privilege 'fmscriptdisabled' (8)
+2017-04-07 14:13:18.685 +0100	NewStarterRequest.fmp12	0	Recovering: authorized files catalog
+2017-04-07 14:13:18.686 +0100	NewStarterRequest.fmp12	0	Recovering: data source catalog
+2017-04-07 14:13:18.686 +0100	NewStarterRequest.fmp12	0	  Rebuilding data source catalog order list: name 
+2017-04-07 14:13:18.686 +0100	NewStarterRequest.fmp12	0	  Rebuilding data source catalog order list: custom 
+2017-04-07 14:13:18.686 +0100	NewStarterRequest.fmp12	0	  Recovering: data source 'EmployeeRecords' (1)
+2017-04-07 14:13:18.687 +0100	NewStarterRequest.fmp12	0	Recovering: value list catalog
+2017-04-07 14:13:18.688 +0100	NewStarterRequest.fmp12	0	  Rebuilding value list catalog order list: name 
+2017-04-07 14:13:18.688 +0100	NewStarterRequest.fmp12	0	  Rebuilding value list catalog order list: custom 
+2017-04-07 14:13:18.688 +0100	NewStarterRequest.fmp12	0	  Rebuilding value list catalog order list: type 
+2017-04-07 14:13:18.689 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Title' (1)
+2017-04-07 14:13:18.689 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Company' (2)
+2017-04-07 14:13:18.689 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Job Title' (3)
+2017-04-07 14:13:18.689 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Group' (4)
+2017-04-07 14:13:18.689 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Contact List Sort Keys' (5)
+2017-04-07 14:13:18.689 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Contact List Filter' (6)
+2017-04-07 14:13:18.690 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Office' (7)
+2017-04-07 14:13:18.690 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'New-Existing' (8)
+2017-04-07 14:13:18.690 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Line Manager' (9)
+2017-04-07 14:13:18.690 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'ProAd Access' (10)
+2017-04-07 14:13:18.690 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'Machine Type' (11)
+2017-04-07 14:13:18.691 +0100	NewStarterRequest.fmp12	0	  Recovering: value list 'New Value List' (12)
+2017-04-07 14:13:18.691 +0100	NewStarterRequest.fmp12	0	Recovering: library catalog
+2017-04-07 14:13:18.694 +0100	NewStarterRequest.fmp12	0	  Rebuilding library catalog order list: quick reference 
+2017-04-07 14:13:18.695 +0100	NewStarterRequest.fmp12	0	  Rebuilding library catalog order list: type 
+2017-04-07 14:13:18.696 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (34)
+2017-04-07 14:13:18.696 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (57)
+2017-04-07 14:13:18.696 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (58)
+2017-04-07 14:13:18.696 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (59)
+2017-04-07 14:13:18.697 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (60)
+2017-04-07 14:13:18.697 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (61)
+2017-04-07 14:13:18.697 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (62)
+2017-04-07 14:13:18.698 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (63)
+2017-04-07 14:13:18.698 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (64)
+2017-04-07 14:13:18.698 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (65)
+2017-04-07 14:13:18.698 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (66)
+2017-04-07 14:13:18.698 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (67)
+2017-04-07 14:13:18.699 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (68)
+2017-04-07 14:13:18.699 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (69)
+2017-04-07 14:13:18.699 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (70)
+2017-04-07 14:13:18.699 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (71)
+2017-04-07 14:13:18.699 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (72)
+2017-04-07 14:13:18.700 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (73)
+2017-04-07 14:13:18.700 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (74)
+2017-04-07 14:13:18.700 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (75)
+2017-04-07 14:13:18.700 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (76)
+2017-04-07 14:13:18.700 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (77)
+2017-04-07 14:13:18.701 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (86)
+2017-04-07 14:13:18.701 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (87)
+2017-04-07 14:13:18.701 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (88)
+2017-04-07 14:13:18.701 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (89)
+2017-04-07 14:13:18.701 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (90)
+2017-04-07 14:13:18.701 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (91)
+2017-04-07 14:13:18.702 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (92)
+2017-04-07 14:13:18.702 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (93)
+2017-04-07 14:13:18.702 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (94)
+2017-04-07 14:13:18.702 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (95)
+2017-04-07 14:13:18.703 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (96)
+2017-04-07 14:13:18.703 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (97)
+2017-04-07 14:13:18.703 +0100	NewStarterRequest.fmp12	0	  Recovering: library '' (98)
+2017-04-07 14:13:18.706 +0100	NewStarterRequest.fmp12	0	Recovering: layout catalog
+2017-04-07 14:13:18.732 +0100	NewStarterRequest.fmp12	0	  Rebuilding layout catalog order list: quick reference 
+2017-04-07 14:13:18.732 +0100	NewStarterRequest.fmp12	0	  Rebuilding layout catalog order list: name 
+2017-04-07 14:13:18.733 +0100	NewStarterRequest.fmp12	0	  Rebuilding layout catalog order list: custom 
+2017-04-07 14:13:18.740 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contact Details' (1)
+2017-04-07 14:13:18.892 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contacts' (2)
+2017-04-07 14:13:18.934 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Desktop' (3)
+2017-04-07 14:13:18.936 +0100	NewStarterRequest.fmp12	0	  Recovering: layout '--' (4)
+2017-04-07 14:13:18.936 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Startup Screen' (5)
+2017-04-07 14:13:18.941 +0100	NewStarterRequest.fmp12	0	  Recovering: layout '-' (6)
+2017-04-07 14:13:18.944 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Labels' (8)
+2017-04-07 14:13:18.955 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contact List' (9)
+2017-04-07 14:13:18.985 +0100	NewStarterRequest.fmp12	0	  Recovering: layout '-' (10)
+2017-04-07 14:13:18.995 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contact Details | iPhone' (11)
+2017-04-07 14:13:19.094 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'iPhone' (12)
+2017-04-07 14:13:19.096 +0100	NewStarterRequest.fmp12	0	  Recovering: layout '--' (13)
+2017-04-07 14:13:19.097 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'iPad' (14)
+2017-04-07 14:13:19.098 +0100	NewStarterRequest.fmp12	0	  Recovering: layout '--' (15)
+2017-04-07 14:13:19.103 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contacts | iPhone' (17)
+2017-04-07 14:13:19.144 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contacts | iPad' (19)
+2017-04-07 14:13:19.198 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contact Details | iPad' (20)
+2017-04-07 14:13:19.303 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Web' (24)
+2017-04-07 14:13:19.304 +0100	NewStarterRequest.fmp12	0	  Recovering: layout '--' (25)
+2017-04-07 14:13:19.308 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contacts | Web' (26)
+2017-04-07 14:13:19.352 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Contact Details | Web' (27)
+2017-04-07 14:13:19.451 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Layout #14' (29)
+2017-04-07 14:13:19.456 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Home' (30)
+2017-04-07 14:13:19.468 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Interface' (31)
+2017-04-07 14:13:19.478 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Stuff' (32)
+2017-04-07 14:13:19.489 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Plants' (33)
+2017-04-07 14:13:19.510 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Balls' (34)
+2017-04-07 14:13:19.528 +0100	NewStarterRequest.fmp12	0	  Recovering: layout 'Ribbons' (35)
+2017-04-07 14:13:19.654 +0100	NewStarterRequest.fmp12	0	Recovering: theme catalog
+2017-04-07 14:13:19.658 +0100	NewStarterRequest.fmp12	0	  Rebuilding theme catalog order list: name 
+2017-04-07 14:13:19.659 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.classic' (2)
+2017-04-07 14:13:19.671 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.673 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.tranquil_touch' (4)
+2017-04-07 14:13:19.692 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.695 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.tranquil' (6)
+2017-04-07 14:13:19.716 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.718 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.enlightened_print' (8)
+2017-04-07 14:13:19.734 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.736 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.black' (9)
+2017-04-07 14:13:19.754 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.757 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.vibrant_touch' (10)
+2017-04-07 14:13:19.782 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.785 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.enlightened' (11)
+2017-04-07 14:13:19.807 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.810 +0100	NewStarterRequest.fmp12	0	  Recovering: theme 'com.filemaker.theme.cool_gray' (12)
+2017-04-07 14:13:19.826 +0100	NewStarterRequest.fmp12	8476	    This item changed
+2017-04-07 14:13:19.831 +0100	NewStarterRequest.fmp12	0	  Evaluating library for layouts and themes
+2017-04-07 14:13:19.831 +0100	NewStarterRequest.fmp12	0	    Adjusted item count of library  (0) by -1
+2017-04-07 14:13:19.831 +0100	NewStarterRequest.fmp12	0	    Adjusted item count of library  (0) by -1
+2017-04-07 14:13:19.832 +0100	NewStarterRequest.fmp12	0	Recovering: script catalog
+2017-04-07 14:13:19.839 +0100	NewStarterRequest.fmp12	0	  Rebuilding script catalog order list: quick reference 
+2017-04-07 14:13:19.839 +0100	NewStarterRequest.fmp12	0	  Rebuilding script catalog order list: name 
+2017-04-07 14:13:19.840 +0100	NewStarterRequest.fmp12	0	  Rebuilding script catalog order list: custom 
+2017-04-07 14:13:19.841 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Print Labels' (31)
+2017-04-07 14:13:19.842 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Print Contact List' (32)
+2017-04-07 14:13:19.842 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Send by Email' (33)
+2017-04-07 14:13:19.842 +0100	NewStarterRequest.fmp12	0	  Recovering: script '-' (34)
+2017-04-07 14:13:19.842 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Triggers' (36)
+2017-04-07 14:13:19.843 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | On First Window Open' (37)
+2017-04-07 14:13:19.843 +0100	NewStarterRequest.fmp12	0	  Recovering: script '-' (39)
+2017-04-07 14:13:19.843 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | Sort Contact List [Get Script Parameter]' (40)
+2017-04-07 14:13:19.843 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | Create Contact in List' (41)
+2017-04-07 14:13:19.844 +0100	NewStarterRequest.fmp12	0	  Recovering: script '--' (43)
+2017-04-07 14:13:19.844 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'iOS' (44)
+2017-04-07 14:13:19.844 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Delete Contacts | iOS [Get Script Parameter]' (46)
+2017-04-07 14:13:19.844 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Get Current location | Get GPS Coordinates (WGS84) | iOS' (48)
+2017-04-07 14:13:19.845 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Get Reverse Geocoding Work Address | iOS' (49)
+2017-04-07 14:13:19.846 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Get Reverse Geocoding Home Address | iOS' (50)
+2017-04-07 14:13:19.847 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Triggers' (51)
+2017-04-07 14:13:19.847 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | QuickFind | iOS' (52)
+2017-04-07 14:13:19.848 +0100	NewStarterRequest.fmp12	0	  Recovering: script '--' (55)
+2017-04-07 14:13:19.848 +0100	NewStarterRequest.fmp12	0	  Recovering: script '--' (56)
+2017-04-07 14:13:19.849 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | Status Filter' (57)
+2017-04-07 14:13:19.849 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Placeholder Links [Get Script Parameter]' (60)
+2017-04-07 14:13:19.849 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | Refresh Objects | iOS' (64)
+2017-04-07 14:13:19.849 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Insert Contact Picture | iOS' (65)
+2017-04-07 14:13:19.850 +0100	NewStarterRequest.fmp12	0	  Recovering: script '-' (66)
+2017-04-07 14:13:19.850 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Email Links [Get Script Parameter]' (67)
+2017-04-07 14:13:19.850 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Address Links [Get Script Parameter]' (68)
+2017-04-07 14:13:19.850 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'About Scripts...' (69)
+2017-04-07 14:13:19.851 +0100	NewStarterRequest.fmp12	0	  Recovering: script '-' (70)
+2017-04-07 14:13:19.851 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Web' (76)
+2017-04-07 14:13:19.851 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Delete Contacts | Web [Get Script Parameter]' (78)
+2017-04-07 14:13:19.851 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Insert Contact Picture | Web' (79)
+2017-04-07 14:13:19.851 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Triggers' (84)
+2017-04-07 14:13:19.852 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | QuickFind | Web' (86)
+2017-04-07 14:13:19.852 +0100	NewStarterRequest.fmp12	0	  Recovering: script '--' (87)
+2017-04-07 14:13:19.852 +0100	NewStarterRequest.fmp12	0	  Recovering: script '--' (88)
+2017-04-07 14:13:19.852 +0100	NewStarterRequest.fmp12	0	  Recovering: script '-' (89)
+2017-04-07 14:13:19.853 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Select Active Contact | iOS' (90)
+2017-04-07 14:13:19.853 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Trigger | Layout Navigation by Platform' (91)
+2017-04-07 14:13:19.853 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Set_Address' (95)
+2017-04-07 14:13:19.853 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Home' (96)
+2017-04-07 14:13:19.854 +0100	NewStarterRequest.fmp12	0	  Recovering: script '-' (97)
+2017-04-07 14:13:19.854 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Go to (LayoutName)' (98)
+2017-04-07 14:13:19.854 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Navigation - On Layout Enter' (99)
+2017-04-07 14:13:19.855 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'Set Known As Name' (101)
+2017-04-07 14:13:19.855 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'OpenModal' (102)
+2017-04-07 14:13:19.855 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'OpenModalWithGapFill' (103)
+2017-04-07 14:13:19.855 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'CloseModal' (104)
+2017-04-07 14:13:19.855 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'CloseModalWithGapFill' (105)
+2017-04-07 14:13:19.856 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'mobilepopover' (106)
+2017-04-07 14:13:19.856 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'set_mobiletelnumber' (107)
+2017-04-07 14:13:19.856 +0100	NewStarterRequest.fmp12	0	  Recovering: script 'saverecords' (108)
+2017-04-07 14:13:19.865 +0100	NewStarterRequest.fmp12	0	Deleted last used page format
+2017-04-07 14:13:19.865 +0100	NewStarterRequest.fmp12	0	Deleted last used print settings
+2017-04-07 14:13:19.865 +0100	NewStarterRequest.fmp12	0	Deleted last used layout formatting defaults
+2017-04-07 14:13:19.865 +0100	NewStarterRequest.fmp12	0	Deleted last used window settings
+2017-04-07 14:13:19.866 +0100	NewStarterRequest.fmp12	0	Deleted last used import orders
+2017-04-07 14:13:19.866 +0100	NewStarterRequest.fmp12	0	Deleted last used export orders
+2017-04-07 14:13:19.866 +0100	NewStarterRequest.fmp12	0	Deleted last used sort orders
+2017-04-07 14:13:19.866 +0100	NewStarterRequest.fmp12	0	Deleted last used request sets
+2017-04-07 14:13:19.866 +0100	NewStarterRequest.fmp12	0	Deleted last used found sets
+2017-04-07 14:13:19.932 +0100	NewStarterRequest.fmp12	0	Recover built a new database without detecting any problems. The new database is safe to use, though you should monitor the results carefully and make sure to keep up-to-date backups of your databases.
+2017-04-07 14:13:19.933 +0100	NewStarterRequest.fmp12	0	Note: Recover only checks the data blocks of the file and generates a new file from that data.  The Consistency Check checks all blocks of the file, and may find more problems in the original file than Recover does.
+2017-04-07 14:13:19.933 +0100	NewStarterRequest.fmp12	0	File blocks: scanned and rebuilt 494 block(s), dropped 0 invalid data block(s)
+2017-04-07 14:13:19.933 +0100	NewStarterRequest.fmp12	0	Schema: scanned fields and tables; no problems found
+2017-04-07 14:13:19.933 +0100	NewStarterRequest.fmp12	0	Structure: scanned; 0 item(s) modified
+2017-04-07 14:13:19.933 +0100	NewStarterRequest.fmp12	0	File size after recovery is 2162688 bytes
+2017-04-07 14:13:19.933 +0100	NewStarterRequest.fmp12	0	*** Completed recovery to 'NewStarterRequest Recovered.fmp12'
+2017-04-07 14:17:08.534 +0100	NewStarterRequest Recovered.fmp12	0	*** Started consistency check, total of 525 block(s) to check
+2017-04-07 14:17:08.537 +0100	NewStarterRequest Recovered.fmp12	0	*** Completed consistency check, checked 525 block(s)
+2017-04-07 14:28:32.129 +0100	NewStarterRequest.fmp12	0	*** Started consistency check, total of 497 block(s) to check
+2017-04-07 14:28:32.132 +0100	NewStarterRequest.fmp12	0	*** Completed consistency check, checked 497 block(s)
+2017-04-07 14:37:57.978 +0100	NewStarterRequest.fmp12	0	*** Started consistency check, total of 493 block(s) to check
+2017-04-07 14:37:57.983 +0100	NewStarterRequest.fmp12	0	*** Completed consistency check, checked 493 block(s)

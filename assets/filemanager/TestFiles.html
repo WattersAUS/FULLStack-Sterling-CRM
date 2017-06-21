@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="FileManagerApp">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Sterling Services - Files</title>
+
+  <!-- third party -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootswatch/paper/bootstrap.min.css" />
+  <!-- /third party -->
+
+<!-- Bootstrap Core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Morris Charts CSS -->
+<link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!-- Sterling CSSS -->
+<link href="../sterling/style.css" rel="stylesheet" type="text/css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+ <!-- Comment if you need to use raw source code -->
+    <link href="dist/angular-filemanager.min.css" rel="stylesheet">
+    <script src="dist/angular-filemanager.min.js"></script>
+  <!-- /Comment if you need to use raw source code -->
+  
+  <script type="text/javascript">
+    //example to override angular-filemanager default config
+    angular.module('FileManagerApp').config(['fileManagerConfigProvider', function (config) {
+      var defaults = config.$get();
+      config.set({
+        appName: 'angular-filemanager',
+        pickCallback: function(item) {
+          var msg = 'Picked %s "%s" for external use'
+            .replace('%s', item.type)
+            .replace('%s', item.fullPath());
+          window.alert(msg);
+        },
+
+        allowedActions: angular.extend(defaults.allowedActions, {
+          pickFiles: false,
+          pickFolders: false,
+        }),
+      });
+    }]);
+  </script>
+
+</head>
+
+
+
+<body>
+
+  
+<div id="wrapper"> 
+  
+ <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      
+     
+      <a class="navbar-brand" href="/sterling/index.php"><img src="/sterling/images/ss-logo.png"></a> </div>
+    <!-- /.navbar-header -->
+    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button> -->
+    <ul class="nav navbar-top-links navbar-right">
+      <li> <a href="index.php"> <i class="fa fa-home fa-fw"></i>
+        <div class="nav_txt">Home</div>
+        </a> </li>
+      <!-- /.dropdown -->
+      <li> <a href="admin.php"> <i class="fa fa-users fa-fw"></i>
+        <div class="nav_txt">Admin</div>
+        </a> </li>
+      <!-- /.dropdown -->
+      <li> <a href="records.php"> <i class="fa fa-tasks fa-fw"></i>
+        <div class="nav_txt">Records</div>
+        </a> </li>
+      <!-- /.dropdown -->
+      <li> <a href="#"> <i class="fa fa-envelope fa-fw"></i>
+        <div class="nav_txt">e-Mail</div>
+        </a> </li>
+      <!-- /.dropdown -->
+      <li> <a href="#"> <i class="fa fa-list-ol fa-fw"></i>
+        <div class="nav_txt">PO's</div>
+        </a> </li>
+      <li> <a href="../calendar/sterling/basic-views.html"> <i class="fa fa-user fa-fw"></i>
+        <div class="nav_txt">Resources</div>
+        </a> </li>
+      <li> <a href="#"> <i class="fa fa-list fa-fw"></i>
+        <div class="nav_txt">Reports</div>
+        </a> </li>
+      <li> <a href="#"> <i class="fa fa-book fa-fw"></i>
+        <div class="nav_txt">Buyers</div>
+        </a> </li>
+      <li> <a href="#"> <i class="fa fa-money fa-fw"></i>
+        <div class="nav_txt">Payroll</div>
+        </a> </li>
+      <li> <a href="#"> <i class="fa fa-gbp fa-fw"></i>
+        <div class="nav_txt">Quotes</div>
+        </a> </li>
+      <li> <a href="#"> <i class="fa fa-user fa-fw"></i>
+        <div class="nav_txt">Hire</div>
+        </a> </li>
+      <li> <a href="#"> <i class="fa fa-user fa-fw"></i>
+        <div class="nav_txt">Stock</div>
+        </a> </li>
+      <li> <a href="#"> <i class="fa fa-user fa-fw"></i>
+        <div class="nav_txt">Old Sys</div>
+        </a> </li>
+      <!-- /.dropdown -->
+    </ul>
+
+    <!-- /.navbar-top-links --> 
+  </nav>  <div id="s-page-wrapper"> 
+    
+    <!-- /.row -->
+    <div class="row">
+      
+      
+      <div class="col-lg-12 col-md-12 panel">
+        <div class="panel panel-turq">
+          <div class="panel-heading">
+            <div class="row">
+            <script>
+function goBack() {
+    window.history.back();
+}
+</script> 
+<ul class="nav navbar-top-links navbar-right sub-navbar">
+               			
+                        <li>
+                        <i class="fa fa-arrow-left fa-fw"></i>
+                        <div class="sub_nav_txt"><script>
+  document.write('<a href="' + document.referrer + '">Go Back</a>');
+</script></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-history fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="record-result.php">History</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-file-o fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="files.php">Files</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-question fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">Questions</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-gbp fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="tracker.php">Tracker</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-files-o fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">Invoices</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-file-powerpoint-o fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">SS PO</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-wrench fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">Job Pack</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-gbp fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">Cost Code</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-television fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">Programmes</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-hourglass fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">Time</a></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-arrow-left fa-fw"></i>
+                        <div class="sub_nav_txt"><script>
+  document.write('<a href="' + document.referrer + '">Go Back</a>');
+</script></div>
+                		</li>
+                        <li>
+                        <i class="fa fa-list fa-fw"></i>
+                        <div class="sub_nav_txt"><a href="#">List</a></div>
+                		</li>
+                        </ul>
+                        
+             </div>
+          </div>
+        </div>
+        <div class="row"> 
+          
+          <!-- /.col-lg-12 --> 
+        </div>
+        <!-- START : COVER PANEL 1  -->
+        <div class="col-lg-4 col-md-6">
+          
+          
+          <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Miscellaneous</div>
+                </div>
+              </div>
+             </div>
+            <angular-filemanager></angular-filemanager>
+          
+         
+          
+           </div>
+           <!-- END : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Health & Safety</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-black panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">My Folder</span></span>
+          </div>
+           </div>
+           <!-- END : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Job Survey</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+           </div>
+           <!-- START : PANEL -->
+           
+           
+           
+        </div>
+        <!-- END : COVER PANEL 1  --> 
+        
+        <!-- START : COVER PANEL 2  -->
+        <div class="col-lg-4 col-md-6">
+          
+          
+          <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Quotes</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Tester 3</span></span>
+          </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-site fltlft"><span class="smlHd">Tester 2</span></span>
+          </div>
+          
+           </div>
+           <!-- END : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Correspondance</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Mail delivery failed</span></span>
+          </div>
+           </div>
+           <!-- END : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Purchase Orders</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+           </div>
+           <!-- START : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Job Sheets</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+           </div>
+           <!-- START : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Invoices</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+           </div>
+           <!-- START : PANEL -->
+           
+        </div>
+        <!-- END : COVER PANEL 2  --> 
+        
+        <!-- START : COVER PANEL 3  -->
+        <div class="col-lg-4 col-md-6">
+          
+          
+          <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Quotes</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Tester 3</span></span>
+          </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-site fltlft"><span class="smlHd">Tester 2</span></span>
+          </div>
+          
+           </div>
+           <!-- END : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Correspondance</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Mail delivery failed</span></span>
+          </div>
+           </div>
+           <!-- END : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Purchase Orders</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+           </div>
+           <!-- START : PANEL -->
+           
+           <!-- START : PANEL -->
+          <div class="panel panel-turq">
+          
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-9 text-left">
+                  <div class="panelTitle">Data Sheets/Invoices</div>
+                </div>
+              </div>
+             </div>
+          
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+          <div class="panel panel-turq panel-margin3">
+          <span class="result-jobNo fltlft"><span class="smlHd">Empty</span></span>
+          </div>
+           </div>
+           <!-- START : PANEL -->
+           
+        </div>
+        <!-- END : COVER PANEL 3  --> 
+        
+        
+      </div>
+    </div>
+    <!-- /.row --> 
+  </div>
+  <!-- /#page-wrapper --> 
+  
+</div>
+<!-- /#wrapper --> 
+
+<!-- jQuery --> 
+<script src="../vendor/jquery/jquery.min.js"></script> 
+
+<!-- Bootstrap Core JavaScript --> 
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- Metis Menu Plugin JavaScript --> 
+<script src="../vendor/metisMenu/metisMenu.min.js"></script> 
+
+<!-- Morris Charts JavaScript --> 
+<script src="../vendor/raphael/raphael.min.js"></script> 
+<script src="../vendor/morrisjs/morris.min.js"></script> 
+<script src="../data/morris-data.js"></script> 
+
+<!-- Custom Theme JavaScript --> 
+<script src="../dist/js/sb-admin-2.js"></script>
+</body>
+</html>

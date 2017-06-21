@@ -1,0 +1,52 @@
+This file can be expanded (into another dir for eg) and all links etc should work)
+
+--------------------------------------------------------------------------------------------------------------------
+
+20/6/2017
+
+Updates:
+
+1. Have changed all pages (that require it) to php extension and included the nav bar into the pages.
+
+2. Tidied the directory structure all pages now sit at the root of the folder structure
+
+3. Tidied the includes file css/js and php into more logical folders structure
+
+4. Removed duplicate files from the structure (angular etc)
+
+5. Removed the need for an app.js file, all js controllers now declare the app controller
+    (means we don't need to mod a file that can break other pages)
+
+6. Reinstated the old material design lib to fix the broken dialogs until we can code around the problem with dropdowns
+
+7. Linked pages to the index.php and admin.php pages so links work
+    (it looks more like a site now)
+
+8. Working Job list page
+    a. accepts creates job via dialog when 'Create' is selected
+    b. detail changed (now shows cust ref no, job description in row)
+
+9. Reformatted some of the source files
+    (general code tidy)
+
+10. Changed 'myApp' controller to individual controller declared for each page
+
+Issues:
+
+1. Need to recode dialogs as scroll bars not currently working (there is a incompatibility between the material lib and another of the included js files)
+
+2. Employee maint doesn't fully work (display does)
+
+3. On Job display the detail line "Job Details- / /" will occasionally be displayed
+    (I think it's a timing issue on the data load against the form display, refresh and data is displayed correctly)
+
+4. ID between is passed via ngStorage local storage
+    (needs to be changed to session handling)
+
+5. Needs some validation on fields sizes etc so we don't make trips to server we don't need!
+
+6. Need to include the login/customer forms yet
+
+7. Font sizes on the pages needs to be looked at (particularly the admin pages)
+
+--------------------------------------------------------------------------------------------------------------------
