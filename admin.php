@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="./customers.html">
+                        <a href="./customers.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View/Create</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -257,7 +257,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/mot.html">
+                        <a href="./mot.html">
                             <div class="panel-footer">
                                 <span class="pull-left">View/Create</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -278,7 +278,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="../assets.html">
+                        <a href="./assets.html">
                             <div class="panel-footer">
                                 <span class="pull-left">View/Create</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

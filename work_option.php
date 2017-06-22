@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Work Option Admin</title>
         <!-- include material design CSS -->
-        <link rel="stylesheet" href="./assets/vendor/materialize/css/materialize.css" />
+        <link rel="stylesheet" href="./assets/materialize/css/materialize.css" />
         <!-- include material design icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- include custom CSS -->
@@ -103,7 +103,7 @@
         <!-- include jquery -->
         <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
         <!-- material design js -->
-        <script src="./assets/vendor/materialize/js/materialize.min.js"></script>
+        <script src="./assets/materialize/js/materialize.min.js"></script>
         <!-- custom js -->
         <script type="text/javascript" src="./assets/js/custom.js"></script>
         <!-- user -->

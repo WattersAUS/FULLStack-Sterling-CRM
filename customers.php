@@ -9,31 +9,31 @@
 
         <title>Read Customers</title>
          <!-- Bootstrap Core CSS -->
-         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+         <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
         <!-- MetisMenu CSS -->
-        <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+        <link href="./assets/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
 
         <!-- Custom CSS -->
-        <link href="dist/css/sb-admin-2.css" rel="stylesheet" />
+        <link href="./assets/vendor/dist/css/sb-admin-2.css" rel="stylesheet" />
 
         <!-- Morris Charts CSS -->
-        <link href="vendor/morrisjs/morris.css" rel="stylesheet" />
+        <link href="./assets/vendor/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Fonts -->
-        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href=".,/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
           <!-- include material design CSS -->
-        <link rel="stylesheet" href="assets/css/materialize/css/materialize.css" />
+        <link rel="stylesheet" href="./assets/css/materialize/css/materialize.css" />
 
         <!-- include material design icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
         <!-- include custom CSS -->
-        <link rel="stylesheet" href="assets/css/custom.css" />
+        <link rel="stylesheet" href="./assets/css/custom.css" />
 
         <!-- Sterling CSSS -->
-        <link href="sterling/style.css" rel="stylesheet" type="text/css" />
+        <link href="./assets/css/style.css" rel="stylesheet" type="text/css" />
 
 
     </head>
@@ -268,27 +268,27 @@
 
 
     <!-- include angular js -->
-    <script type="text/javascript" src="assets/js/angular.js" ></script>
-    <script type="text/javascript" src="app/ngStorage.min.js"></script>
+    <script type="text/javascript" src="./assets/js/angular.js" ></script>
+    <script type="text/javascript" src="./assets/js/ngStorage.min.js"></script>
     <!-- include angular pagination -->
-    <script type="text/javascript" src="assets/js/dirPagination.js" ></script>
+    <script type="text/javascript" src="./assets/js/dirPagination.js" ></script>
 
     <!-- app -->
-    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="./app/app.js"></script>
 
     <!-- include jquery -->
-    <script type="text/javascript" src="assets/js/jquery.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.js"></script>
 
-    <script type="text/javascript" src="assets/css/materialize/_js/materialize.js" ></script>
+    <script type="text/javascript" src="./assets/materialize/_js/materialize.js" ></script>
 
     <!-- custom js -->
-    <script type="text/javascript" src="assets/js/custom.js"></script>
+    <script type="text/javascript" src="./assets/js/custom.js"></script>
 
     <!-- customers -->
-    <script type="text/javascript" src="app/customers/customers.js"></script>
+    <script type="text/javascript" src="./app/customers/customers.js"></script>
 
      <!-- user -->
-     <script type="text/javascript" src="app/user/auth.js"></script>
+     <script type="text/javascript" src="./app/user/auth.js"></script>
 
     </body>
 </html>
