@@ -123,7 +123,7 @@ app.controller('siteCtrl', function($scope, $http) {
 	$scope.getAllCustomers = function() {
         $http({
             method: 'GET',
-            url: 'api/customer/read.php'
+            url: 'api/customers/customer_get_all.php'
         }).then(function successCallback(response) {
             $scope.customers = response.data.records;
         });

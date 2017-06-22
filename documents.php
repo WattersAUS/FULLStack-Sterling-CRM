@@ -6,9 +6,9 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <title>Document Admin</title>
         <!-- include material design CSS -->
-        <link rel="stylesheet" href="./assets/vendor/materialize/css/materialize.css" />
+        <!--<link rel="stylesheet" href="./assets/materialize/css/materialize.css" />-->
         <!-- include material design icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />-->
         <!-- include custom CSS -->
         <link rel="stylesheet" href="./assets/css/custom.css" />
         <!-- Bootstrap Core CSS -->

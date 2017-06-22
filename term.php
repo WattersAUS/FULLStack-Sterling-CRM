@@ -5,10 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Term Admin</title>
-        <!-- include material design CSS -->
-        <link rel="stylesheet" href="./assets/vendor/materialize/css/materialize.css" />
-        <!-- include material design icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- include custom CSS -->
         <link rel="stylesheet" href="./assets/css/custom.css" />
         <!-- Bootstrap Core CSS -->
@@ -27,73 +23,90 @@
     <body>
         <?php include './inc/headerNav.php';?>
         <div class="container" ng-app="sterlingTermApp" ng-controller="termCtrl">
-            <div class="row">
-                <div class="col s12">
-                    <h4>Terms</h4>
-                    <!-- used for searching the current list -->
-                    <input type="text" ng-model="search" class="form-control" placeholder="Search...">
-
-                    <!-- table that shows product record list -->
-                    <table class="hoverable bordered">
+            <div >
+                <div class="row input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search..." style="border: none">
+                </div>
+                <div >
+                    <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="width-30-pct">Description</th>
-                                <th class="width-30-pct">Days</th>
+                                <th>Term description</th>
+                                <th>Days</th>
                             </tr>
                         </thead>
-                        <tbody ng-init="getAll()">
-                    		<tr dir-paginate="term in terms | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="termx">
+                        <tbody ng-init="get()">
+                            <tr dir-paginate="term in terms | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="termx">
                                 <td class="text-align-left">{{ term.description }}</td>
                                 <td class="text-align-left">{{ term.days }}</td>
                                 <td align="right">
-                                    <a ng-click="readTerm(term.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Edit</a>
-                                    <a ng-click="deleteTerm(term.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
+                                    <a ng-click="read(term.id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                    <a ng-click="delete(term.id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
+
+                        <!-- new term modal -->
+                        <script type="text/ng-template" id="newTerm.html">
+                            <div class="row modal-header">
+                                <h3 class="modal-title" id="modal-title">Add Term</h4>
+                            </div>
+                            <div class="row modal-body" id="modal-body">
+                                <div class="input-field">
+                                    <label for="Description">description</label>
+                                    <input ng-model="description" type="text" class="validate form-control" placeholder="Description here..." />
+                                </div>
+                                <div class="input-field">
+                                    <label for="Days">days</label>
+                                    <input ng-model="days" type="text" class="validate form-control" placeholder="Days here..." />
+                                </div>
+                            </div>
+                            <div class="row modal-footer">
+                                <a ng-click="save()" class="btn">Save</a>
+                                <a ng-click="cancel()" class="btn">Cancel</a>
+                            </div>
+                        </script>
+
+                        <!-- edit term modal -->
+                        <script type="text/ng-template" id="editTerm.html">
+                            <div class="row modal-header">
+                                <h3 class="modal-title" id="modal-title">Edit Term</h4>
+                            </div>
+                            <div class="row modal-body" id="modal-body">
+                                <div class="input-field">
+                                    <label for="description">description</label>
+                                    <input ng-model="description" type="text" class="validate form-control" placeholder="Description here..." />
+                                </div>
+                                <div class="input-field">
+                                    <label for="days">days</label>
+                                    <input ng-model="days" type="text" class="validate form-control" placeholder="Days here..." />
+                                </div>
+                            </div>
+                            <div class="row modal-footer">
+                                <a ng-click="save()" class="btn">Save</a>
+                                <a ng-click="cancel()" class="btn">Cancel</a>
+                            </div>
+                        </script>
+
                         <!-- angular pagination -->
                         <dir-pagination-controls pagination-id="termx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
                     </table>
-
-                    <!-- modal for for creating new user -->
-                    <div id="modal-term-form" class="modal">
-                        <div class="modal-content">
-                            <h4 id="modal-term-title">Add Term</h4>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input ng-model="description" type="text" class="validate" id="form-name" placeholder="Description here..." />
-                                    <label for="description">description</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input ng-model="days" type="text" class="validate" id="form-name" placeholder="Days here..." />
-                                    <label for="days">days</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <a id="btn-create-term" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createTerm()"><i class="material-icons left">add</i>Create</a>
-                                    <a id="btn-update-term" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateTerm()"><i class="material-icons left">edit</i>Save Changes</a>
-                                    <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- floating button for creating product -->
-                    <div class="fixed-action-btn" style="bottom:45px; right:24px;">
-                        <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal-term-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
-                    </div>
-                </div> <!-- end col s12 -->
-            </div> <!-- end row -->
+                </div>
+                <div class="row" align="right">
+                    <a href="#" class="btn" color="#FF0000" role="button" ng-click="create()">Add</a>
+                </div>
+            </div>
         </div> <!-- end container -->
         <!-- page content and controls will be here -->
         <!-- include angular js -->
         <script src="./assets/js/angular.min.js"></script>
+        <!-- include angular js -->
+        <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
         <!-- include angular pagination -->
         <script src="./assets/js/dirPagination.js"></script>
         <!-- include jquery -->
         <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-        <!-- material design js -->
-        <script src="./assets/vendor/materialize/js/materialize.min.js"></script>
-        <!-- custom js -->
-        <script type="text/javascript" src="./assets/js/custom.js"></script>
         <!-- user -->
         <script type="text/javascript" src="./app/term.js"></script>
     </body>

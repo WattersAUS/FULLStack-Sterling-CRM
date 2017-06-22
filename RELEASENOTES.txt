@@ -1,8 +1,33 @@
-This file can be expanded (into another dir for eg) and all links etc should work)
+The site archive can be expanded (into another dir for eg) and all links etc should work)
 
---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 
-20/6/2017
+21/06/2017
+==========
+
+Updates:
+
+1. Revamp dialog handling (using angular to maintain separate controllers for create/edit dialogs)
+    a) Used term.php as the proof of concept
+    b) Removed all refs to Materialise css / js
+    c) use ui-bootstrap-tpls.min.js for dialogs via ui.bootstrap.modal
+
+2. Fixed relative path issue for metisMenu.css in index.php
+
+3. Fixed relative path for materialize css/js
+
+4. Moved materilize css/js into separate 'assets' folder for easier removal later
+
+5. Fixed various incorrect files/paths in admin.php
+
+Issues:
+
+1. Dialog solution needs more styling (although it is currently passable)
+
+---------------------------------------------------------------------------------------------------------------------
+
+20/06/2017
+==========
 
 Updates:
 
