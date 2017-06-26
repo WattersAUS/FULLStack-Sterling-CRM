@@ -11,7 +11,8 @@ $jobStatus->readOne();
 
 $jobStatus_arr[] = array(
     "id"          => $jobStatus->id,
-    "description" => $jobStatus->description
+    "description" => $jobStatus->description,
+    "template_page" => $jobStatus->template_page
 );
 print_r(json_encode($jobStatus_arr));
 ?>

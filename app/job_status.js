@@ -6,7 +6,8 @@ app.controller('jobstatusCtrl', function($scope, $http) {
             method: 'POST',
             data: {
                 'id'          : $scope.id,
-                'description' : $scope.description
+                'description' : $scope.description,
+                'template_page' : $scope.template_page
             },
             url: 'api/job_status/update.php'
         }).then(function successCallback(response) {
@@ -18,7 +19,7 @@ app.controller('jobstatusCtrl', function($scope, $http) {
     }
 
     $scope.readJobStatus = function(id) {
-        $('#modal-jobstatus-title').text("Rename Job Status");
+        $('#modal-jobstatus-title').text("Update Job Status");
         $('#btn-update-jobstatus').show();
         $('#btn-create-jobstatus').hide();
 
@@ -29,6 +30,7 @@ app.controller('jobstatusCtrl', function($scope, $http) {
         }).then(function successCallback(response) {
             $scope.id          = response.data[0]["id"];
             $scope.description = response.data[0]["description"];
+            $scope.template_page = response.data[0]["template_page"];
             $('#modal-jobstatus-form').modal('open');
         })
         .error(function(data, status, headers, config){
@@ -60,7 +62,7 @@ app.controller('jobstatusCtrl', function($scope, $http) {
 
     $scope.showCreateForm = function() {
         $scope.clearForm();
-        $('#modal-jobstatus-title').text("Add a Job Status to System");
+        $('#modal-jobstatus-title').text("Add Job Status");
         $('#btn-update-jobstatus').hide();
         $('#btn-create-jobstatus').show();
     }
@@ -68,6 +70,7 @@ app.controller('jobstatusCtrl', function($scope, $http) {
     $scope.clearForm = function(){
         $scope.id          = "";
         $scope.description = "";
+        $scope.template_page = "";
     }
 
     $scope.createJobStatus = function() {
@@ -75,7 +78,8 @@ app.controller('jobstatusCtrl', function($scope, $http) {
             method: 'POST',
             data: {
                 'id'          : $scope.id,
-                'description' : $scope.description
+                'description' : $scope.description,
+                'template_page' : $scope.template_page
             },
             url: 'api/job_status/create.php'
         }).then(function successCallback(response) {

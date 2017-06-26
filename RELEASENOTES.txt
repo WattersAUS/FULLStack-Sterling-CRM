@@ -2,6 +2,31 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+26/06/2017
+==========
+
+Updates:
+
+1. Added 'template_page' to job_status to enable individual dialogs on job_status change on job_display.php
+
+2. Altered jobs_list.php to use new dialog handling when adding a new job (removing old type)
+
+3. Removed js asset file 'angular-modal-service.js' from project
+
+4. Linked 'asset' admin page to admin.php correctly
+
+5. Altered jobs_display.php to use new dialogs and display a window for a status change
+
+6. DB Schema updates for job_status / asset
+
+Issues:
+
+1. Dialog solution needs more styling (although it is currently passable)
+
+2. Asset handling work in progress
+
+---------------------------------------------------------------------------------------------------------------------
+
 21/06/2017
 ==========
 

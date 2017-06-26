@@ -17,7 +17,8 @@ if ($num>0) {
         extract($row);
         $data .= '{';
         $data .= '"id":"'.$id.'",';
-        $data .= '"description":"'.$description.'"';
+        $data .= '"description":"'.$description.'",';
+        $data .= '"template_page":"'.$template_page.'"';
         $data .= '}';
         $data .= $x<$num ? ',' : '';
         $x++;
