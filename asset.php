@@ -32,14 +32,16 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Days</th>
+                                <th>Asset</th>
+                                <th>Allocated to</th>
+                                <th>On date</th>
                             </tr>
                         </thead>
                         <tbody ng-init="get()">
                             <tr dir-paginate="asset in assets | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="termx">
-                                <td class="text-align-left">{{ asset.asset_name }}</td>
-                                <td class="text-align-left">{{ asset.allocated_to_division }}</td>
+                                <td class="text-align-left">{{ asset.asset_name }} / {{ asset.asset_make }} / {{ asset.asset_model }}</td>
+                                <td class="text-align-left">{{ asset.allocated_to_full_name }}</td>
+                                <td class="text-align-left">{{ asset.asset_date_allocated }}</td>
                                 <td align="right">
                                     <a ng-click="read(asset.asset_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
                                     <a ng-click="allocate(asset.asset_id)" class="waves-effect waves-light btn margin-bottom-1em">Allocate</a>
@@ -48,7 +50,7 @@
                             </tr>
                         </tbody>
 
-                        <!-- new term modal -->
+                        <!-- new asset modal -->
                         <script type="text/ng-template" id="newAsset.html">
                             <div class="row modal-header">
                                 <h3 class="modal-title" id="modal-title">Add Asset</h4>
@@ -69,7 +71,7 @@
                             </div>
                         </script>
 
-                        <!-- edit term modal -->
+                        <!-- edit asset modal -->
                         <script type="text/ng-template" id="editAsset.html">
                             <div class="row modal-header">
                                 <h3 class="modal-title" id="modal-title">Edit Asset</h4>
@@ -90,15 +92,16 @@
                             </div>
                         </script>
 
-                        <!-- edit term modal -->
+                        <!-- allocate asset modal -->
                         <script type="text/ng-template" id="allocAsset.html">
                             <div class="row modal-header">
-                                <h3 class="modal-title" id="modal-title">Alloc Asset</h4>
+                                <h3 class="modal-title" id="modal-title">Allocate Asset</h4>
                             </div>
                             <div class="row modal-body" id="modal-body">
                                 <div class="input-field">
-                                    <label for="description">description</label>
-                                    <input ng-model="description" type="text" class="validate form-control" placeholder="Description here..." />
+                                    <select class="form-control" name="selectemployee" id="selectemployee" ng-model="selectemployee" ng-options="e as e.full_name for e in employees" ng-change="onStatusSelect()">
+                        					<option value="" disabled selected>Allocate to Employee</option>
+                        			</select>
                                 </div>
                                 <div class="input-field">
                                     <label for="days">days</label>

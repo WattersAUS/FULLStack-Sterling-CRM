@@ -44,8 +44,9 @@
                         <tbody ng-init="getAll()">
                             <tr dir-paginate="jobstatus in jobstatuses | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="jobstatusx">
                                 <td class="width-30-pct">{{ jobstatus.description }}</td>
+                                <td class="width-30-pct">{{ jobstatus.template_page }}</td>
                                 <td align="right">
-                                    <a ng-click="readJobStatus(jobstatus.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Rename</a>
+                                    <a ng-click="readJobStatus(jobstatus.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Update</a>
                                     <a ng-click="deleteJobStatus(jobstatus.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
                                 </td>
                             </tr>
@@ -61,7 +62,11 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input ng-model="description" type="text" class="validate" id="form-name" placeholder="Description here..." />
-                                    <label for="description">description</label>
+                                    <label for="Description">description</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input ng-model="template_page" type="text" class="validate" id="form-name" placeholder="Dialog page here..." />
+                                    <label for="Dialog page">template_page</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <a id="btn-create-jobstatus" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createJobStatus()"><i class="material-icons left">add</i>Create</a>

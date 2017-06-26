@@ -8,6 +8,7 @@ $jobStatus              = new JobStatus($db);
 $data                   = json_decode(file_get_contents("php://input"));
 $jobStatus->id          = $data->id;
 $jobStatus->description = $data->description;
+$jobStatus->template_page = $data->template_page;
 if ($jobStatus->update()) {
     echo "Job Status was updated in System.";
 } else {

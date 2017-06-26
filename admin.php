@@ -278,7 +278,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="./assets.html">
+                        <a href="./asset.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View/Create</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -20,12 +20,12 @@
         <!-- Sterling CSSS -->
         <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     </head>
-    <body ng-app="sterlingJobsDisplayApp" ng-controller="jobsdisplayCtrl" ng-init="initResultPageData()">
+    <body ng-app="sterlingJobsDisplayApp" ng-controller="jobsDisplayCtrl" ng-init="initPage()">
         <?php include './inc/headerNav.php';?>
 
         <div id="wrapper">
             <div id="s-page-wrapper">
-    <!-- /.row -->
+                <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12 col-md-12 panel">
                         <div class="panel panel-turq">
@@ -54,141 +54,258 @@
             			</select>
             		</div>
 
-        <!-- RESULT -->
-        <div class="col-lg-12 col-md-12">
-            <div class="panel panel-black">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-9 text-left">
-                            <div class="panelTitle">Job Details- {{ job_id }} / {{ employee_first_name }} / {{ employee_last_name }}</div>
+                    <!-- RESULT -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-black">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-9 text-left">
+                                        <div class="panelTitle">Job Details- {{ job_id }} / {{ employee_first_name }} / {{ employee_last_name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-turq panel-margin3">
+                                <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 28/05/17</span>
+                                <span class="result-site fltlft"><span class="smlHd">Time:</span> 11:01:15</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Status:</span> Jack Stewart</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Cancelled date:</span> 29/05/17</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Cancelled by:</span> Jack Stewart</span>
+                            </div>
+                            <div class="jobInfo">This job has now been cancelled</div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-turq panel-margin3">
-          <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 28/05/17</span>
-          <span class="result-site fltlft"><span class="smlHd">Time:</span> 11:01:15</span>
-          <span class="result-crn fltlft"><span class="smlHd">Status:</span> Jack Stewart</span>
-          <span class="result-crn fltlft"><span class="smlHd">Cancelled date:</span> 29/05/17</span>
-          <span class="result-crn fltlft"><span class="smlHd">Cancelled by:</span> Jack Stewart</span>
-          </div>
-          <div class="jobInfo">This job has now been cancelled</div>
-           </div>
-        </div>
-        <!-- / RESULT  -->
+                    <!-- / RESULT  -->
 
-        <!-- RESULT -->
-        <div class="col-lg-12 col-md-12">
-          <div class="panel panel-white">
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col-xs-9 text-left">
-                  <div class="panelTitle">Job completed- No job sheet</div>
+                    <!-- RESULT -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-9 text-left">
+                                        <div class="panelTitle">Job completed- No job sheet</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-turq panel-margin3">
+                                <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 28/05/17</span>
+                                <span class="result-site fltlft"><span class="smlHd">Time:</span> 11:01:15</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Status:</span> Jack Stewart</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Cancelled date:</span> N/A</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Cancelled by:</span> N/A</span>
+                            </div>
+                            <div class="jobInfo">INformation to appear here</div>
+                        </div>
+                    </div>
+                    <!-- / RESULT  -->
+
+                    <!-- RESULT -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-9 text-left">
+                                        <div class="panelTitle">Note</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-turq panel-margin3">
+                                <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 24/05/17</span>
+                                <span class="result-site fltlft"><span class="smlHd">Time:</span> 09:01:01</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Status:</span> Jack Stewart</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Cancelled date:</span> N/A</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Cancelled by:</span> N/A</span>
+                            </div>
+                            <div class="jobInfo">Plan budget was changed from <strong>£1,000.00</strong> to <strong>£10,000</strong> bacause no bedget was originally set</div>
+                        </div>
+                    </div>
+                    <!-- / RESULT  -->
+
+                    <!-- RESULT -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-9 text-left">
+                                        <div class="panelTitle">Purchase Order Instruction</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-turq panel-margin3">
+                                <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 22/05/17</span>
+                                <span class="result-site fltlft"><span class="smlHd">Time:</span> 14:12:01</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Status:</span> Craig Hill</span>
+                            </div>
+
+                            <div class="panel panel-turq panel-margin3">
+                                <span class="result-jobNo fltlft"><span class="smlHd">CPO Received:</span> 16/05/17</span>
+                                <span class="result-site fltlft"><span class="smlHd">CPO:</span> 3453456845</span>
+                                <span class="result-crn fltlft"><span class="smlHd">PO Value:</span> £9199.85</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Job Budget:</span> £7999.99</span>
+                            </div>
+
+                            <div class="jobInfo">99100 - Quote 4, Orrel Park Phase 3 Bootle<br/>Option 2 - Choose this option</div>
+                        </div>
+                    </div>
+                    <!-- / RESULT  -->
+
+
                 </div>
-              </div>
             </div>
-
-            <div class="panel panel-turq panel-margin3">
-          <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 28/05/17</span>
-          <span class="result-site fltlft"><span class="smlHd">Time:</span> 11:01:15</span>
-          <span class="result-crn fltlft"><span class="smlHd">Status:</span> Jack Stewart</span>
-          <span class="result-crn fltlft"><span class="smlHd">Cancelled date:</span> N/A</span>
-          <span class="result-crn fltlft"><span class="smlHd">Cancelled by:</span> N/A</span>
-          </div>
-          <div class="jobInfo">INformation to appear here</div>
-           </div>
+            <!-- /.row -->
         </div>
-        <!-- / RESULT  -->
+        <!-- /#page-wrapper -->
 
-        <!-- RESULT -->
-        <div class="col-lg-12 col-md-12">
-          <div class="panel panel-white">
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col-xs-9 text-left">
-                  <div class="panelTitle">Note</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel panel-turq panel-margin3">
-          <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 24/05/17</span>
-          <span class="result-site fltlft"><span class="smlHd">Time:</span> 09:01:01</span>
-          <span class="result-crn fltlft"><span class="smlHd">Status:</span> Jack Stewart</span>
-          <span class="result-crn fltlft"><span class="smlHd">Cancelled date:</span> N/A</span>
-          <span class="result-crn fltlft"><span class="smlHd">Cancelled by:</span> N/A</span>
-          </div>
-          <div class="jobInfo">Plan budget was changed from <strong>£1,000.00</strong> to <strong>£10,000</strong> bacause no bedget was originally set</div>
-           </div>
-        </div>
-        <!-- / RESULT  -->
-
-        <!-- RESULT -->
-        <div class="col-lg-12 col-md-12">
-          <div class="panel panel-white">
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col-xs-9 text-left">
-                  <div class="panelTitle">Purchase Order Instruction</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel panel-turq panel-margin3">
-          <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 22/05/17</span>
-          <span class="result-site fltlft"><span class="smlHd">Time:</span> 14:12:01</span>
-          <span class="result-crn fltlft"><span class="smlHd">Status:</span> Craig Hill</span>
-          </div>
-
-          <div class="panel panel-turq panel-margin3">
-          <span class="result-jobNo fltlft"><span class="smlHd">CPO Received:</span> 16/05/17</span>
-          <span class="result-site fltlft"><span class="smlHd">CPO:</span> 3453456845</span>
-          <span class="result-crn fltlft"><span class="smlHd">PO Value:</span> £9199.85</span>
-          <span class="result-crn fltlft"><span class="smlHd">Job Budget:</span> £7999.99</span>
-          </div>
-
-          <div class="jobInfo">99100 - Quote 4, Orrel Park Phase 3 Bootle<br />
-          Option 2 - Choose this option</div>
-           </div>
-        </div>
-        <!-- / RESULT  -->
-
-
-      </div>
     </div>
-    <!-- /.row -->
-  </div>
-  <!-- /#page-wrapper -->
-
-</div>
 <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="./assets/js/jquery.min.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="./assets/vendor/metisMenu/metisMenu.min.js"></script>
-        <!-- Morris Charts JavaScript -->
-        <script src="./assets/vendor/raphael/raphael.min.js"></script>
-        <script src="./assets/vendor/morrisjs/morris.min.js"></script>
-        <script src="./assets/vendor/data/morris-data.js"></script>
+        <!-- start of dialogs -->
+        <script type="text/ng-template" id="awaitJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Awaiting Visit Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="./assets/vendor/dist/js/sb-admin-2.js"></script>
+        <script type="text/ng-template" id="visitJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Visited Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
 
-        <!-- GJW Added from here on.... 1/6/2017 -->
-        <!--page content and controls will be here -->
+        <script type="text/ng-template" id="quoteJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Quote Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
 
-        <!-- include angular js -->
+        <script type="text/ng-template" id="tenderJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Tender Job Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="cpoQJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">CPO Received (Quote) Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="cpoTJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">CPO Received (Tender) Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="programJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Job Programmed Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="inProgJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Job Inprogress Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="completedJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Job Completed Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="invoicedJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Job Invoiced Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="cancelJobDisplay.html">
+            <div class="row modal-header">
+                <h3 class="modal-title" id="modal-title">Job Cancelled Status Change</h4>
+            </div>
+            <div class="row modal-body" id="modal-body">
+            </div>
+            <div class="row modal-footer">
+                <a ng-click="save()" class="btn">Save</a>
+                <a ng-click="cancel()" class="btn">Cancel</a>
+            </div>
+        </script>
+        <!-- /#end of dialogs -->
+
         <script src="./assets/js/angular.min.js"></script>
-        <script src="./assets/js/angular-modal-service.js"></script>
+        <!-- include angular js -->
+        <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
         <!-- include angular ngStorage -->
         <script src="./assets/js/ngStorage.min.js"></script>
         <!-- include angular pagination -->
         <script src="./assets/js/dirPagination.js"></script>
-        <!-- custom js -->
-        <script type="text/javascript" src="./assets/js/custom.js"></script>
-        <!-- job -->
+        <!-- include jquery -->
+        <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+        <!-- user -->
         <script type="text/javascript" src="./app/jobs_display.js"></script>
+
     </body>
 </html>

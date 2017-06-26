@@ -59,92 +59,101 @@ class Asset {
         return;
     }
 
+    private function setDefaultAllocatedQuery() {
+        return "SELECT a.id AS asset_id,
+                        a.asset_type_id,
+                        a.employee_id AS asset_employee_id,
+                        a.name AS asset_name,
+                        a.date_allocated AS asset_date_allocated,
+                        a.date_to_service AS asset_date_to_service,
+                        a.make AS asset_make,
+                        a.model AS asset_model,
+                        a.serial_number AS asset_serial_number,
+                        a.internal_id AS asset_internal_id,
+                        a.in_service_date AS asset_in_service_date,
+                        a.total_cost AS asset_total_cost,
+                        a.purchase_date AS asset_purchase_date,
+                        a.depreciation_years AS asset_depreciation_years,
+                        a.depreciation_rate AS asset_depreciation_rate,
+                        a.book_value AS asset_book_value,
+                        COALESCE(a.supplier_id, 0) AS asset_supplier_id,
+                        a.tracker_id AS asset_tracker_id,
+                        a.allocated_employee_id AS asset_allocated_by_employee_id,
+                        a.allocation_status AS asset_allocation_status,
+                        a.location AS asset_location,
+                        a.notes AS asset_notes,
+                        a.condition AS asset_condition,
+                        a.date_updated AS asset_date_updated,
+                        u.id AS allocated_by_user_id,
+                        u.first_name AS allocated_by_first_name,
+                        u.last_name AS allocated_by_last_name,
+                        COALESCE(s.name, 'n/a') AS supplier_name,
+                        d.description AS allocated_to_division,
+                        au.id AS allocated_to_user_id,
+                        au.first_name AS allocated_to_first_name,
+                        au.last_name AS allocated_to_last_name
+                    FROM asset a
+                    LEFT JOIN employee e ON a.employee_id = e.id
+                    LEFT JOIN user u ON e.user_id = u.id
+                    LEFT JOIN supplier s ON a.supplier_id = s.id
+                    LEFT JOIN employee ae ON a.allocated_employee_id = ae.id
+                    LEFT JOIN division d ON ae.division_id = d.id
+                    LEFT JOIN user au ON ae.user_id = au.id
+                    WHERE a.allocation_status = true";
+    }
+
+    private function setDefaultUnallocatedQuery() {
+        return "SELECT a.id AS asset_id,
+                        a.asset_type_id,
+                        a.employee_id AS asset_employee_id,
+                        a.name AS asset_name,
+                        a.date_allocated AS asset_date_allocated,
+                        a.date_to_service AS asset_date_to_service,
+                        a.make AS asset_make,
+                        a.model AS asset_model,
+                        a.serial_number AS asset_serial_number,
+                        a.internal_id AS asset_internal_id,
+                        a.in_service_date AS asset_in_service_date,
+                        a.total_cost AS asset_total_cost,
+                        a.purchase_date AS asset_purchase_date,
+                        a.depreciation_years AS asset_depreciation_years,
+                        a.depreciation_rate AS asset_depreciation_rate,
+                        a.book_value AS asset_book_value,
+                        COALESCE(a.supplier_id, 0) AS asset_supplier_id,
+                        a.tracker_id AS asset_tracker_id,
+                        a.allocated_employee_id AS asset_allocated_employee_id,
+                        a.allocation_status AS asset_allocation_status,
+                        a.location AS asset_location,
+                        a.notes AS asset_notes,
+                        a.condition AS asset_condition,
+                        a.date_updated AS asset_date_updated,
+                        u.id AS allocated_by_user_id,
+                        u.first_name AS allocated_by_first_name,
+                        u.last_name AS allocated_by_last_name,
+                        COALESCE(s.name, 'n/a') AS supplier_name,
+                        '' AS allocated_to_division,
+                        0 AS allocated_to_user_id,
+                        '' AS allocated_to_first_name,
+                        '' AS allocated_to_last_name
+                    FROM asset a
+                    LEFT JOIN employee e ON a.employee_id = e.id
+                    LEFT JOIN user u ON e.user_id = u.id
+                    LEFT JOIN supplier s ON a.supplier_id = s.id
+                    WHERE a.allocation_status = false";
+    }
+
     private function setDefaultQuery() {
-        $this->query  = "SELECT a.id AS asset_id,
-                                a.asset_type_id,
-                                a.employee_id AS asset_employee_id,
-                                a.name AS asset_name,
-                                a.date_allocated AS asset_date_allocated,
-                                a.date_to_service AS asset_date_to_service,
-                                a.make AS asset_make,
-                                a.model AS asset_model,
-                                a.serial_number AS asset_serial_number,
-                                a.internal_id AS asset_internal_id,
-                                a.in_service_date AS asset_in_service_date,
-                                a.total_cost AS asset_total_cost,
-                                a.purchase_date AS asset_purchase_date,
-                                a.depreciation_years AS asset_depreciation_years,
-                                a.depreciation_rate AS asset_depreciation_rate,
-                                a.book_value AS asset_book_value,
-                                COALESCE(a.supplier_id, 0) AS asset_supplier_id,
-                                a.tracker_id AS asset_tracker_id,
-                                a.allocated_employee_id AS asset_allocated_by_employee_id,
-                                a.allocation_status AS asset_allocation_status,
-                                a.location AS asset_location,
-                                a.notes AS asset_notes,
-                                a.condition AS asset_condition,
-                                a.date_updated AS asset_date_updated,
-                                u.id AS allocated_by_user_id,
-                                u.first_name AS allocated_by_first_name,
-                                u.last_name AS allocated_by_last_name,
-                                COALESCE(s.name, 'n/a') AS supplier_name,
-                                d.description AS allocated_to_division,
-                                au.id AS allocated_to_user_id,
-                                au.first_name AS allocated_to_first_name,
-                                au.last_name AS allocated_to_last_name
-                            FROM asset a
-                            LEFT JOIN employee e ON a.employee_id = e.id
-                            LEFT JOIN user u ON e.user_id = u.id
-                            LEFT JOIN supplier s ON a.supplier_id = s.id
-                            LEFT JOIN employee ae ON a.allocated_employee_id = ae.id
-                            LEFT JOIN division d ON ae.division_id = d.id
-                            LEFT JOIN user au ON ae.user_id = au.id
-                            WHERE a.allocation_status = true
-                        UNION
-                        SELECT
-                                a.id AS asset_id,
-                                a.asset_type_id,
-                                a.employee_id AS asset_employee_id,
-                                a.name AS asset_name,
-                                a.date_allocated AS asset_date_allocated,
-                                a.date_to_service AS asset_date_to_service,
-                                a.make AS asset_make,
-                                a.model AS asset_model,
-                                a.serial_number AS asset_serial_number,
-                                a.internal_id AS asset_internal_id,
-                                a.in_service_date AS asset_in_service_date,
-                                a.total_cost AS asset_total_cost,
-                                a.purchase_date AS asset_purchase_date,
-                                a.depreciation_years AS asset_depreciation_years,
-                                a.depreciation_rate AS asset_depreciation_rate,
-                                a.book_value AS asset_book_value,
-                                COALESCE(a.supplier_id, 0) AS asset_supplier_id,
-                                a.tracker_id AS asset_tracker_id,
-                                a.allocated_employee_id AS asset_allocated_employee_id,
-                                a.allocation_status AS asset_allocation_status,
-                                a.location AS asset_location,
-                                a.notes AS asset_notes,
-                                a.condition AS asset_condition,
-                                a.date_updated AS asset_date_updated,
-                                u.id AS allocated_by_user_id,
-                                u.first_name AS allocated_by_first_name,
-                                u.last_name AS allocated_by_last_name,
-                                COALESCE(s.name, 'n/a') AS supplier_name,
-                                '-' AS allocated_to_division,
-                                0 AS allocated_to_user_id,
-                                'Allocated' AS allocated_to_first_name,
-                                'Not' AS allocated_to_last_name
-                            FROM asset a
-                            LEFT JOIN employee e ON a.employee_id = e.id
-                            LEFT JOIN user u ON e.user_id = u.id
-                            LEFT JOIN supplier s ON a.supplier_id = s.id
-                            WHERE a.allocation_status = false";
+        $this->query = $this->setDefaultAllocatedQuery()." UNION ".$this->setDefaultUnallocatedQuery();
+        return;
+    }
+
+    private function setDefaultQueryByID($id) {
+        $this->query  = $this->setDefaultAllocatedQuery().$this->setAssetID($id)." UNION ".$this->setDefaultUnallocatedQuery().$this->setAssetID($id);
         return;
     }
 
     private function setAssetID($id) {
-        $this->query .= " WHERE a.id = ".$id;
-        return;
+        return " AND a.id = ".$id;
     }
 
     private function buildRowArray($row) {
@@ -181,16 +190,19 @@ class Asset {
             "allocated_to_division"          => $row['allocated_to_division'],
             "allocated_to_user_id"           => $row['allocated_to_user_id'],
             "allocated_to_first_name"        => $row['allocated_to_first_name'],
-            "allocated_to_last_name"         => $row['allocated_to_last_name'],
-            "allocated_to_full_name"         => $row['allocated_to_last_name'].', '.$row['allocated_to_first_name'],
+            "allocated_to_last_name"         => $row['allocated_to_last_name']
         );
+        if ($item["allocated_to_user_id"] == 0) {
+            $item["allocated_to_full_name"] = "Unallocated";
+        } else {
+            $item["allocated_to_full_name"] = $row['allocated_to_last_name'].', '.$row['allocated_to_first_name'];
+        }
         return($item);
     }
 
     public function getAssetByID($asset_id) {
         $this->initialiseJSON();
-        $this->setDefaultQuery();
-        $this->setAssetID($asset_id);
+        $this->setDefaultQueryByID($asset_id);
         $stmt = $this->conn->prepare($this->query);
         $stmt->execute();
         $this->numRows = 0;
@@ -320,6 +332,44 @@ class Asset {
         $stmt->bindParam(':id',         $this->asset_id);
         if ($stmt->execute()) {
             $this->data["id"]      = $this->conn->lastInsertId();
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $this->numRows;
+        }
+        return json_encode($this->data);
+    }
+
+    public function allocateAsset() {
+        $this->initialiseJSON();
+        $query = "UPDATE asset SET employee_id           = :employee_id,
+                                    date_allocated        = :date_allocated,
+                                    allocated_employee_id = :allocated_employee_id,
+                                    allocation_status     = true,
+                                    date_updated          = now()
+                    WHERE id = :id";
+        $stmt  = $this->conn->prepare($query);
+        $stmt->bindParam(':employee_id',              $this->asset_employee_id);
+        $stmt->bindParam(':date_allocated',           $this->asset_date_allocated);
+        $stmt->bindParam(':allocated_by_employee_id', $this->asset_allocated_by_employee_id);
+        $stmt->bindParam(':id',                       $this->asset_id);
+        if ($stmt->execute()) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $this->numRows;
+        }
+        return json_encode($this->data);
+    }
+
+    public function deallocateAsset() {
+        $this->initialiseJSON();
+        $query = "UPDATE asset SET employee_id           = :employee_id,
+                                    date_allocated        = NULL,
+                                    allocated_employee_id = NULL,
+                                    allocation_status     = false,
+                                    date_updated          = now()
+                    WHERE id = :id";
+        $stmt  = $this->conn->prepare($query);
+        $stmt->bindParam(':employee_id',              $this->asset_employee_id);
+        $stmt->bindParam(':id',                       $this->asset_id);
+        if ($stmt->execute()) {
             $this->data["success"] = "Ok";
             $this->data["count"]   = $this->numRows;
         }
