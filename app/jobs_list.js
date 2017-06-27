@@ -127,16 +127,6 @@ app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal)
 
 app.controller('newJobCtrl', function($scope, $http, $localStorage, $uibModalInstance) {
 
-	$scope.setRecordCountText = function() {
-		if ($scope.recordCount == 0) {
-			$scope.recordCountText = "No results shown...";
-		} else if ($scope.recordCount == 1) {
-			$scope.recordCountText = "One record shown...";
-		} else {
-			$scope.recordCountText = $scope.recordCount + " records shown...";
-		}
-	}
-
 	$scope.onCustomerSelect = function() {
 		$scope.getSitesForCustomer($scope.selectcustomer.customer_id);
 		$scope.sitecontacts = [];

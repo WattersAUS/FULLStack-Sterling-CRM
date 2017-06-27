@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html>
-
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Site Admin</title>
-        <!-- include material design CSS -->
-        <link rel="stylesheet" href="./assets/materialize/css/materialize.css" />
-        <!-- include material design icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- include custom CSS -->
         <link rel="stylesheet" href="./assets/css/custom.css" />
         <!-- Bootstrap Core CSS -->
@@ -27,17 +21,15 @@
         <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <!-- Navigation -->
         <?php include './inc/headerNav.php';?>
         <div class="container" ng-app="sterlingSiteApp" ng-controller="siteCtrl">
-            <div class="row">
-                <div class="col s12">
-                    <h4>Sites</h4>
-                    <!-- used for searching the current list -->
-                    <input type="text" ng-model="search" class="form-control" placeholder="Search...">
-
-                    <!-- table that shows product record list -->
-                    <table class="hoverable bordered">
+            <div >
+                <div class="row input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search..." style="border: none">
+                </div>
+                <div>
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th class="width-30-pct">Customer</th>
@@ -46,126 +38,129 @@
                                 <th class="width-30-pct">Postcode</th>
                             </tr>
                         </thead>
-                        <tbody ng-init="getAll()">
+                        <tbody ng-init="get()">
                             <tr dir-paginate="site in sites | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="sitex">
-                                <td class="width-30-pct">{{ site.customerName }}</td>
-                                <td class="width-30-pct">{{ site.name }}</td>
-                                <td class="width-30-pct">{{ site.address1 }}, {{ site.city }}</td>
-                                <td class="width-30-pct">{{ site.postcode }}</td>
+                                <td class="width-30-pct">{{ site.customer_name }}</td>
+                                <td class="width-30-pct">{{ site.site_name }}</td>
+                                <td class="width-30-pct">{{ site.site_address1 }}, {{ site.site_city }}</td>
+                                <td class="width-30-pct">{{ site.site_postcode }}</td>
                                 <td align="right">
-                                    <a ng-click="readSite(site.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Edit</a>
-                                    <a ng-click="deleteSite(site.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
+                                    <a ng-click="read(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                    <a ng-click="delete(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
-                        <!-- angular pagination -->
-                        <dir-pagination-controls pagination-id="sitex" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
-                        </table>
-                        <!-- modal for for creating new user -->
-                        <div id="modal-site-create-form" class="modal">
-                            <div class="modal-content">
-                                <h4 id="modal-site-create">Create Site</h4>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <select name="customer" id="customer" ng-model="customer" ng-options="c as c.name for c in customers" ng-change="onSelectAction()">
-                                            <option value="">--Select Customer--</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="name" type="text" class="validate" id="form-name" placeholder="Site Name..."/>
-                                        <label for="name">Site Name</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="shortName" type="text" class="validate" id="form-name" placeholder="Short..." />
-                                        <label for="shortName">Short Name</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="address1" type="text" class="validate" id="form-name" placeholder="Line 1..." />
-                                        <label for="address1">Address Line 1</label>
-                                    </div>
-                        			<div class="input-field col s12">
-                                        <input ng-model="address2" type="text" class="validate" id="form-name" placeholder="Line 2..." />
-                                        <label for="address2">Address Line 2</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="city" type="text" class="validate" id="form-name" placeholder="City..." />
-                                        <label for="city">City</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="county" type="text" class="validate" id="form-name" placeholder="Country..." />
-                                        <label for="county">County</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="postcode" type="text" class="validate" id="form-name" placeholder="Postcode..." />
-                                        <label for="postcode">Postcode</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <a id="btn-create-site" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createSite()"><i class="material-icons left">add</i>Create</a>
-                                        <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- modal for updating site -->
-                        <div id="modal-site-update-form" class="modal">
-                            <div class="modal-content">
-                                <h4 id="modal-site-update">Update Site</h4>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input ng-model="name" type="text" class="validate" id="form-name" placeholder="Site Name..." />
-                                        <label for="name">Site Name</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="shortName" type="text" class="validate" id="form-name" placeholder="Short..." />
-                                        <label for="shortName">Short Name</label>
-                                    </div>
-	                                <div class="input-field col s12">
-                                        <input ng-model="address1" type="text" class="validate" id="form-name" placeholder="Line 1..." />
-                                        <label for="address1">Address Line 1</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="address2" type="text" class="validate" id="form-name" placeholder="Line 2..." />
-                                        <label for="address2">Address Line 2</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="city" type="text" class="validate" id="form-name" placeholder="City..." />
-                                        <label for="city">City</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="county" type="text" class="validate" id="form-name" placeholder="Country..." />
-                                        <label for="county">County</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input ng-model="postcode" type="text" class="validate" id="form-name" placeholder="Postcode..." />
-                                        <label for="postcode">Postcode</label>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <a id="btn-update-site" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateSite()"><i class="material-icons left">edit</i>Save Changes</a>
-                                        <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- floating button for creating product -->
-                        <div class="fixed-action-btn" style="bottom:45px; right:24px;">
-                            <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal-site-create-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
-                        </div>
-                    </div> <!-- end col s12 -->
-                </div> <!-- end row -->
-            </div> <!-- end container -->
-            <!-- page content and controls will be here -->
-            <!-- include angular js -->
-            <script src="./assets/js/angular.min.js"></script>
-            <!-- include angular pagination -->
-            <script src="./assets/js/dirPagination.js"></script>
-            <!-- include jquery -->
-            <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-            <!-- material design js -->
-            <script src="./assets/materialize/js/materialize.min.js"></script>
-            <!-- custom js -->
-            <script type="text/javascript" src="./assets/js/custom.js"></script>
-            <!-- user -->
-            <script type="text/javascript" src="./app/site.js"></script>
-    </body>
+                    <!-- angular pagination -->
+                    <dir-pagination-controls pagination-id="sitex" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
+                </table>
+            </div>
+            <div class="row" align="right">
+                <a href="#" class="btn" color="#FF0000" role="button" ng-click="create()">Add</a>
+            </div>
+
+            <!-- edit site modal -->
+            <script type="text/ng-template" id="newSite.html">
+                <div class="row modal-header">
+                    <h3 class="modal-title" id="modal-title">New Site</h4>
+                </div>
+                <div class="row modal-body" id="modal-body">
+                    <div class="input-field">
+                        <select ng-model="site_customer_id">
+                            <option ng-repeat="c in customers" value="{{c.customer_id}}">{{c.customer_name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label for="site_name">Site Name</label>
+                        <input ng-model="site_name" type="text" class="validate form-control" placeholder="Site Name..."/>
+                    </div>
+                    <div class="input-field">
+                        <label for="site_shortname">Short Name</label>
+                        <input ng-model="site_shortname" type="text" class="validate form-control" placeholder="Short..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_address1">Address Line 1</label>
+                        <input ng-model="site_address1" type="text" class="validate form-control" placeholder="Line 1..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_address2">Address Line 2</label>
+                        <input ng-model="site_address2" type="text" class="validate form-control" placeholder="Line 2..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_city">City</label>
+                        <input ng-model="site_city" type="text" class="validate form-control" placeholder="City..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_county">County</label>
+                        <input ng-model="site_county" type="text" class="validate form-control" placeholder="Country..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_postcode">Postcode</label>
+                        <input ng-model="site_postcode" type="text" class="validate form-control" placeholder="Postcode..." />
+                    </div>
+                </div>
+                <div class="row modal-footer">
+                    <a ng-click="save()" class="btn">Save</a>
+                    <a ng-click="cancel()" class="btn">Cancel</a>
+                </div>
+            </script>
+
+            <script type="text/ng-template" id="editSite.html">
+                <div class="row modal-header">
+                    <h3 class="modal-title" id="modal-title">Edit Site</h4>
+                </div>
+                <div class="row modal-body" id="modal-body">
+                    <div class="input-field">
+                        <select ng-model="site_customer_id">
+                            <option ng-repeat="c in customers" value="{{c.customer_id}}" ng-selected="c.customer_id === site_customer_id">{{c.customer_name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label for="site_name">Site Name</label>
+                        <input ng-model="site_name" type="text" class="validate form-control" placeholder="Site Name..."/>
+                    </div>
+                    <div class="input-field">
+                        <label for="site_shortname">Short Name</label>
+                        <input ng-model="site_shortname" type="text" class="validate form-control" placeholder="Short..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_address1">Address Line 1</label>
+                        <input ng-model="site_address1" type="text" class="validate form-control" placeholder="Line 1..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_address2">Address Line 2</label>
+                        <input ng-model="site_address2" type="text" class="validate form-control" placeholder="Line 2..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_city">City</label>
+                        <input ng-model="site_city" type="text" class="validate form-control" placeholder="City..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_county">County</label>
+                        <input ng-model="site_county" type="text" class="validate form-control" placeholder="Country..." />
+                    </div>
+                    <div class="input-field">
+                        <label for="site_postcode">Postcode</label>
+                        <input ng-model="site_postcode" type="text" class="validate form-control" placeholder="Postcode..." />
+                    </div>
+                </div>
+                <div class="row modal-footer">
+                    <a ng-click="save()" class="btn">Save</a>
+                    <a ng-click="cancel()" class="btn">Cancel</a>
+                </div>
+            </script>
+
+        </div>
+    </div> <!-- end container -->
+    <!-- include angular js -->
+    <script src="./assets/js/angular.min.js"></script>
+    <!-- include angular js -->
+    <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
+    <!-- include angular pagination -->
+    <script src="./assets/js/dirPagination.js"></script>
+    <!-- include jquery -->
+    <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+    <!-- user -->
+    <script type="text/javascript" src="./app/site.js"></script>
+</body>
 </html>

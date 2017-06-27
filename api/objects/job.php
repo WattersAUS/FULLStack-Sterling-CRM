@@ -135,8 +135,8 @@ class Job {
 
     public function insertJob() {
         $this->initialiseJSON();
-        $query = "INSERT INTO job (site_id, employee_id, status_id, customer_ref_no, site_contact_id, description, closed) VALUES (:site_id, :employee_id, :status_id, :customer_ref_no, :site_contact_id, :description, :closed)";
-        $stmt  = $this->conn->prepare($query);
+        $this->query = "INSERT INTO job (site_id, employee_id, status_id, customer_ref_no, site_contact_id, description, closed) VALUES (:site_id, :employee_id, :status_id, :customer_ref_no, :site_contact_id, :description, :closed)";
+        $stmt  = $this->conn->prepare($this->query);
         $stmt->bindParam(':site_id',         $this->site_id);
         $stmt->bindParam(':employee_id',     $this->employee_id);
         $stmt->bindParam(':status_id',       $this->status_id);

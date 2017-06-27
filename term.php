@@ -98,7 +98,6 @@
                 </div>
             </div>
         </div> <!-- end container -->
-        <!-- page content and controls will be here -->
         <!-- include angular js -->
         <script src="./assets/js/angular.min.js"></script>
         <!-- include angular js -->

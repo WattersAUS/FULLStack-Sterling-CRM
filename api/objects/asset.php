@@ -329,9 +329,9 @@ class Asset {
         $this->initialiseJSON();
         $query = "DELETE FROM asset WHERE id = :id";
         $stmt  = $this->conn->prepare($query);
-        $stmt->bindParam(':id',         $this->asset_id);
+        $stmt->bindParam(':id', $this->asset_id);
         if ($stmt->execute()) {
-            $this->data["id"]      = $this->conn->lastInsertId();
+            $this->data["id"]      = $this->asset_id;
             $this->data["success"] = "Ok";
             $this->data["count"]   = $this->numRows;
         }
@@ -352,6 +352,7 @@ class Asset {
         $stmt->bindParam(':allocated_by_employee_id', $this->asset_allocated_by_employee_id);
         $stmt->bindParam(':id',                       $this->asset_id);
         if ($stmt->execute()) {
+            $this->data["id"]      = $this->asset_id;
             $this->data["success"] = "Ok";
             $this->data["count"]   = $this->numRows;
         }
@@ -367,9 +368,10 @@ class Asset {
                                     date_updated          = now()
                     WHERE id = :id";
         $stmt  = $this->conn->prepare($query);
-        $stmt->bindParam(':employee_id',              $this->asset_employee_id);
-        $stmt->bindParam(':id',                       $this->asset_id);
+        $stmt->bindParam(':employee_id', $this->asset_employee_id);
+        $stmt->bindParam(':id',          $this->asset_id);
         if ($stmt->execute()) {
+            $this->data["id"]      = $this->asset_id;
             $this->data["success"] = "Ok";
             $this->data["count"]   = $this->numRows;
         }
