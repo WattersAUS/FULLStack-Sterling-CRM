@@ -84,29 +84,29 @@
             <div class="row modal-body" id="modal-body">
                 <div class="row">
                     <label>Customer</label>
-                    <select name="selectcustomer" id="selectcustomer" ng-model="selectcustomer" ng-options="customer.customer_name for customer in customers" ng-change="onCustomerSelect()">
+                    <select ng-model="selectcustomer" ng-options="customer.customer_name for customer in customers" ng-change="onCustomerSelect()">
                         <option value="" disabled selected>Select customer...</option>
                     </select>
                 </div>
                 <div class="row">
                     <label>Site</label>
-                    <select name="selectsite" id="selectsite" ng-model="selectsite" ng-options="site.site_name for site in sites" ng-change="onSiteSelect()">
+                    <select ng-model="selectsite" ng-options="site.site_name for site in sites" ng-change="onSiteSelect()">
                         <option value="" disabled selected>Select site...</option>
                     </select>
                 </div>
                 <div class="row">
                     <label>Contact</label>
-                    <select name="selectsitecontact" id="selectsitecontact" ng-model="selectsitecontact" ng-options="sitecontact.contact_name for sitecontact in sitecontacts" ng-change="onSiteContactSelect()">
+                    <select ng-model="selectsitecontact" ng-options="sitecontact.contact_name for sitecontact in sitecontacts" ng-change="onSiteContactSelect()">
                         <option value="" disabled selected>Select contact...</option>
                     </select>
                 </div>
                 <div class="row">
                     <label>Customer Ref</label>
-                    <input ng-model="job_customer_ref_no" type="text" class="validate form-control" placeholder="Customer Ref..." />
+                    <input ng-model="job_customer_ref_no" type="text" class="validate form-control" placeholder="Customer Ref..." maxlength="32" size="32"/>
                 </div>
                 <div class="row">
                     <label>Description</label>
-                    <input ng-model="job_description" type="text" class="validate form-control" placeholder="Description..." />
+                    <input ng-model="job_description" type="text" class="validate form-control" placeholder="Description..." maxlength="128" size="32"/>
                 </div>
             </div>
             <div class="row modal-footer">

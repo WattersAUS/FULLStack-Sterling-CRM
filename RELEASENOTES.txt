@@ -2,6 +2,27 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+27/06/2017
+==========
+
+Updates:
+
+1. Updated site.php to new dialog handling
+
+2. Updated dir_pagination.tpl.html to use HTML encoded '<' and '>' chars after removal of material includes
+
+3. Fixed bug in temp db api for site
+
+4. Removed some redundant code in jobs_list.js
+
+Issues:
+
+1. Dialog solution needs more styling (although it is currently passable)
+
+2. Asset handling work in progress
+
+---------------------------------------------------------------------------------------------------------------------
+
 26/06/2017
 ==========
 
