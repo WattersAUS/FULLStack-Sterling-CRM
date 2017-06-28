@@ -2,6 +2,29 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+28/06/2017
+==========
+
+Updates:
+
+1. Remove 'our' app.js from code base (it's redundant)
+
+2. Removed references for above from various files
+
+3. Asset Handling continued
+
+4. Move dialogs into separate html files (job/site/asset) stored in dialogs folder
+
+Issues:
+
+1. Dialog solution needs more styling (although it is currently passable)
+
+2. Asset handling work in progress
+
+3. Some date pickers are not displaying date in the text field on an edit correctly
+
+---------------------------------------------------------------------------------------------------------------------
+
 27/06/2017
 ==========
 

@@ -43,7 +43,7 @@ class Asset {
     public $allocated_to_full_name;
 
     public $query;
-    public $numrows;
+    public $numRows;
     public $data;
 
     // constructor with $db as database connection
@@ -78,7 +78,7 @@ class Asset {
                         a.book_value AS asset_book_value,
                         COALESCE(a.supplier_id, 0) AS asset_supplier_id,
                         a.tracker_id AS asset_tracker_id,
-                        a.allocated_employee_id AS asset_allocated_by_employee_id,
+                        a.allocated_employee_id AS asset_allocated_employee_id,
                         a.allocation_status AS asset_allocation_status,
                         a.location AS asset_location,
                         a.notes AS asset_notes,
@@ -158,39 +158,39 @@ class Asset {
 
     private function buildRowArray($row) {
         $item = array(
-            "asset_id"                       => $row['asset_id'],
-            "asset_type_id"                  => $row['asset_type_id'],
-            "asset_employee_id"              => $row['asset_employee_id'],
-            "asset_name"                     => $row['asset_name'],
-            "asset_date_allocated"           => $row['asset_date_allocated'],
-            "asset_date_to_service"          => $row['asset_date_to_service'],
-            "asset_make"                     => $row['asset_make'],
-            "asset_model"                    => $row['asset_model'],
-            "asset_serial_number"            => $row['asset_serial_number'],
-            "asset_internal_id"              => $row['asset_internal_id'],
-            "asset_in_service_date"          => $row['asset_in_service_date'],
-            "asset_total_cost"               => $row['asset_total_cost'],
-            "asset_purchase_date"            => $row['asset_purchase_date'],
-            "asset_depreciation_years"       => $row['asset_depreciation_years'],
-            "asset_depreciation_rate"        => $row['asset_depreciation_rate'],
-            "asset_book_value"               => $row['asset_book_value'],
-            "asset_supplier_id"              => $row['asset_supplier_id'],
-            "asset_tracker_id"               => $row['asset_tracker_id'],
-            "asset_allocated_by_employee_id" => $row['asset_allocated_by_employee_id'],
-            "asset_allocation_status"        => $row['asset_allocation_status'],
-            "asset_location"                 => $row['asset_location'],
-            "asset_notes"                    => $row['asset_notes'],
-            "asset_condition"                => $row['asset_condition'],
-            "asset_date_updated"             => $row['asset_date_updated'],
-            "allocated_by_user_id"           => $row['allocated_by_user_id'],
-            "allocated_by_first_name"        => $row['allocated_by_first_name'],
-            "allocated_by_last_name"         => $row['allocated_by_last_name'],
-            "allocated_by_full_name"         => $row['allocated_by_last_name'].', '.$row['allocated_by_first_name'],
-            "supplier_name"                  => $row['supplier_name'],
-            "allocated_to_division"          => $row['allocated_to_division'],
-            "allocated_to_user_id"           => $row['allocated_to_user_id'],
-            "allocated_to_first_name"        => $row['allocated_to_first_name'],
-            "allocated_to_last_name"         => $row['allocated_to_last_name']
+            "asset_id"                    => $row['asset_id'],
+            "asset_type_id"               => $row['asset_type_id'],
+            "asset_employee_id"           => $row['asset_employee_id'],
+            "asset_name"                  => $row['asset_name'],
+            "asset_date_allocated"        => $row['asset_date_allocated'],
+            "asset_date_to_service"       => $row['asset_date_to_service'],
+            "asset_make"                  => $row['asset_make'],
+            "asset_model"                 => $row['asset_model'],
+            "asset_serial_number"         => $row['asset_serial_number'],
+            "asset_internal_id"           => $row['asset_internal_id'],
+            "asset_in_service_date"       => $row['asset_in_service_date'],
+            "asset_total_cost"            => $row['asset_total_cost'],
+            "asset_purchase_date"         => $row['asset_purchase_date'],
+            "asset_depreciation_years"    => $row['asset_depreciation_years'],
+            "asset_depreciation_rate"     => $row['asset_depreciation_rate'],
+            "asset_book_value"            => $row['asset_book_value'],
+            "asset_supplier_id"           => $row['asset_supplier_id'],
+            "asset_tracker_id"            => $row['asset_tracker_id'],
+            "asset_allocated_employee_id" => $row['asset_allocated_employee_id'],
+            "asset_allocation_status"     => $row['asset_allocation_status'],
+            "asset_location"              => $row['asset_location'],
+            "asset_notes"                 => $row['asset_notes'],
+            "asset_condition"             => $row['asset_condition'],
+            "asset_date_updated"          => $row['asset_date_updated'],
+            "allocated_by_user_id"        => $row['allocated_by_user_id'],
+            "allocated_by_first_name"     => $row['allocated_by_first_name'],
+            "allocated_by_last_name"      => $row['allocated_by_last_name'],
+            "allocated_by_full_name"      => $row['allocated_by_last_name'].', '.$row['allocated_by_first_name'],
+            "supplier_name"               => $row['supplier_name'],
+            "allocated_to_division"       => $row['allocated_to_division'],
+            "allocated_to_user_id"        => $row['allocated_to_user_id'],
+            "allocated_to_first_name"     => $row['allocated_to_first_name'],
+            "allocated_to_last_name"      => $row['allocated_to_last_name']
         );
         if ($item["allocated_to_user_id"] == 0) {
             $item["allocated_to_full_name"] = "Unallocated";
@@ -239,28 +239,28 @@ class Asset {
         $query  = "INSERT INTO asset (asset_type_id, employee_id, name, date_allocated, date_to_service, make, model, serial_number, internal_id, in_service_date, total_cost, purchase_date, depreciation_years, depreciation_rate, book_value, supplier_id, allocated_employee_id, allocation_status, location, notes, condition, date_updated) ";
         $query .= " VALUES (:asset_type_id, :employee_id, :name, :date_allocated, :date_to_service, :make, :model, :serial_number, :internal_id, :in_service_date, :total_cost, :purchase_date, :depreciation_years, :depreciation_rate, :book_value, :supplier_id, :allocated_employee_id, :allocation_status, :location, :notes, :condition, now())";
         $stmt  = $this->conn->prepare($query);
-        $stmt->bindParam(':asset_type_id',            $this->asset_type_id);
-        $stmt->bindParam(':employee_id',              $this->asset_employee_id);
-        $stmt->bindParam(':name',                     htmlspecialchars(strip_tags($this->asset_name)));
-        $stmt->bindParam(':date_allocated',           $this->asset_date_allocated);
-        $stmt->bindParam(':date_to_service',          $this->asset_date_to_service);
-        $stmt->bindParam(':make',                     htmlspecialchars(strip_tags($this->asset_make)));
-        $stmt->bindParam(':model',                    htmlspecialchars(strip_tags($this->asset_model)));
-        $stmt->bindParam(':serial_number',            htmlspecialchars(strip_tags($this->asset_serial_number)));
-        $stmt->bindParam(':internal_id',              htmlspecialchars(strip_tags($this->asset_internal_id)));
-        $stmt->bindParam(':in_service_date',          htmlspecialchars(strip_tags($this->asset_in_service_date)));
-        $stmt->bindParam(':total_cost',               $this->asset_total_cost);
-        $stmt->bindParam(':purchase_date',            $this->asset_purchase_date);
-        $stmt->bindParam(':depreciation_years',       $this->asset_depreciation_years);
-        $stmt->bindParam(':depreciation_rate',        $this->asset_depreciation_rate);
-        $stmt->bindParam(':book_value',               $this->asset_book_value);
-        $stmt->bindParam(':supplier_id',              $this->asset_supplier_id);
-        $stmt->bindParam(':tracker_id',               htmlspecialchars(strip_tags($this->asset_tracker_id)));
-        $stmt->bindParam(':allocated_by_employee_id', $this->asset_allocated_by_employee_id);
-        $stmt->bindParam(':allocation_status',        $this->asset_allocation_status);
-        $stmt->bindParam(':location',                 htmlspecialchars(strip_tags($this->asset_location)));
-        $stmt->bindParam(':notes',                    htmlspecialchars(strip_tags($this->asset_notes)));
-        $stmt->bindParam(':condition',                htmlspecialchars(strip_tags($this->asset_condition)));
+        $stmt->bindParam(':asset_type_id',         $this->asset_type_id);
+        $stmt->bindParam(':employee_id',           $this->asset_employee_id);
+        $stmt->bindParam(':name',                  htmlspecialchars(strip_tags($this->asset_name)));
+        $stmt->bindParam(':date_allocated',        $this->asset_date_allocated);
+        $stmt->bindParam(':date_to_service',       $this->asset_date_to_service);
+        $stmt->bindParam(':make',                  htmlspecialchars(strip_tags($this->asset_make)));
+        $stmt->bindParam(':model',                 htmlspecialchars(strip_tags($this->asset_model)));
+        $stmt->bindParam(':serial_number',         htmlspecialchars(strip_tags($this->asset_serial_number)));
+        $stmt->bindParam(':internal_id',           htmlspecialchars(strip_tags($this->asset_internal_id)));
+        $stmt->bindParam(':in_service_date',       htmlspecialchars(strip_tags($this->asset_in_service_date)));
+        $stmt->bindParam(':total_cost',            $this->asset_total_cost);
+        $stmt->bindParam(':purchase_date',         $this->asset_purchase_date);
+        $stmt->bindParam(':depreciation_years',    $this->asset_depreciation_years);
+        $stmt->bindParam(':depreciation_rate',     $this->asset_depreciation_rate);
+        $stmt->bindParam(':book_value',            $this->asset_book_value);
+        $stmt->bindParam(':supplier_id',           $this->asset_supplier_id);
+        $stmt->bindParam(':tracker_id',            htmlspecialchars(strip_tags($this->asset_tracker_id)));
+        $stmt->bindParam(':allocated_employee_id', $this->asset_allocated_by_employee_id);
+        $stmt->bindParam(':allocation_status',     $this->asset_allocation_status);
+        $stmt->bindParam(':location',              htmlspecialchars(strip_tags($this->asset_location)));
+        $stmt->bindParam(':notes',                 htmlspecialchars(strip_tags($this->asset_notes)));
+        $stmt->bindParam(':condition',             htmlspecialchars(strip_tags($this->asset_condition)));
         if ($stmt->execute()) {
             $this->data["id"]      = $this->conn->lastInsertId();
             $this->data["success"] = "Ok";
@@ -295,32 +295,32 @@ class Asset {
                                     date_updated          = now()
                     WHERE id = :id";
         $stmt  = $this->conn->prepare($query);
-        $stmt->bindParam(':asset_type_id',            $this->asset_type_id);
-        $stmt->bindParam(':employee_id',              $this->asset_employee_id);
-        $stmt->bindParam(':name',                     htmlspecialchars(strip_tags($this->asset_name)));
-        $stmt->bindParam(':date_allocated',           $this->asset_date_allocated);
-        $stmt->bindParam(':date_to_service',          $this->asset_date_to_service);
-        $stmt->bindParam(':make',                     htmlspecialchars(strip_tags($this->asset_make)));
-        $stmt->bindParam(':model',                    htmlspecialchars(strip_tags($this->asset_model)));
-        $stmt->bindParam(':serial_number',            htmlspecialchars(strip_tags($this->asset_serial_number)));
-        $stmt->bindParam(':internal_id',              htmlspecialchars(strip_tags($this->asset_internal_id)));
-        $stmt->bindParam(':in_service_date',          htmlspecialchars(strip_tags($this->asset_in_service_date)));
-        $stmt->bindParam(':total_cost',               $this->asset_total_cost);
-        $stmt->bindParam(':purchase_date',            $this->asset_purchase_date);
-        $stmt->bindParam(':depreciation_years',       $this->asset_depreciation_years);
-        $stmt->bindParam(':depreciation_rate',        $this->asset_depreciation_rate);
-        $stmt->bindParam(':book_value',               $this->asset_book_value);
-        $stmt->bindParam(':supplier_id',              $this->asset_supplier_id);
-        $stmt->bindParam(':tracker_id',               htmlspecialchars(strip_tags($this->asset_tracker_id)));
-        $stmt->bindParam(':allocated_by_employee_id', $this->asset_allocated_by_employee_id);
-        $stmt->bindParam(':allocation_status',        $this->asset_allocation_status);
-        $stmt->bindParam(':location',                 htmlspecialchars(strip_tags($this->asset_location)));
-        $stmt->bindParam(':notes',                    htmlspecialchars(strip_tags($this->asset_notes)));
-        $stmt->bindParam(':condition',                htmlspecialchars(strip_tags($this->asset_condition)));
-        $stmt->bindParam(':id',                       $this->asset_id);
+        $stmt->bindParam(':asset_type_id',         $this->asset_type_id);
+        $stmt->bindParam(':employee_id',           $this->asset_employee_id);
+        $stmt->bindParam(':name',                  htmlspecialchars(strip_tags($this->asset_name)));
+        $stmt->bindParam(':date_allocated',        $this->asset_date_allocated);
+        $stmt->bindParam(':date_to_service',       $this->asset_date_to_service);
+        $stmt->bindParam(':make',                  htmlspecialchars(strip_tags($this->asset_make)));
+        $stmt->bindParam(':model',                 htmlspecialchars(strip_tags($this->asset_model)));
+        $stmt->bindParam(':serial_number',         htmlspecialchars(strip_tags($this->asset_serial_number)));
+        $stmt->bindParam(':internal_id',           htmlspecialchars(strip_tags($this->asset_internal_id)));
+        $stmt->bindParam(':in_service_date',       htmlspecialchars(strip_tags($this->asset_in_service_date)));
+        $stmt->bindParam(':total_cost',            $this->asset_total_cost);
+        $stmt->bindParam(':purchase_date',         $this->asset_purchase_date);
+        $stmt->bindParam(':depreciation_years',    $this->asset_depreciation_years);
+        $stmt->bindParam(':depreciation_rate',     $this->asset_depreciation_rate);
+        $stmt->bindParam(':book_value',            $this->asset_book_value);
+        $stmt->bindParam(':supplier_id',           $this->asset_supplier_id);
+        $stmt->bindParam(':tracker_id',            htmlspecialchars(strip_tags($this->asset_tracker_id)));
+        $stmt->bindParam(':allocated_employee_id', $this->asset_allocated_by_employee_id);
+        $stmt->bindParam(':allocation_status',     $this->asset_allocation_status);
+        $stmt->bindParam(':location',              htmlspecialchars(strip_tags($this->asset_location)));
+        $stmt->bindParam(':notes',                 htmlspecialchars(strip_tags($this->asset_notes)));
+        $stmt->bindParam(':condition',             htmlspecialchars(strip_tags($this->asset_condition)));
+        $stmt->bindParam(':id',                    $this->asset_id);
         if ($stmt->execute()) {
             $this->data["success"] = "Ok";
-            $this->data["count"]   = $this->numRows;
+            $this->data["count"]   = $stmt->rowCount();
         }
         return json_encode($this->data);
     }
@@ -333,28 +333,28 @@ class Asset {
         if ($stmt->execute()) {
             $this->data["id"]      = $this->asset_id;
             $this->data["success"] = "Ok";
-            $this->data["count"]   = $this->numRows;
+            $this->data["count"]   = $stmt->rowCount();
         }
         return json_encode($this->data);
     }
 
     public function allocateAsset() {
         $this->initialiseJSON();
-        $query = "UPDATE asset SET employee_id           = :employee_id,
+        $query = "UPDATE asset SET employee_id            = :employee_id,
                                     date_allocated        = :date_allocated,
                                     allocated_employee_id = :allocated_employee_id,
                                     allocation_status     = true,
                                     date_updated          = now()
                     WHERE id = :id";
         $stmt  = $this->conn->prepare($query);
-        $stmt->bindParam(':employee_id',              $this->asset_employee_id);
-        $stmt->bindParam(':date_allocated',           $this->asset_date_allocated);
-        $stmt->bindParam(':allocated_by_employee_id', $this->asset_allocated_by_employee_id);
-        $stmt->bindParam(':id',                       $this->asset_id);
+        $stmt->bindParam(':employee_id',           $this->asset_employee_id);
+        $stmt->bindParam(':date_allocated',        $this->asset_date_allocated);
+        $stmt->bindParam(':allocated_employee_id', $this->asset_allocated_employee_id);
+        $stmt->bindParam(':id',                    $this->asset_id);
         if ($stmt->execute()) {
             $this->data["id"]      = $this->asset_id;
             $this->data["success"] = "Ok";
-            $this->data["count"]   = $this->numRows;
+            $this->data["count"]   = $stmt->rowCount();
         }
         return json_encode($this->data);
     }
@@ -373,7 +373,7 @@ class Asset {
         if ($stmt->execute()) {
             $this->data["id"]      = $this->asset_id;
             $this->data["success"] = "Ok";
-            $this->data["count"]   = $this->numRows;
+            $this->data["count"]   = $stmt->rowCount();
         }
         return json_encode($this->data);
     }

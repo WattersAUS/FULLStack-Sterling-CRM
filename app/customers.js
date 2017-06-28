@@ -1,24 +1,25 @@
+var app = angular.module('standardApp', ['angularUtils.directives.dirPagination']);
 app.controller('customersCtrl', function($scope, $http) {
 
- 
+
  // retrieve record to fill out the form
 $scope.readOne = function(id){
- 
+
     // change modal title
     $('#modal-product-title').text("Edit Customer");
- 
+
     // show udpate product button
     $('#btn-update-product').show();
- 
+
     // show create product button
     $('#btn-create-product').hide();
- 
+
     // post id of product to be edited
     $http({
         method: 'GET',
         url: '/ssdata_api/customer/' + id
     }).then(function successCallback(response) {
- 
+
         // put the values in form
         $scope.CustomerId = response.data.Id;
         $scope.EmployeeId = response.data.EmployeeId;
@@ -48,7 +49,7 @@ $scope.readOne = function(id){
     //});
 }
 
- 
+
  // read customers
 $scope.getAll = function(){
     $http({
@@ -62,40 +63,40 @@ $scope.getAll = function(){
 
   // delete customers
 $scope.deleteCustomers = function(id){
- 
+
     // ask the user if he is sure to delete the record
     if(confirm("Are you sure?")){
- 
+
         $http({
             method: 'POST',
             data: { 'Id' : id },
             url: '/ssdata_api/customerDelete'
         }).then(function successCallback(response) {
- 
+
             // tell the user product was deleted
             Materialize.toast(response.data, 4000);
- 
+
             // refresh the list
             $scope.getAll();
         });
     }
 }
 
- 
+
  $scope.showCreateForm = function(){
- 
+
     // clear form
     $scope.clearForm();
- 
+
     // change modal title
     $('#modal-product-title').text("Create New Customer");
- 
+
     // hide update customers button
     $('#btn-update-product').hide();
- 
+
     // show create customers button
     $('#btn-create-product').show();
- 
+
 }
 
 // clear variable / form values
@@ -125,7 +126,7 @@ $scope.clearForm = function(){
 
 // create new customers
 $scope.upsertCustomer = function(){
- 
+
     $http({
         method: 'POST',
         data: {
@@ -151,16 +152,16 @@ $scope.upsertCustomer = function(){
         },
         url: '/ssdata_api/customerUpdate'
     }).then(function successCallback(response) {
- 
+
         // tell the user new product was created
         Materialize.toast(response.data, 4000);
- 
+
         // close modal
         $('#modal-product-form').modal('close');
- 
+
         // clear modal content
         $scope.clearForm();
- 
+
         // refresh the list
         $scope.getAll();
     });
@@ -170,5 +171,5 @@ $scope.upsertCustomer = function(){
     $scope.$on('UserLogInEvent', function(event, data){
         $scope.getAll();
     });
- 
+
 });

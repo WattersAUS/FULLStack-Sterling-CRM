@@ -110,7 +110,7 @@ app.controller('jobsDisplayCtrl', function($scope, $http, $localStorage, $uibMod
         var modalInstance = $uibModal.open({
             animation:   true,
             controller:  $template+"Ctrl",
-            templateUrl: $template+".html",
+            templateUrl: "./dialogs/"+$template+".html",
             scope:       $scope
         });
         modalInstance.result.then(function () {

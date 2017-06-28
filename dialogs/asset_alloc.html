@@ -1,0 +1,27 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Asset Allocation</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="allocate_to">Allocated to</label>
+            <select id="allocate_to" ng-model="data.asset_allocated_employee_id">
+                <option ng-repeat="e in data.employees" value="{{e.employee_id}}" ng-selected="e.employee_id === data.asset_allocated_employee_id">{{e.full_name}}</option>
+            </select>
+        </div>
+        <div>
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{ format }}" ng-model="data.asset_date_allocated" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="calendar()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="allocate()" class="btn">Set</a>
+        <a ng-click="deallocate()" class="btn">Clear</a>
+        <a ng-click="cancel()" class="btn btn-danger">Cancel</a>
+    </div>
+</div>

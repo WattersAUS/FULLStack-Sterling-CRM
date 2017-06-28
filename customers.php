@@ -274,7 +274,7 @@
     <script type="text/javascript" src="./assets/js/dirPagination.js" ></script>
 
     <!-- app -->
-    <script type="text/javascript" src="./app/app.js"></script>
+    <!--<script type="text/javascript" src="./app/app.js"></script>-->
 
     <!-- include jquery -->
     <script type="text/javascript" src="./assets/js/jquery.js"></script>
@@ -285,10 +285,10 @@
     <script type="text/javascript" src="./assets/js/custom.js"></script>
 
     <!-- customers -->
-    <script type="text/javascript" src="./app/customers/customers.js"></script>
+    <script type="text/javascript" src="./app/customers.js"></script>
 
      <!-- user -->
-     <script type="text/javascript" src="./app/user/auth.js"></script>
+     <script type="text/javascript" src="./app/auth.js"></script>
 
     </body>
 </html>

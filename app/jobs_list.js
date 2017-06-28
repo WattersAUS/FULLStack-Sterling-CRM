@@ -60,7 +60,7 @@ app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal)
 	$scope.get = function() {
         $http({
             method: 'GET',
-            url: 'api/job/job_get_all.php'
+            url: './api/job/job_get_all.php'
         }).then(function successCallback(response) {
 			$scope.clearScope();
 			$scope.recordCount = response.data.count;
@@ -85,12 +85,11 @@ app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal)
 	}
 
     $scope.create = function() {
-		console.log("Create job...");
 		$scope.getCustomers();
         var modalInstance = $uibModal.open({
             animation:   true,
-            controller:  'newJobCtrl',
-            templateUrl: 'newJob.html',
+            controller:  'jobNewCtrl',
+            templateUrl: './dialogs/job_new.html',
             scope:       $scope
         });
         modalInstance.result.then(function () {
@@ -125,7 +124,7 @@ app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal)
 
 });
 
-app.controller('newJobCtrl', function($scope, $http, $localStorage, $uibModalInstance) {
+app.controller('jobNewCtrl', function($scope, $http, $localStorage, $uibModalInstance) {
 
 	$scope.onCustomerSelect = function() {
 		$scope.getSitesForCustomer($scope.selectcustomer.customer_id);
