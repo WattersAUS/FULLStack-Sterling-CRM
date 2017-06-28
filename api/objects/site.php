@@ -18,7 +18,7 @@ class Site {
     public $customer_name;
 
     public $query;
-    public $numrows;
+    public $numRows;
     public $data;
 
     // constructor with $db as database connection

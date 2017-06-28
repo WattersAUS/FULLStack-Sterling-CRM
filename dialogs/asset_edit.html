@@ -1,0 +1,95 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Edit Asset</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="type">Type</label>
+            <select id="type" ng-model="data.asset_type_id">
+                <option ng-repeat="a in data.assettypes" value="{{a.id}}" ng-selected="a.id === data.asset_type_id">{{a.type}}</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="asset_name">Name</label>
+            <input id="asset_name" ng-model="data.asset_name" type="text" class="validate form-control" placeholder="Name..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_make">Make</label>
+            <input id="asset_make" ng-model="data.asset_make" type="text" class="validate form-control" placeholder="Make..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_model">Model</label>
+            <input id="asset_model" ng-model="data.asset_model" type="text" class="validate form-control" placeholder="Model..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_serial_number">Serial</label>
+            <input id="asset_serial_number" ng-model="data.asset_serial_number" type="text" class="validate form-control" placeholder="Serial..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_internal_id">Int ID</label>
+            <input id="asset_internal_id" ng-model="data.asset_internal_id" type="text" class="validate form-control" placeholder="Internal ID..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_in_service_date">In Service</label>
+            <input id="asset_in_service_date" ng-model="data.asset_in_service_date" type="text" class="validate form-control" placeholder="In Service..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_total_cost">Total Cost</label>
+            <input id="asset_total_cost" ng-model="data.asset_total_cost" type="text" class="validate form-control" placeholder="Cost..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_purchase_date">Purchase Date</label>
+            <p class="input-group" id="asset_purchase_date">
+                <input type="text" class="form-control" uib-datepicker-popup="{{ format }}" ng-model="data.asset_purchase_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="calendar()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+        <div class="input-field">
+            <label for="asset_depreciation_years">Depreciation Years</label>
+            <input id="asset_depreciation_years" ng-model="data.asset_depreciation_years" type="text" class="validate form-control" placeholder="Years..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_depreciation_rate">Depreciation Rate</label>
+            <input id="asset_depreciation_rate" ng-model="data.asset_depreciation_rate" type="text" class="validate form-control" placeholder="Rate..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_book_value">Book Value</label>
+            <input id="asset_book_value" ng-model="data.asset_book_value" type="text" class="validate form-control" placeholder="Book value..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_supplier_id">Supplier</label>
+            <select id="type" ng-model="data.asset_supplier_id">
+                <option ng-repeat="s in data.suppliers" value="{{s.id}}" ng-selected="s.id === data.asset_supplier_id">{{s.name}}</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="asset_tracker_id">Tracker ID</label>
+            <input id="asset_tracker_id" ng-model="data.asset_tracker_id" type="text" class="validate form-control" placeholder="ID..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_location">Location</label>
+            <input id="asset_location" ng-model="data.asset_location" type="text" class="validate form-control" placeholder="Location..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_notes">Notes</label>
+            <input id="asset_notes" ng-model="data.asset_notes" type="text" class="validate form-control" placeholder="Notes..." />
+        </div>
+        <div class="input-field">
+            <label for="asset_condition">Condition</label>
+            <input id="asset_condition" ng-model="data.asset_condition" type="text" class="validate form-control" placeholder="Condition..." />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">New Job</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="selectcustomer">Customer</label>
+            <select ng-model="selectcustomer" ng-options="customer.customer_name for customer in customers" ng-change="onCustomerSelect()">
+                <option value="" disabled selected>Select customer...</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="selectsite">Site</label>
+            <select ng-model="selectsite" ng-options="site.site_name for site in sites" ng-change="onSiteSelect()">
+                <option value="" disabled selected>Select site...</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="selectsitecontact">Contact</label>
+            <select ng-model="selectsitecontact" ng-options="sitecontact.contact_name for sitecontact in sitecontacts" ng-change="onSiteContactSelect()">
+                <option value="" disabled selected>Select contact...</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="job_customer_ref_no">Customer Ref</label>
+            <input ng-model="job_customer_ref_no" type="text" class="validate form-control" placeholder="Customer Ref..." maxlength="32" size="32"/>
+        </div>
+        <div class="input-field">
+            <labelfor="job_description" >Description</label>
+            <input ng-model="job_description" type="text" class="validate form-control" placeholder="Description..." maxlength="128" size="32"/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>

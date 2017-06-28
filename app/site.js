@@ -5,7 +5,7 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
     $scope.get = function() {
         $http({
             method: 'GET',
-            url: 'api/site/site_get_all.php'
+            url: './api/site/site_get_all.php'
         }).then(function successCallback(response) {
 			$scope.recordCount = response.data.count;
 			$scope.success     = response.data.success;
@@ -27,7 +27,7 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
         $http({
             method: 'POST',
             data: { 'site_id' : id },
-            url: 'api/site/site_by_id.php'
+            url: './api/site/site_by_id.php'
         }).then(function successCallback(response) {
             $scope.recordCount = response.data.count;
 			$scope.success     = response.data.success;
@@ -52,8 +52,8 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
                 $scope.getCustomers();
                 var modalInstance = $uibModal.open({
                     animation:   true,
-                    controller:  'editSiteCtrl',
-                    templateUrl: 'editSite.html',
+                    controller:  'siteEditCtrl',
+                    templateUrl: './dialogs/site_edit.html',
                     scope:       $scope
                 });
                 modalInstance.result.then(function () {
@@ -91,8 +91,8 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
         $scope.getCustomers();
         var modalInstance = $uibModal.open({
             animation:   true,
-            controller:  'newSiteCtrl',
-            templateUrl: 'newSite.html',
+            controller:  'siteNewCtrl',
+            templateUrl: './dialogs/site_new.html',
             scope:       $scope
         });
         modalInstance.result.then(function () {
@@ -145,7 +145,7 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
 
 });
 
-app.controller('newSiteCtrl', function($scope, $http, $uibModalInstance) {
+app.controller('siteNewCtrl', function($scope, $http, $uibModalInstance) {
 
     $scope.save = function() {
         if ($scope.site_customer_id == "") {
@@ -163,7 +163,7 @@ app.controller('newSiteCtrl', function($scope, $http, $uibModalInstance) {
                     'site_county'      : $scope.site_county,
                     'site_postcode'    : $scope.site_postcode
                 },
-                url: 'api/site/site_insert.php'
+                url: './api/site/site_insert.php'
             }).then(function successCallback(response) {
                 $scope.recordCount = response.data.count;
     			$scope.success     = response.data.success;
@@ -183,7 +183,7 @@ app.controller('newSiteCtrl', function($scope, $http, $uibModalInstance) {
 
 });
 
-app.controller('editSiteCtrl', function($scope, $http, $uibModalInstance) {
+app.controller('siteEditCtrl', function($scope, $http, $uibModalInstance) {
 
     $scope.save = function() {
         $http({
@@ -199,7 +199,7 @@ app.controller('editSiteCtrl', function($scope, $http, $uibModalInstance) {
                 'site_county'      : $scope.site_county,
                 'site_postcode'    : $scope.site_postcode
             },
-            url: 'api/site/site_update.php'
+            url: './api/site/site_update.php'
         }).then(function successCallback(response) {
             $scope.recordCount = response.data.count;
 			$scope.success     = response.data.success;
