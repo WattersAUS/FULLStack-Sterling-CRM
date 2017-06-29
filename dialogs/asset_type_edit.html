@@ -1,0 +1,26 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Edit Asset Type</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="type">Type</label>
+            <input ng-model="data.type" type="text" class="validate" id="form-name" placeholder="Type..." />
+        </div>
+        <div class="input-field">
+            <label for="daysToReview">Days To Review</label>
+            <input ng-model="data.days" type="text" class="validate" id="form-name" placeholder="Days to Review..." />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>

@@ -2,6 +2,34 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+29/06/2017
+==========
+
+Updates:
+
+1. Updated asset_type admin page to use new dialogs and remove Material Design libs
+
+2. Updated category admin page to use new dialogs and remove Material Design libs
+
+3. Updated delivery_option admin page to use new dialogs and remove Material Design libs
+
+4. Updated division admin page to use new dialogs and remove Material Design libs
+
+5. Updated user admin page to use new dialogs and remove Material Design libs
+
+6. admin.php expanded to include more admin options
+
+Issues:
+
+1. Dialog solution needs more styling (although it is currently passable)
+
+2. Asset handling work in progress
+
+3. Some date pickers are not displaying date in the text field on an edit correctly
+
+
+---------------------------------------------------------------------------------------------------------------------
+
 28/06/2017
 ==========
 

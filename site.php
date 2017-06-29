@@ -23,52 +23,49 @@
     <body>
         <?php include './inc/headerNav.php';?>
         <div class="container" ng-app="sterlingSiteApp" ng-controller="siteCtrl">
-            <div >
-                <div class="row input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                    <input type="text" ng-model="search" class="form-control" placeholder="Search..." style="border: none">
-                </div>
-                <div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="width-30-pct">Customer</th>
-                                <th class="width-30-pct">Site</th>
-                                <th class="width-30-pct">Address</th>
-                                <th class="width-30-pct">Postcode</th>
-                            </tr>
-                        </thead>
-                        <tbody ng-init="get()">
-                            <tr dir-paginate="site in sites | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="sitex">
-                                <td class="width-30-pct">{{ site.customer_name }}</td>
-                                <td class="width-30-pct">{{ site.site_name }}</td>
-                                <td class="width-30-pct">{{ site.site_address1 }}, {{ site.site_city }}</td>
-                                <td class="width-30-pct">{{ site.site_postcode }}</td>
-                                <td align="right">
-                                    <a ng-click="read(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
-                                    <a ng-click="delete(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    <!-- angular pagination -->
+            <div class="row input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input type="text" ng-model="search" class="form-control" placeholder="Search..." style="border: none">
+            </div>
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="width-30-pct">Customer</th>
+                            <th class="width-30-pct">Site</th>
+                            <th class="width-30-pct">Address</th>
+                            <th class="width-30-pct">Postcode</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-init="get()">
+                        <tr dir-paginate="site in sites | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="sitex">
+                            <td class="width-30-pct">{{ site.customer_name }}</td>
+                            <td class="width-30-pct">{{ site.site_name }}</td>
+                            <td class="width-30-pct">{{ site.site_address1 }}, {{ site.site_city }}</td>
+                            <td class="width-30-pct">{{ site.site_postcode }}</td>
+                            <td align="right">
+                                <a ng-click="read(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                <a ng-click="delete(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                        <!-- angular pagination -->
                     <dir-pagination-controls pagination-id="sitex" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
                 </table>
             </div>
             <div class="row" align="right">
                 <a href="#" class="btn" color="#FF0000" role="button" ng-click="create()">Add</a>
             </div>
-        </div>
-    </div> <!-- end container -->
-    <!-- include angular js -->
-    <script src="./assets/js/angular.min.js"></script>
-    <!-- include angular js -->
-    <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
-    <!-- include angular pagination -->
-    <script src="./assets/js/dirPagination.js"></script>
-    <!-- include jquery -->
-    <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+        </div> <!-- end container -->
+        <!-- include angular js -->
+        <script src="./assets/js/angular.min.js"></script>
+        <!-- include angular js -->
+        <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
+        <!-- include angular pagination -->
+        <script src="./assets/js/dirPagination.js"></script>
+        <!-- include jquery -->
+        <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
     <!-- user -->
-    <script type="text/javascript" src="./app/site.js"></script>
-</body>
+        <script type="text/javascript" src="./app/site.js"></script>
+    </body>
 </html>

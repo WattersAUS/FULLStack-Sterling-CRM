@@ -108,13 +108,9 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
                 data: { 'site_id' : id },
                 url: 'api/site/site_delete.php'
             }).then(function successCallback(response) {
-                if ($scope.success != 'Ok') {
-    	            alert('There was a problem accessing the database! If this persists please inform support!');
-    				return;
-    			}
-    			if ($scope.recordCount == 0) {
-    	            alert('No Site record was removed from the database!');
-    			}
+                if ($scope.data.success != 'Ok' || $scope.data.recordCount == 0)  {
+                    alert('Unable to access the Site record (ID = ' + id + ') in the database! If this persists please inform support!');
+                }
                 $scope.get();
             }, function errorCallback(response) {
                 alert('There has been an error accessing the server, unable to remove the site record...');
@@ -165,9 +161,9 @@ app.controller('siteNewCtrl', function($scope, $http, $uibModalInstance) {
                 },
                 url: './api/site/site_insert.php'
             }).then(function successCallback(response) {
-                $scope.recordCount = response.data.count;
-    			$scope.success     = response.data.success;
-    			if ($scope.success != 'Ok' || $scope.recordCount == 0)  {
+                $scope.data.recordCount = response.data.count;
+    			$scope.data.success     = response.data.success;
+    			if ($scope.data.success != 'Ok' || $scope.data.recordCount == 0)  {
     	            alert('There was a problem adding the new site to the database! If this persists please inform support!');
     			}
                 $uibModalInstance.close();

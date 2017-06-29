@@ -1,122 +1,170 @@
-var app = angular.module('sterlingUserApp', ['angularUtils.directives.dirPagination']);
-app.controller('userCtrl', function($scope, $http) {
+var app = angular.module('sterlingUserApp', ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
 
-    $scope.updateUser = function(){
+app.controller('userCtrl', function($scope, $http, $uibModal) {
+
+    $scope.data = {};
+
+    $scope.get = function() {
+        $http({
+            method: 'GET',
+            url: './api/user/user_get_all.php'
+        }).then(function successCallback(response) {
+            $scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+			if ($scope.data.success != 'Ok') {
+	            alert('There was a problem accessing the database! If this persists please inform support!');
+				return;
+			}
+			if ($scope.data.recordCount == 0) {
+	            alert('No User records were found in the database!');
+			} else {
+    	        $scope.data.users = response.data.records;
+			}
+		}, function errorCallback(response) {
+            alert('Unable to access the User records...');
+        });
+    }
+
+    $scope.read = function(id) {
+        $http({
+            method: 'POST',
+            data: { 'user_id' : id },
+            url: './api/user/user_by_id.php'
+        }).then(function successCallback(response) {
+            $scope.data.recordCount = response.data.count;
+            $scope.data.success     = response.data.success;
+            if ($scope.data.success != 'Ok' || $scope.data.recordCount == 0)  {
+                alert('Unable to access the User record (ID = ' + id + ') in the database! If this persists please inform support!');
+            } else {
+                $scope.data.user_id            = response.data.records[0]["user_id"];
+                $scope.data.user_title         = response.data.records[0]["user_title"];
+                $scope.data.user_first_name    = response.data.records[0]["user_first_name"];
+                $scope.data.user_last_name     = response.data.records[0]["user_last_name"];
+                $scope.data.user_email_address = response.data.records[0]["user_email_address"];
+                $scope.data.user_start_date    = response.data.records[0]["user_start_date"];
+                $scope.data.user_end_date      = response.data.records[0]["user_end_date"];
+                $scope.data.user_password      = response.data.records[0]["user_password"];
+                $scope.data.user_level         = response.data.records[0]["user_level"];
+                var modalInstance = $uibModal.open({
+                    animation:   true,
+                    controller:  'usrEditCtrl',
+                    templateUrl: './dialogs/user_edit.html',
+                    scope:       $scope
+                });
+                modalInstance.result.then(function () {
+                    $scope.get();
+                }, function () {
+                });
+            }
+        }, function errorCallback(response) {
+            alert('Unable to access the User records...');
+        });
+    }
+
+    $scope.create = function() {
+        $scope.data.user_title         = "";
+        $scope.data.user_first_name    = "";
+        $scope.data.user_last_name     = "";
+        $scope.data.user_email_address = "";
+        $scope.data.user_password      = "";
+        $scope.data.user_userGUID      = "";
+        $scope.data.user_user_level    = 0;
+        var modalInstance = $uibModal.open({
+            animation:   true,
+            controller:  'usrNewCtrl',
+            templateUrl: './dialogs/user_new.html',
+            scope:       $scope
+        });
+        modalInstance.result.then(function () {
+            $scope.get();
+        }, function () {
+        });
+    }
+
+});
+
+app.controller('usrNewCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
         $http({
             method: 'POST',
             data: {
-                'id'            : $scope.id,
-                'title'         : $scope.title,
-                'first_name'    : $scope.first_name,
-                'last_name'     : $scope.last_name,
-                'email_address' : $scope.email_address,
-                'start_date'    : $scope.start_date,
-                'end_date'      : $scope.end_date,
-                'password'      : $scope.password,
-                'userGUID'      : $scope.userGUID,
-                'user_level'    : $scope.user_level
+                'user_title'         : $scope.data.user_title,
+                'user_first_name'    : $scope.data.user_first_name,
+                'user_last_name'     : $scope.data.user_last_name,
+                'user_email_address' : $scope.data.user_email_address,
+                'user_password'      : $scope.data.user_password,
+                'user_level'         : $scope.data.user_level
             },
-            url: 'api/user/update.php'
+            url: './api/user/user_insert.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-user-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+            if ($scope.data.success != 'Ok' || $scope.data.recordCount != 1)  {
+                alert('Unable to insert a new User record in the database! If this persists please inform support!');
+            }
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('Unable to access the User records...');
         });
     }
 
-    // retrieve record to fill out the form
-    $scope.readUser = function(id){
-        console.log("Read User...");
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
 
-        $('#modal-user-title').text("Edit User");
-        $('#btn-update-user').show();
-        $('#btn-create-user').hide();
+});
+
+app.controller('usrEditCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
         $http({
             method: 'POST',
-            data: { 'id' : id },
-            url: 'api/user/read_one.php'
+            data: {
+                'user_id'            : $scope.data.user_id,
+                'user_title'         : $scope.data.user_title,
+                'user_first_name'    : $scope.data.user_first_name,
+                'user_last_name'     : $scope.data.user_last_name,
+                'user_email_address' : $scope.data.user_email_address,
+                'user_password'      : $scope.data.user_password,
+                'user_level'         : $scope.data.user_level
+            },
+            url: './api/user/user_update.php'
         }).then(function successCallback(response) {
-            // put the values in form
-            $scope.id            = response.data[0]["id"];
-            $scope.title         = response.data[0]["title"];
-            $scope.first_name    = response.data[0]["first_name"];
-            $scope.last_name     = response.data[0]["last_name"];
-            $scope.email_address = response.data[0]["email_address"];
-            $scope.start_date    = response.data[0]["start_date"];
-            $scope.end_date      = response.data[0]["end_date"];
-            $scope.password      = response.data[0]["password"];
-            $scope.userGUID      = response.data[0]["userGUID"];
-            $scope.user_level    = response.data[0]["user_level"];
-            // show modal
-            $('#modal-user-form').modal('open');
+            $scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+            if ($scope.data.success != 'Ok')  {
+                alert('Unable to update the User record (ID = ' + $scope.data.id + ') in the database! If this persists please inform support!');
+            }
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('Unable to access the User records...');
         });
     }
 
-    $scope.getAll = function(){
-        $http({
-            method: 'GET',
-            url: 'api/user/read.php'
-        }).then(function successCallback(response) {
-            $scope.names = response.data.records;
-        });
-    }
-
-    $scope.deleteUser = function(id){
-        // ask the user if he is sure to delete the record
-        if(confirm("Are you sure?")){
+    $scope.deactivate = function() {
+        if(confirm("Are you sure you want to deactive this user?")){
             $http({
                 method: 'POST',
-                data: { 'id' : id },
-                url: 'api/user/delete.php'
+                data: {
+                    'user_id' : $scope.data.user_id
+                },
+                url: './api/user/user_deactivate.php'
             }).then(function successCallback(response) {
-                Materialize.toast(response.data, 4000);
-                $scope.getAll();
+                $scope.data.recordCount = response.data.count;
+    			$scope.data.success     = response.data.success;
+                if ($scope.data.success != 'Ok')  {
+                    alert('Unable to update the User record (ID = ' + $scope.data.user_id + ') in the database! If this persists please inform support!');
+                }
+                $uibModalInstance.close();
+            }, function errorCallback(response) {
+                alert('Unable to access the User records...');
             });
         }
     }
 
-    $scope.showCreateForm = function(){
-        $scope.clearForm();
-        $('#modal-user-title').text("New User");
-        $('#btn-update-user').hide();
-        $('#btn-create-user').show();
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
     }
 
-    $scope.clearForm = function(){
-        $scope.id            = "";
-        $scope.title         = "";
-        $scope.first_name    = "";
-        $scope.last_name     = "";
-        $scope.email_address = "";
-        $scope.start_date    = "";
-        $scope.end_date      = "";
-        $scope.password      = "";
-        $scope.userGUID      = "";
-        $scope.user_level    = "";
-    }
-
-    $scope.createUser = function(){
-        $http({
-            method: 'POST',
-            data: {
-                'id'            : $scope.id,
-                'title'         : $scope.title,
-                'first_name'    : $scope.first_name,
-                'last_name'     : $scope.last_name,
-                'email_address' : $scope.email_address,
-                'start_date'    : $scope.start_date,
-                'end_date'      : $scope.end_date,
-                'password'      : $scope.password,
-                'userGUID'      : $scope.userGUID,
-                'user_level'    : $scope.user_level
-            },
-            url: 'api/user/create.php'
-        }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-user-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
-        });
-    }
 });

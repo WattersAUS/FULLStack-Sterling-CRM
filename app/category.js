@@ -1,91 +1,119 @@
-var app = angular.module('sterlingCategoryApp', ['angularUtils.directives.dirPagination']);
-app.controller('categoryCtrl', function($scope, $http) {
+var app = angular.module('sterlingCategoryApp', ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
 
-    $scope.updateCategory = function() {
+app.controller('categoryCtrl', function($scope, $http, $uibModal) {
+
+    $scope.data = {};
+
+    $scope.get = function() {
         $http({
-            method: 'POST',
-            data: {
-                'id'          : $scope.id,
-                'description' : $scope.description,
-                'code'        : $scope.code
-            },
-            url: 'api/category/update.php'
+            method: 'GET',
+            url: './api/category/read.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-category-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $scope.data.categories = response.data.records;
+		}, function errorCallback(response) {
+            alert('Unable to access the Category records...');
         });
     }
 
-    $scope.readCategory = function(id) {
-        $('#modal-category-title').text("Edit Category");
-        $('#btn-update-category').show();
-        $('#btn-create-category').hide();
-
+    $scope.read = function(id) {
         $http({
             method: 'POST',
             data: { 'id' : id },
-            url: 'api/category/read_one.php'
+            url: './api/category/read_one.php'
         }).then(function successCallback(response) {
-            $scope.id          = response.data[0]["id"];
-            $scope.description = response.data[0]["description"];
-            $scope.code        = response.data[0]["code"];
-            $('#modal-category-form').modal('open');
-        }, function errorCallback(repsonse) {
-            Materialize.toast('Unable to retrieve Category record.', 4000);
+            $scope.data.id          = response.data[0]["id"];
+            $scope.data.code        = response.data[0]["code"];
+            $scope.data.description = response.data[0]["description"];
+            var modalInstance = $uibModal.open({
+                animation:   true,
+                controller:  'catEditCtrl',
+                templateUrl: './dialogs/category_edit.html',
+                scope:       $scope
+            });
+            modalInstance.result.then(function () {
+                $scope.get();
+            }, function () {
+            });
+        }, function errorCallback(response) {
+            alert('Unable to access the Category records...');
         });
     }
 
-    $scope.getAll = function() {
-        $http({
-            method: 'GET',
-            url: 'api/category/read.php'
-        }).then(function successCallback(response) {
-            $scope.categories = response.data.records;
+    $scope.create = function() {
+        $scope.data.id          = 0;
+        $scope.data.code        = "";
+        $scope.data.description = "";
+        var modalInstance = $uibModal.open({
+            animation:   true,
+            controller:  'catNewCtrl',
+            templateUrl: './dialogs/category_new.html',
+            scope:       $scope
+        });
+        modalInstance.result.then(function () {
+            $scope.get();
+        }, function () {
         });
     }
 
-    $scope.deleteCategory = function(id){
+    $scope.delete = function(id) {
         if(confirm("Are you sure you want to remove this Category from the System?")){
             $http({
                 method: 'POST',
                 data: { 'id' : id },
-                url: 'api/category/delete.php'
+                url: './api/category/delete.php'
             }).then(function successCallback(response) {
-                Materialize.toast(response.data, 4000);
-                $scope.getAll();
+                $scope.get();
+            }, function errorCallback(response) {
+                alert('Unable to access the Category records...');
             });
         }
     }
 
-    $scope.showCreateForm = function() {
-        $scope.clearForm();
-        $('#modal-category-title').text("Add a Category to System");
-        $('#btn-update-category').hide();
-        $('#btn-create-category').show();
-    }
+});
 
-    $scope.clearForm = function(){
-        $scope.id          = "";
-        $scope.description = "";
-        $scope.code        = "";
-    }
+app.controller('catNewCtrl', function($scope, $http, $uibModalInstance) {
 
-    $scope.createCategory = function() {
+    $scope.save = function() {
         $http({
             method: 'POST',
             data: {
-                'id'          : $scope.id,
-                'description' : $scope.description,
-                'code'        : $scope.code
+                'code'        : $scope.data.code,
+                'description' : $scope.data.description
             },
-            url: 'api/category/create.php'
+            url: './api/category/create.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-category-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('Unable to access the Category records...');
         });
     }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
+});
+
+app.controller('catEditCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
+        $http({
+            method: 'POST',
+            data: {
+                'id'          : $scope.data.id,
+                'code'        : $scope.data.code,
+                'description' : $scope.data.description
+            },
+            url: './api/category/update.php'
+        }).then(function successCallback(response) {
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('Unable to access the Category records...');
+        });
+    }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
 });
