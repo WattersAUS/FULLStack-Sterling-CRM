@@ -202,7 +202,7 @@ class Site {
         $stmt->bindParam(':id',          $this->site_id);
         if ($stmt->execute()) {
             $this->data["success"] = "Ok";
-            $this->data["count"]   = $this->numRows;
+            $this->data["count"]   = $stmt->rowCount();
         }
         return json_encode($this->data);
     }
@@ -215,7 +215,7 @@ class Site {
         if ($stmt->execute()) {
             $this->data["id"]      = $this->site_id;
             $this->data["success"] = "Ok";
-            $this->data["count"]   = $this->numRows;
+            $this->data["count"]   = $stmt->rowCount();
         }
         return json_encode($this->data);
     }

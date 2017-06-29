@@ -312,6 +312,183 @@
                 </div>
             </div>
 
+            <!-- ROW #4 -->
+
+           <div class="row">
+               <div class="col-lg-3 col-md-6">
+                   <div class="panel panel-turq">
+                       <div class="panel-heading">
+                           <div class="row">
+                               <div class="col-xs-3">
+                                   <i class="fa fa-globe fa-5x"></i>
+                               </div>
+                               <div class="col-xs-9 text-right">
+                                   <h2>Delivery Options</h2>
+                               </div>
+                           </div>
+                       </div>
+                       <a href="./delivery_option.php">
+                           <div class="panel-footer">
+                               <span class="pull-left">View/Create</span>
+                               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                               <div class="clearfix"></div>
+                           </div>
+                       </a>
+                   </div>
+               </div>
+               <div class="col-lg-3 col-md-6">
+                   <div class="panel panel-turq">
+                       <div class="panel-heading">
+                           <div class="row">
+                               <div class="col-xs-3">
+                                   <i class="fa fa-rocket fa-5x"></i>
+                               </div>
+                               <div class="col-xs-9 text-right">
+                                   <h2>Divisions</h2>
+                               </div>
+                           </div>
+                       </div>
+                       <a href="./division.php">
+                           <div class="panel-footer">
+                               <span class="pull-left">View/Create</span>
+                               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                               <div class="clearfix"></div>
+                           </div>
+                       </a>
+                   </div>
+               </div>
+               <div class="col-lg-3 col-md-6">
+                   <div class="panel panel-turq">
+                       <div class="panel-heading">
+                           <div class="row">
+                               <div class="col-xs-3">
+                                   <i class="fa fa-sliders fa-5x"></i>
+                               </div>
+                               <div class="col-xs-9 text-right">
+                                   <h2>Categories</h2>
+                               </div>
+                           </div>
+                       </div>
+                       <a href="./category.php">
+                           <div class="panel-footer">
+                               <span class="pull-left">View/Create</span>
+                               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                               <div class="clearfix"></div>
+                           </div>
+                       </a>
+                   </div>
+               </div>
+               <div class="col-lg-3 col-md-6">
+                   <div class="panel panel-turq">
+                       <div class="panel-heading">
+                           <div class="row">
+                               <div class="col-xs-3">
+                                   <i class="fa fa-money fa-5x"></i>
+                               </div>
+                               <div class="col-xs-9 text-right">
+                                   <h2>Asset Types</h2>
+                               </div>
+                           </div>
+                       </div>
+                       <a href="./asset_type.php">
+                           <div class="panel-footer">
+                               <span class="pull-left">View/Edit</span>
+                               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                               <div class="clearfix"></div>
+                           </div>
+                       </a>
+                   </div>
+               </div>
+           </div>
+
+           <!-- ROW #5 -->
+
+          <div class="row">
+              <div class="col-lg-3 col-md-6">
+                  <div class="panel panel-turq">
+                      <div class="panel-heading">
+                          <div class="row">
+                              <div class="col-xs-3">
+                                  <i class="fa fa-exclamation-triangle fa-5x"></i>
+                              </div>
+                              <div class="col-xs-9 text-right">
+                                  <h2>Job Statuses</h2>
+                              </div>
+                          </div>
+                      </div>
+                      <a href="./job_status.php">
+                          <div class="panel-footer">
+                              <span class="pull-left">View/Create</span>
+                              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                              <div class="clearfix"></div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <div class="panel panel-turq">
+                      <div class="panel-heading">
+                          <div class="row">
+                              <div class="col-xs-3">
+                                  <i class="fa fa-user-secret fa-5x"></i>
+                              </div>
+                              <div class="col-xs-9 text-right">
+                                  <h2>Teams</h2>
+                              </div>
+                          </div>
+                      </div>
+                      <a href="./team.php">
+                          <div class="panel-footer">
+                              <span class="pull-left">View/Create</span>
+                              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                              <div class="clearfix"></div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <div class="panel panel-turq">
+                      <div class="panel-heading">
+                          <div class="row">
+                              <div class="col-xs-3">
+                                  <i class="fa fa-sort-amount-asc fa-5x"></i>
+                              </div>
+                              <div class="col-xs-9 text-right">
+                                  <h2>Terms</h2>
+                              </div>
+                          </div>
+                      </div>
+                      <a href="./term.php">
+                          <div class="panel-footer">
+                              <span class="pull-left">View/Create</span>
+                              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                              <div class="clearfix"></div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <div class="panel panel-turq">
+                      <div class="panel-heading">
+                          <div class="row">
+                              <div class="col-xs-3">
+                                  <i class="fa fa-thumbs-up fa-5x"></i>
+                              </div>
+                              <div class="col-xs-9 text-right">
+                                  <h2>Work Options</h2>
+                              </div>
+                          </div>
+                      </div>
+                      <a href="./work_option.php">
+                          <div class="panel-footer">
+                              <span class="pull-left">View/Edit</span>
+                              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                              <div class="clearfix"></div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+          </div>
 
 
   </div>

@@ -8,8 +8,7 @@ $database               = new Database();
 $db                     = $database->getConnection();
 $assetType              = new AssetType($db);
 $data                   = json_decode(file_get_contents("php://input"));
-$assetType->id           = $data->id;
-$assetType->daysToReview = $data->description;
+$assetType->daysToReview = $data->daysToReview;
 $assetType->type         = $data->type;
 if ($assetType->create()) {
     echo "Asset Type added to system.";

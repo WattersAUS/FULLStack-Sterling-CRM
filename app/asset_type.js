@@ -1,91 +1,119 @@
-var app = angular.module('sterlingAssetTypeApp', ['angularUtils.directives.dirPagination']);
-app.controller('atCtrl', function($scope, $http) {
+var app = angular.module('sterlingAssetTypeApp', ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
 
-    $scope.updateAssetType = function() {
+app.controller('atCtrl', function($scope, $http, $uibModal) {
+
+    $scope.data = {};
+
+    $scope.get = function() {
         $http({
-            method: 'POST',
-            data: {
-                'id'           : $scope.id,
-                'daysToReview' : $scope.daysToReview,
-                'type'         : $scope.type
-            },
-            url: 'api/asset_type/update.php'
+            method: 'GET',
+            url: './api/asset_type/read.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-assettype-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $scope.data.assettypes = response.data.records;
+		}, function errorCallback(response) {
+            alert('Unable to access the Asset Types records...');
         });
     }
 
-    $scope.readAssetType = function(id) {
-        $('#modal-assettype-title').text("Edit Asset Type");
-        $('#btn-update-assettype').show();
-        $('#btn-create-assettype').hide();
-
+    $scope.read = function(id) {
         $http({
             method: 'POST',
             data: { 'id' : id },
-            url: 'api/asset_type/read_one.php'
+            url: './api/asset_type/read_one.php'
         }).then(function successCallback(response) {
-            $scope.id           = response.data[0]["id"];
-            $scope.daysToReview = response.data[0]["daysToReview"];
-            $scope.type         = response.data[0]["type"];
-            $('#modal-assettype-form').modal('open');
-        }, function errorCallback(repsonse) {
-            Materialize.toast('Unable to retrieve Asset Type record.', 4000);
+            $scope.data.id    = response.data[0]["id"];
+            $scope.data.days  = response.data[0]["daysToReview"];
+            $scope.data.type  = response.data[0]["type"];
+            var modalInstance = $uibModal.open({
+                animation:   true,
+                controller:  'atEditCtrl',
+                templateUrl: './dialogs/asset_type_edit.html',
+                scope:       $scope
+            });
+            modalInstance.result.then(function () {
+                $scope.get();
+            }, function () {
+            });
+        }, function errorCallback(response) {
+            alert('Unable to access the Asset Types records...');
         });
     }
 
-    $scope.getAll = function() {
-        $http({
-            method: 'GET',
-            url: 'api/asset_type/read.php'
-        }).then(function successCallback(response) {
-            $scope.assetTypes = response.data.records;
+    $scope.create = function() {
+        $scope.data.id    = 0;
+        $scope.data.days  = 0;
+        $scope.data.type  = "";
+        var modalInstance = $uibModal.open({
+            animation:   true,
+            controller:  'atNewCtrl',
+            templateUrl: './dialogs/asset_type_new.html',
+            scope:       $scope
+        });
+        modalInstance.result.then(function () {
+            $scope.get();
+        }, function () {
         });
     }
 
-    $scope.deleteAssetType = function(id){
+    $scope.delete = function(id) {
         if(confirm("Are you sure you want to remove this Asset Type from the System?")){
             $http({
                 method: 'POST',
                 data: { 'id' : id },
-                url: 'api/asset_type/delete.php'
+                url: './api/asset_type/delete.php'
             }).then(function successCallback(response) {
-                Materialize.toast(response.data, 4000);
-                $scope.getAll();
+                $scope.get();
+            }, function errorCallback(response) {
+                alert('Unable to access the Asset Types records...');
             });
         }
     }
 
-    $scope.showCreateForm = function() {
-        $scope.clearForm();
-        $('#modal-assettype-title').text("Add a Asset Type to System");
-        $('#btn-update-assettype').hide();
-        $('#btn-create-assettype').show();
-    }
+});
 
-    $scope.clearForm = function(){
-        $scope.id           = "";
-        $scope.daysToReview = "";
-        $scope.type         = "";
-    }
+app.controller('atNewCtrl', function($scope, $http, $uibModalInstance) {
 
-    $scope.createAssetType = function() {
+    $scope.save = function() {
         $http({
             method: 'POST',
             data: {
-                'id'          : $scope.id,
-                'description' : $scope.daysToReview,
-                'type'        : $scope.type
+                'daysToReview' : $scope.data.days,
+                'type'         : $scope.data.type
             },
-            url: 'api/asset_type/create.php'
+            url: './api/asset_type/create.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-assettype-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('Unable to access the Asset Types records...');
         });
     }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
+});
+
+app.controller('atEditCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
+        $http({
+            method: 'POST',
+            data: {
+                'id'           : $scope.data.id,
+                'daysToReview' : $scope.data.days,
+                'type'         : $scope.data.type
+            },
+            url: './api/asset_type/update.php'
+        }).then(function successCallback(response) {
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('Unable to access the Asset Types records...');
+        });
+    }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
 });

@@ -5,10 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Division Admin</title>
-        <!-- include material design CSS -->
-        <link rel="stylesheet" href="./assets/materialize/css/materialize.css" />
-        <!-- include material design icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- include custom CSS -->
         <link rel="stylesheet" href="./assets/css/custom.css" />
         <!-- Bootstrap Core CSS -->
@@ -28,68 +24,42 @@
         <!-- Navigation -->
         <?php include './inc/headerNav.php';?>
         <div class="container" ng-app="sterlingDivisionApp" ng-controller="divisionCtrl">
+            <div class="row input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input type="text" ng-model="search" class="form-control" placeholder="Search..." style="border: none">
+            </div>
             <div class="row">
-                <div class="col s12">
-                    <h4>Divisions</h4>
-                    <!-- used for searching the current list -->
-                    <input type="text" ng-model="search" class="form-control" placeholder="Search...">
-
-                    <!-- table that shows product record list -->
-                    <table class="hoverable bordered">
-                        <thead>
-                            <tr>
-                                <th class="width-30-pct">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody ng-init="getAll()">
-                            <tr dir-paginate="division in divisions | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="divisionx">
-                                <td class="width-30-pct">{{ division.description }}</td>
-                                <td align="right">
-                                    <a ng-click="readDivision(division.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Rename</a>
-                                    <a ng-click="deleteDivision(division.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
-                                </td>
-                            </tr>
-                        </tbody>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="width-30-pct">Division</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-init="get()">
+                        <tr dir-paginate="div in data.divisions | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="divx">
+                            <td class="text-align-left">{{ div.description }}</td>
+                            <td align="right">
+                                <a ng-click="read(div.id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                <a ng-click="delete(div.id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
                         <!-- angular pagination -->
-                        <dir-pagination-controls pagination-id="divisionx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
-                    </table>
-
-                    <!-- modal for for creating new user -->
-                    <div id="modal-division-form" class="modal">
-                        <div class="modal-content">
-                            <h1 id="modal-division-title">Add Division</h4>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input ng-model="description" type="text" class="validate" id="form-name" placeholder="Description here..." />
-                                    <label for="description">description</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <a id="btn-create-division" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createDivision()"><i class="material-icons left">add</i>Create</a>
-                                    <a id="btn-update-division" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateDivision()"><i class="material-icons left">edit</i>Save Changes</a>
-                                    <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- floating button for creating product -->
-                    <div class="fixed-action-btn" style="bottom:45px; right:24px;">
-                        <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal-division-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
-                    </div>
-                </div> <!-- end col s12 -->
-            </div> <!-- end row -->
+                    <dir-pagination-controls pagination-id="divx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
+                </table>
+            </div>
+            <div class="row" align="right">
+                <a href="#" class="btn" color="#FF0000" role="button" ng-click="create()">Add</a>
+            </div>
         </div> <!-- end container -->
-        <!-- page content and controls will be here -->
         <!-- include angular js -->
         <script src="./assets/js/angular.min.js"></script>
+        <!-- include angular js -->
+        <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
         <!-- include angular pagination -->
         <script src="./assets/js/dirPagination.js"></script>
         <!-- include jquery -->
         <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-        <!-- material design js -->
-        <script src="./assets/materialize/js/materialize.min.js"></script>
-        <!-- custom js -->
-        <script type="text/javascript" src="./assets/js/custom.js"></script>
         <!-- user -->
         <script type="text/javascript" src="./app/division.js"></script>
     </body>

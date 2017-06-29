@@ -1,0 +1,43 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Edit User</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="data.user_title">Title</label>
+            <input ng-model="data.user_title" type="text" class="validate" id="form-name" placeholder="Title..." />
+        </div>
+        <div class="input-field">
+            <label for="data.user_first_name">First name</label>
+            <input ng-model="data.user_first_name" type="text" class="validate" id="form-name" placeholder="First name..." />
+        </div>
+        <div class="input-field">
+            <label for="data.user_last_name">Surname</label>
+            <input ng-model="data.user_last_name" type="text" class="validate" id="form-name" placeholder="Surname..." />
+        </div>
+        <div class="input-field">
+            <label for="data.user_email_address">Email</label>
+            <input ng-model="data.user_email_address" type="text" class="validate" id="form-name" placeholder="Email..." />
+        </div>
+        <div class="input-field">
+            <label for="data.user_password">Password</label>
+            <input ng-model="data.user_password" type="text" class="validate" id="form-price" placeholder="Password..." />
+        </div>
+        <div class="input-field">
+            <label for="data.user_level">User Level</label>
+            <input ng-model="data.user_level" type="text" class="validate" id="form-price" placeholder="User Level..." />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-warning" ng-click="deactivate()">Inactive</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>
