@@ -106,7 +106,7 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
             $http({
                 method: 'POST',
                 data: { 'site_id' : id },
-                url: 'api/site/site_delete.php'
+                url: './api/site/site_delete.php'
             }).then(function successCallback(response) {
                 if ($scope.data.success != 'Ok' || $scope.data.recordCount == 0)  {
                     alert('Unable to access the Site record (ID = ' + id + ') in the database! If this persists please inform support!');
@@ -121,7 +121,7 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
 	$scope.getCustomers = function() {
         $http({
             method: 'GET',
-            url: 'api/customers/customer_get_all.php'
+            url: './api/customers/customer_get_all.php'
         }).then(function successCallback(response) {
             $scope.recordCount = response.data.count;
 			$scope.success     = response.data.success;

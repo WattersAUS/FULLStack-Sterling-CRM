@@ -2,25 +2,26 @@ var app = angular.module('sterlingTermApp', ['angularUtils.directives.dirPaginat
 
 app.controller('termCtrl', function($scope, $http, $uibModal) {
 
+    $scope.data = {};
+
     $scope.get = function() {
         $http({
             method: 'GET',
-            url: 'api/term/read.php'
+            url: './api/term/read.php'
         }).then(function successCallback(response) {
-            $scope.terms = response.data.records;
+            $scope.data.terms = response.data.records;
         }, function errorCallback(response) {
             alert('There has been an error accessing the server, unable to retrieve the term records...');
         });
     }
 
     $scope.create = function() {
-        $scope.id           = "";
-        $scope.description  = "";
-        $scope.days         = "";
+        $scope.data.description  = "";
+        $scope.data.days         = "";
         var modalInstance = $uibModal.open({
             animation:   true,
-            controller:  'newTermCtrl',
-            templateUrl: 'newTerm.html',
+            controller:  'termNewCtrl',
+            templateUrl: './dialogs/term_new.html',
             scope:       $scope
         });
         modalInstance.result.then(function () {
@@ -33,15 +34,15 @@ app.controller('termCtrl', function($scope, $http, $uibModal) {
         $http({
             method: 'POST',
             data: { 'id' : id },
-            url: 'api/term/read_one.php'
+            url: './api/term/read_one.php'
         }).then(function successCallback(response) {
-            $scope.id            = response.data[0]["id"];
-            $scope.description   = response.data[0]["description"];
-            $scope.days          = response.data[0]["days"];
+            $scope.data.id            = response.data[0]["id"];
+            $scope.data.description   = response.data[0]["description"];
+            $scope.data.days          = response.data[0]["days"];
             var modalInstance = $uibModal.open({
                 animation:   true,
-                controller:  'editTermCtrl',
-                templateUrl: 'editTerm.html',
+                controller:  'termEditCtrl',
+                templateUrl: './dialogs/term_edit.html',
                 scope:       $scope
             });
             modalInstance.result.then(function () {
@@ -58,7 +59,7 @@ app.controller('termCtrl', function($scope, $http, $uibModal) {
             $http({
                 method: 'POST',
                 data: { 'id' : id },
-                url: 'api/term/delete.php'
+                url: './api/term/delete.php'
             }).then(function successCallback(response) {
                 $scope.get();
             }, function errorCallback(response) {
@@ -69,17 +70,16 @@ app.controller('termCtrl', function($scope, $http, $uibModal) {
 
 });
 
-app.controller('newTermCtrl', function($scope, $http, $uibModalInstance) {
+app.controller('termNewCtrl', function($scope, $http, $uibModalInstance) {
 
     $scope.save = function() {
         $http({
             method: 'POST',
             data: {
-                'id'          : $scope.id,
-                'description' : $scope.description,
-                'days'        : $scope.days
+                'description' : $scope.data.description,
+                'days'        : $scope.data.days
             },
-            url: 'api/term/create.php'
+            url: './api/term/create.php'
         }).then(function successCallback(response) {
             $uibModalInstance.close();
         }, function errorCallback(response) {
@@ -93,17 +93,17 @@ app.controller('newTermCtrl', function($scope, $http, $uibModalInstance) {
 
 });
 
-app.controller('editTermCtrl', function($scope, $http, $uibModalInstance) {
+app.controller('termEditCtrl', function($scope, $http, $uibModalInstance) {
 
     $scope.save = function() {
         $http({
             method: 'POST',
             data: {
-                'id'          : $scope.id,
-                'description' : $scope.description,
-                'days'        : $scope.days
+                'id'          : $scope.data.id,
+                'description' : $scope.data.description,
+                'days'        : $scope.data.days
             },
-            url: 'api/term/update.php'
+            url: './api/term/update.php'
         }).then(function successCallback(response) {
             $uibModalInstance.close();
         }, function errorCallback(response) {

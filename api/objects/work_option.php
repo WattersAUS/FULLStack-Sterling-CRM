@@ -1,87 +1,155 @@
 <?php
-
 class WorkOption {
     // database connection and table name
     private $conn;
-    private $table_name = "work_option";
 
     // object properties
-    public $id;
+    public $work_option_id;
+    public $work_option_category_id;
+    public $work_option_code;
+    public $work_option_description;
+    public $work_option_default_pricing;
+
     public $category_id;
-    public $code;
-    public $description;
-    public $default_pricing;
+    public $category_code;
+    public $category_description;
+
+    public $query;
+    public $numRows;
+    public $data;
 
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
     }
 
-    function delete() {
-        $query    = "DELETE FROM ".$this->table_name." WHERE id = ?";
-        $stmt     = $this->conn->prepare($query);
-        $this->id = htmlspecialchars(strip_tags($this->id));
-        $stmt->bindParam(1, $this->id);
-        if ($stmt->execute()) {
-            return true;
-        }
-        return false;
+    private function initialiseJSON() {
+        $this->data            = array();
+        $this->data["records"] = array();
+        $this->data["count"]   = 0;
+        $this->data["success"] = "Fail";
+        return;
     }
 
-    function update() {
-        $query = "UPDATE ".$this->table_name." SET category_id = :category_id, code = :code, description = :description, default_pricing = :default_pricing WHERE id = :id";
-        $stmt  = $this->conn->prepare($query);
-        $this->code        = htmlspecialchars(strip_tags($this->code));
-        $this->description = htmlspecialchars(strip_tags($this->description));
-
-        $stmt->bindParam(':category_id',     $this->category_id);
-        $stmt->bindParam(':code',            $this->code);
-        $stmt->bindParam(':description',     $this->description);
-        $stmt->bindParam(':default_pricing', $this->default_pricing);
-        $stmt->bindParam(':id',              $this->id);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+    private function setDefaultQuery() {
+        $this->query = "SELECT
+                            w.id AS work_option_id,
+                            w.category_id AS work_option_category_id,
+                            w.code AS work_option_code,
+                            w.description AS work_option_description,
+                            w.default_pricing AS work_option_default_pricing,
+                            c.id AS category_id,
+                            c.code AS category_code,
+                            c.description AS category_description
+                        FROM work_option w
+                        LEFT JOIN category c ON c.id = w.category_id";
+        return;
     }
 
-    function readOne() {
-        $query = "SELECT id, category_id, code, description, default_pricing FROM ".$this->table_name." WHERE id = ? LIMIT 0,1";
-        $stmt  = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $this->id);
+    private function setWorkOptionID($id) {
+        $this->query .= " WHERE w.id = ".$id;
+        return;
+    }
+
+    private function buildRowArray($row) {
+        $item = array(
+            "work_option_id"              => $row['work_option_id'],
+            "work_option_category_id"     => $row['work_option_category_id'],
+            "work_option_code"            => $row['work_option_code'],
+            "work_option_description"     => $row['work_option_description'],
+            "work_option_default_pricing" => $row['work_option_default_pricing'],
+            "category_id"                 => $row['category_id'],
+            "category_code"               => $row['category_code'],
+            "category_description"        => $row['category_description']
+        );
+        return($item);
+    }
+
+    public function getWorkOptionByID($id) {
+        $this->initialiseJSON();
+        $this->setDefaultQuery();
+        $this->setWorkOptionID($id);
+        $stmt = $this->conn->prepare($this->query);
         $stmt->execute();
-        $row                   = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->category_id     = $row['category_id'];
-        $this->code            = $row['code'];
-        $this->description     = $row['description'];
-        $this->default_pricing = $row['default_pricing'];
-    }
-
-    function create() {
-        $query = "INSERT INTO ".$this->table_name."  SET category_id = :category_id, code = :code, description = :description, default_pricing = :default_pricing ";
-        $stmt  = $this->conn->prepare($query);
-        $this->code        = htmlspecialchars(strip_tags($this->code));
-        $this->description = htmlspecialchars(strip_tags($this->description));
-
-        $stmt->bindParam(':category_id',     $this->category_id);
-        $stmt->bindParam(':code',            $this->code);
-        $stmt->bindParam(':description',     $this->description);
-        $stmt->bindParam(':default_pricing', $this->default_pricing);
-        if ($stmt->execute()) {
-            return true;
+        $this->numRows = 0;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $this->numRows += 1;
+            array_push($this->data["records"], $this->buildRowArray($row));
         }
-        echo "<pre>";
-        print_r($stmt->errorInfo());
-        echo "</pre>";
-        return false;
+        if ($this->numRows > 0) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $this->numRows;
+        }
+        return json_encode($this->data);
     }
 
-    function readAll() {
-        $query = "SELECT id, category_id, code, description, default_pricing FROM ".$this->table_name." ORDER BY id DESC";
-        $stmt = $this->conn->prepare( $query );
+    public function getAllWorkOptions() {
+        $this->initialiseJSON();
+        $this->setDefaultQuery();
+        $stmt = $this->conn->prepare($this->query);
         $stmt->execute();
-        return $stmt;
+        $this->numRows = 0;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $this->numRows += 1;
+            array_push($this->data["records"], $this->buildRowArray($row));
+        }
+        if ($this->numRows > 0) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $this->numRows;
+        }
+        return json_encode($this->data);
     }
+
+    public function insertWorkOption() {
+        $this->initialiseJSON();
+        $query  = "INSERT INTO work_option (category_id, code, description, default_pricing) ";
+        $query .= " VALUES (:category_id, :code, :description, :default_pricing)";
+        $stmt  = $this->conn->prepare($query);
+        $stmt->bindParam(':category_id',     $this->work_option_category_id);
+        $stmt->bindParam(':code',            htmlspecialchars(strip_tags($this->work_option_code)));
+        $stmt->bindParam(':description',     htmlspecialchars(strip_tags($this->work_option_description)));
+        $stmt->bindParam(':default_pricing', htmlspecialchars(strip_tags($this->work_option_default_pricing)));
+        if ($stmt->execute()) {
+            $this->data["id"]      = $this->conn->lastInsertId();
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $stmt->rowCount();
+        }
+        return json_encode($this->data);
+    }
+
+    public function updateWorkOption() {
+        $this->initialiseJSON();
+        $query = "UPDATE work_option SET
+                        category_id     = :category_id,
+                        code            = :code,
+                        description     = :description,
+                        default_pricing = :default_pricing
+                    WHERE id = :id";
+        $stmt  = $this->conn->prepare($query);
+        $stmt->bindParam(':category_id',     $this->work_option_category_id);
+        $stmt->bindParam(':code',            htmlspecialchars(strip_tags($this->work_option_code)));
+        $stmt->bindParam(':description',     htmlspecialchars(strip_tags($this->work_option_description)));
+        $stmt->bindParam(':default_pricing', htmlspecialchars(strip_tags($this->work_option_default_pricing)));
+        $stmt->bindParam(':id',              $this->work_option_id);
+        if ($stmt->execute()) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $stmt->rowCount();
+        }
+        return json_encode($this->data);
+    }
+
+    public function deleteWorkOption() {
+        $this->initialiseJSON();
+        $this->query = "DELETE FROM work_option WHERE id = :id";
+        $stmt  = $this->conn->prepare($this->query);
+        $stmt->bindParam(':id', $this->work_option_id);
+        if ($stmt->execute()) {
+            $this->data["id"]      = $this->work_option_id;
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $stmt->rowCount();
+        }
+        return json_encode($this->data);
+    }
+
 }
 ?>

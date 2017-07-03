@@ -1,87 +1,114 @@
-var app = angular.module('sterlingTeamApp', ['angularUtils.directives.dirPagination']);
-app.controller('teamCtrl', function($scope, $http) {
+var app = angular.module('sterlingTeamApp', ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
 
-    $scope.updateTeam = function() {
+app.controller('teamCtrl', function($scope, $http, $uibModal) {
+
+    $scope.data = {};
+
+    $scope.get = function() {
         $http({
-            method: 'POST',
-            data: {
-                'id'          : $scope.id,
-                'description' : $scope.description
-            },
-            url: 'api/team/update.php'
+            method: 'GET',
+            url: './api/team/read.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-team-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $scope.data.teams = response.data.records;
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to retrieve the Team records...');
         });
     }
 
-    $scope.readTeam = function(id) {
-        $('#modal-team-title').text("Rename Team");
-        $('#btn-update-team').show();
-        $('#btn-create-team').hide();
+    $scope.create = function() {
+        $scope.data.description  = "";
+        var modalInstance = $uibModal.open({
+            animation:   true,
+            controller:  'teamNewCtrl',
+            templateUrl: './dialogs/team_new.html',
+            scope:       $scope
+        });
+        modalInstance.result.then(function () {
+            $scope.get();
+        }, function () {
+        });
+    }
 
+    $scope.read = function(id) {
         $http({
             method: 'POST',
             data: { 'id' : id },
-            url: 'api/team/read_one.php'
+            url: './api/team/read_one.php'
         }).then(function successCallback(response) {
-            $scope.id          = response.data[0]["id"];
-            $scope.description = response.data[0]["description"];
-            $('#modal-team-form').modal('open');
-        }, function errorCallback(repsonse) {
-            Materialize.toast('Unable to retrieve Team record.', 4000);
+            $scope.data.id            = response.data[0]["id"];
+            $scope.data.description   = response.data[0]["description"];
+            var modalInstance = $uibModal.open({
+                animation:   true,
+                controller:  'teamEditCtrl',
+                templateUrl: './dialogs/team_edit.html',
+                scope:       $scope
+            });
+            modalInstance.result.then(function () {
+                $scope.get();
+            }, function () {
+            });
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to retrieve the Team record...');
         });
     }
 
-    $scope.getAll = function() {
-        $http({
-            method: 'GET',
-            url: 'api/team/read.php'
-        }).then(function successCallback(response) {
-            $scope.teams = response.data.records;
-        });
-    }
-
-    $scope.deleteTeam = function(id){
+    $scope.delete = function(id) {
         if(confirm("Are you sure you want to remove this Team from the System?")){
             $http({
                 method: 'POST',
                 data: { 'id' : id },
-                url: 'api/team/delete.php'
+                url: './api/team/delete.php'
             }).then(function successCallback(response) {
-                Materialize.toast(response.data, 4000);
-                $scope.getAll();
+                $scope.get();
+            }, function errorCallback(response) {
+                alert('There has been an error accessing the server, unable to remove the term record...');
             });
         }
     }
 
-    $scope.showCreateForm = function() {
-        $scope.clearForm();
-        $('#modal-team-title').text("Add a Team to System");
-        $('#btn-update-team').hide();
-        $('#btn-create-team').show();
-    }
+});
 
-    $scope.clearForm = function(){
-        $scope.id          = "";
-        $scope.description = "";
-    }
+app.controller('teamNewCtrl', function($scope, $http, $uibModalInstance) {
 
-    $scope.createTeam = function() {
+    $scope.save = function() {
         $http({
             method: 'POST',
             data: {
-                'id'          : $scope.id,
-                'description' : $scope.description
+                'description'   : $scope.data.description
             },
-            url: 'api/team/create.php'
+            url: './api/team/create.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-team-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to add the Team record...');
         });
     }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
+});
+
+app.controller('teamEditCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
+        $http({
+            method: 'POST',
+            data: {
+                'id'            : $scope.data.id,
+                'description'   : $scope.data.description
+            },
+            url: './api/team/update.php'
+        }).then(function successCallback(response) {
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to update the Team record...');
+        });
+    }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
 });

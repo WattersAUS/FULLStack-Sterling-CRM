@@ -5,10 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Work Option Admin</title>
-        <!-- include material design CSS -->
-        <link rel="stylesheet" href="./assets/materialize/css/materialize.css" />
-        <!-- include material design icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- include custom CSS -->
         <link rel="stylesheet" href="./assets/css/custom.css" />
         <!-- Bootstrap Core CSS -->
@@ -25,87 +21,53 @@
         <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <!-- Navigation -->
         <?php include './inc/headerNav.php';?>
-        <div class="container" ng-app="sterlingWorkOptionApp" ng-controller="workoptionCtrl">
-            <div class="row">
-                <div class="col s12">
-                    <h4>Work Options</h4>
-                    <!-- used for searching the current list -->
-                    <input type="text" ng-model="search" class="form-control" placeholder="Search...">
-
-                    <!-- table that shows product record list -->
-                    <table class="hoverable bordered">
+        <div class="container" ng-app="sterlingWorkOptApp" ng-controller="workOptCtrl">
+            <div >
+                <div class="row input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search..." style="border: none">
+                </div>
+                <div >
+                    <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="width-30-pct">Description</th>
-                                <th class="width-30-pct">Code</th>
-                                <th class="width-30-pct">Default Pricing</th>
+                                <th>Work Options</th>
+                                <th>Category</th>
+                                <th>Code</th>
+                                <th>Default Pricing</th>
                             </tr>
                         </thead>
-                        <tbody ng-init="getAll()">
-                             	 <!-- <tr ng-repeat="d in names | filter:search"> -->
-                    		<tr dir-paginate="workoption in workoptions | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="workoptionx">
-                                <td class="width-30-pct">{{ workoption.description }}</td>
-                                <td class="width-30-pct">{{ workoption.code }}</td>
-                                <td class="width-30-pct">{{ workoption.default_pricing }}</td>
+                        <tbody ng-init="get()">
+                            <tr dir-paginate="wopt in data.workoptions | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="workx">
+                                <td>{{ wopt.work_option_description }}</td>
+                                <td>{{ wopt.category_description }}</td>
+                                <td>{{ wopt.work_option_code }}</td>
+                                <td>{{ wopt.work_option_default_pricing }}</td>
                                 <td align="right">
-                                    <a ng-click="readWorkOption(workoption.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">edit</i>Edit</a>
-                                    <a ng-click="deleteWorkOption(workoption.id)" class="waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">delete</i>Delete</a>
+                                    <a ng-click="read(wopt.work_option_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                    <a ng-click="delete(wopt.work_option_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
                         <!-- angular pagination -->
-                        <dir-pagination-controls pagination-id="workoptionx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
+                        <dir-pagination-controls pagination-id="workx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
                     </table>
-
-                    <!-- modal for for creating new user -->
-                    <div id="modal-workoption-form" class="modal">
-                        <div class="modal-content">
-                            <h4 id="modal-workoption-title">Add Work Option</h4>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input ng-model="category_id" type="text" class="validate" id="form-name" placeholder="Category here..." />
-                                    <label for="category_id">Category ID</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input ng-model="code" type="text" class="validate" id="form-name" placeholder="Code here..." />
-                                    <label for="code">Code</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input ng-model="description" type="text" class="validate" id="form-name" placeholder="Description here..." />
-                                    <label for="description">description</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input ng-model="default_pricing" type="text" class="validate" id="form-name" placeholder="Pricing here..." />
-                                    <label for="default_pricing">Default Pricing</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <a id="btn-create-workoption" class="waves-effect waves-light btn margin-bottom-1em" ng-click="createWorkOption()"><i class="material-icons left">add</i>Create</a>
-                                    <a id="btn-update-workoption" class="waves-effect waves-light btn margin-bottom-1em" ng-click="updateWorkOption()"><i class="material-icons left">edit</i>Save Changes</a>
-                                    <a class="modal-action modal-close waves-effect waves-light btn margin-bottom-1em"><i class="material-icons left">close</i>Close</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- floating button for creating product -->
-                    <div class="fixed-action-btn" style="bottom:45px; right:24px;">
-                        <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal-workoption-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
-                    </div>
-                </div> <!-- end col s12 -->
-            </div> <!-- end row -->
+                </div>
+                <div class="row" align="right">
+                    <a href="#" class="btn" color="#FF0000" role="button" ng-click="create()">Add</a>
+                </div>
+            </div>
         </div> <!-- end container -->
-        <!-- page content and controls will be here -->
         <!-- include angular js -->
         <script src="./assets/js/angular.min.js"></script>
+        <!-- include angular js -->
+        <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
         <!-- include angular pagination -->
         <script src="./assets/js/dirPagination.js"></script>
         <!-- include jquery -->
         <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
-        <!-- material design js -->
-        <script src="./assets/materialize/js/materialize.min.js"></script>
-        <!-- custom js -->
-        <script type="text/javascript" src="./assets/js/custom.js"></script>
         <!-- user -->
         <script type="text/javascript" src="./app/work_option.js"></script>
     </body>

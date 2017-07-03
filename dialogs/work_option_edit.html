@@ -1,0 +1,36 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Edit Work Option</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="data.work_option_category_id">Category</label>
+            <select ng-model="data.work_option_category_id">
+                <option ng-repeat="c in data.categories" value="{{c.id}}" ng-selected="c.id === data.work_option_category_id">{{c.description}}</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="data.work_option_description">Description</label>
+            <input ng-model="data.work_option_description" type="text" class="validate" id="form-name" placeholder="Description..." />
+        </div>
+        <div class="input-field">
+            <label for="data.work_option_code">Code</label>
+            <input ng-model="data.work_option_code" type="text" class="validate" id="form-name" placeholder="Code..." />
+        </div>
+        <div class="input-field">
+            <label for="data.work_option_default_pricing">Default Pricing</label>
+            <input ng-model="data.work_option_default_pricing" type="text" class="validate" id="form-name" placeholder="Pricing..." />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>
