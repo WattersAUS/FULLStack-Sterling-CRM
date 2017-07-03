@@ -1,0 +1,78 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Edit Site Settings</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="data.companyName">Company Name</label>
+            <input ng-model="data.companyName" type="text" class="validate" id="form-name" placeholder="Company Name..." />
+        </div>
+        <div class="input-field">
+            <label for="data.shortName">Short Name</label>
+            <input ng-model="data.shortName" type="text" class="validate" id="form-name" placeholder="Short..." />
+        </div>
+        <div class="input-field">
+            <label for="data.companyRegNo">Company Reg No</label>
+            <input ng-model="data.companyRegNo" type="text" class="validate" id="form-name" placeholder="Reg001..." />
+        </div>
+        <div class="input-field">
+            <label for="data.webSite">Web Site URL</label>
+            <input ng-model="data.webSite" type="text" class="validate" id="form-name" placeholder="http:..." />
+        </div>
+        <div class="input-field">
+            <label for="data.defaultEmail">Email</label>
+            <input ng-model="data.defaultEmail" type="text" class="validate" id="form-name" placeholder="comp@work.co.uk..." />
+        </div>
+        <div class="input-field">
+            <label for="data.address1">Address Line 1</label>
+            <input ng-model="data.address1" type="text" class="validate" id="form-name" placeholder="Line 1..." />
+        </div>
+        <div class="input-field">
+            <label for="data.address2">Address Line 2</label>
+            <input ng-model="data.address2" type="text" class="validate" id="form-name" placeholder="Line 2..." />
+        </div>
+        <div class="input-field">
+            <label for="data.city">City</label>
+            <input ng-model="data.city" type="text" class="validate" id="form-name" placeholder="City..." />
+        </div>
+        <div class="input-field">
+            <label for="data.county">County</label>
+            <input ng-model="data.county" type="text" class="validate" id="form-name" placeholder="Country..." />
+        </div>
+        <div class="input-field">
+            <label for="data.postcode">Postcode</label>
+            <input ng-model="data.postcode" type="text" class="validate" id="form-name" placeholder="Postcode..." />
+        </div>
+        <div class="input-field">
+            <label for="data.telephoneNumber">Telephone</label>
+            <input ng-model="data.telephoneNumber" type="text" class="validate" id="form-name" placeholder="Tel..." />
+        </div>
+        <div class="input-field">
+            <label for="data.vatRate">Vat Rate</label>
+            <input ng-model="data.vatRate" type="text" class="validate" id="form-name" placeholder="Vat Rate..." />
+        </div>
+        <div class="input-field">
+            <label for="data.defaultKPIQuoteRtndBy">KPI Quote Returned by</label>
+            <input ng-model="data.defaultKPIQuoteRtndBy" type="text" class="validate" id="form-name" placeholder="10..." />
+        </div>
+        <div class="input-field">
+            <label for="data.defaultCreditHardLimit">Credit Hard Limit</label>
+            <input ng-model="data.defaultCreditHardLimit" type="text" class="validate" id="form-name" placeholder="0000..." />
+        </div>
+        <div class="input-field">
+            <label for="data.defaultCreditSoftLimit">Credit Soft Limit</label>
+            <input ng-model="data.defaultCreditSoftLimit" type="text" class="validate" id="form-name" placeholder="000..." />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>

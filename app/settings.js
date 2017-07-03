@@ -1,87 +1,85 @@
-var app = angular.module('sterlingSettingsApp', ['angularUtils.directives.dirPagination']);
-app.controller('settingsCtrl', function($scope, $http) {
+var app = angular.module('sterlingSettingsApp', ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
 
-    $scope.updateSettings = function() {
-        $http({
-            method: 'POST',
-            data: {
-                'id'                     : $scope.id,
-                'companyName'            : $scope.companyName,
-                'shortName'              : $scope.shortName,
-				'companyRegNo'           : $scope.companyRegNo,
-				'webSite'                : $scope.webSite,
-				'defaultEmail'           : $scope.defaultEmail,
-				'address1'               : $scope.address1,
-				'address2'               : $scope.address2,
-				'city'                   : $scope.city,
-				'county'                 : $scope.county,
-				'postcode'               : $scope.postcode,
-				'telephoneNumber'        : $scope.telephoneNumber,
-				'vatRate'                : $scope.vatRate,
-				'defaultKPIQuoteRtndBy'  : $scope.defaultKPIQuoteRtndBy,
-				'defaultCreditHardLimit' : $scope.defaultCreditHardLimit,
-				'defaultCreditSoftLimit' : $scope.defaultCreditSoftLimit
-            },
-            url: 'api/settings/update.php'
-        }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-settings-form').modal('close');
-            $scope.clearForm();
-            $scope.readSettings();
-        });
-    }
+app.controller('settingsCtrl', function($scope, $http, $uibModal) {
 
-    $scope.readSettings = function(id) {
+    $scope.data = {};
+
+    $scope.get = function(id) {
         $http({
             method: 'POST',
             data: { 'id' : 1 },
-            url: 'api/settings/read_one.php'
+            url: './api/settings/read_one.php'
         }).then(function successCallback(response) {
-			$scope.id                     = response.data[0]["id"];
-			$scope.companyName            = response.data[0]["companyName"];
-			$scope.shortName              = response.data[0]["shortName"];
-			$scope.companyRegNo           = response.data[0]["companyRegNo"];
-			$scope.webSite                = response.data[0]["webSite"];
-			$scope.defaultEmail           = response.data[0]["defaultEmail"];
-			$scope.address1               = response.data[0]["address1"];
-			$scope.address2               = response.data[0]["address2"];
-			$scope.city                   = response.data[0]["city"];
-			$scope.county                 = response.data[0]["county"];
-			$scope.postcode               = response.data[0]["postcode"];
-			$scope.telephoneNumber        = response.data[0]["telephoneNumber"];
-			$scope.vatRate                = response.data[0]["vatRate"];
-			$scope.defaultKPIQuoteRtndBy  = response.data[0]["defaultKPIQuoteRtndBy"];
-			$scope.defaultCreditHardLimit = response.data[0]["defaultCreditHardLimit"];
-			$scope.defaultCreditSoftLimit = response.data[0]["defaultCreditSoftLimit"];
-			$scope.dateUpdated            = response.data[0]["dateUpdated"];
+            $scope.data.id                     = response.data[0]["id"];
+			$scope.data.companyName            = response.data[0]["companyName"];
+			$scope.data.shortName              = response.data[0]["shortName"];
+			$scope.data.companyRegNo           = response.data[0]["companyRegNo"];
+			$scope.data.webSite                = response.data[0]["webSite"];
+			$scope.data.defaultEmail           = response.data[0]["defaultEmail"];
+			$scope.data.address1               = response.data[0]["address1"];
+			$scope.data.address2               = response.data[0]["address2"];
+			$scope.data.city                   = response.data[0]["city"];
+			$scope.data.county                 = response.data[0]["county"];
+			$scope.data.postcode               = response.data[0]["postcode"];
+			$scope.data.telephoneNumber        = response.data[0]["telephoneNumber"];
+			$scope.data.vatRate                = response.data[0]["vatRate"];
+			$scope.data.defaultKPIQuoteRtndBy  = response.data[0]["defaultKPIQuoteRtndBy"];
+			$scope.data.defaultCreditHardLimit = response.data[0]["defaultCreditHardLimit"];
+			$scope.data.defaultCreditSoftLimit = response.data[0]["defaultCreditSoftLimit"];
+			$scope.data.dateUpdated            = response.data[0]["dateUpdated"];
         }, function errorCallback(response) {
-            Materialize.toast('Unable to retrieve System Settings record.', 4000);
+            alert('There has been an error accessing the server, unable to retrieve the Settings record...');
         });
     }
 
-    $scope.editSettings = function(id) {
-        $('#modal-settings-title').text("Edit System Settings");
-        $('#btn-update-settings').show();
-        $('#modal-settings-form').modal('open');
+    $scope.read = function(id) {
+        var modalInstance = $uibModal.open({
+            animation:   true,
+            controller:  'settingsEditCtrl',
+            templateUrl: './dialogs/settings_edit.html',
+            scope:       $scope
+        });
+        modalInstance.result.then(function () {
+            $scope.get();
+        }, function () {
+        });
     }
 
-    $scope.clearForm = function(){
-			$scope.id                     = "";
-			$scope.companyName            = "";
-			$scope.shortName              = "";
-			$scope.companyRegNo           = "";
-			$scope.webSite                = "";
-			$scope.defaultEmail           = "";
-			$scope.address1               = "";
-			$scope.address2               = "";
-			$scope.city                   = "";
-			$scope.county                 = "";
-			$scope.postcode               = "";
-			$scope.telephoneNumber        = "";
-			$scope.vatRate                = "";
-			$scope.defaultKPIQuoteRtndBy  = "";
-			$scope.defaultCreditHardLimit = "";
-			$scope.defaultCreditSoftLimit = "";
-			$scope.dateUpdated            = "";
-	}
+});
+
+app.controller('settingsEditCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
+        $http({
+            method: 'POST',
+            data: {
+                'id'                     : $scope.data.id,
+                'companyName'            : $scope.data.companyName,
+                'shortName'              : $scope.data.shortName,
+				'companyRegNo'           : $scope.data.companyRegNo,
+				'webSite'                : $scope.data.webSite,
+				'defaultEmail'           : $scope.data.defaultEmail,
+				'address1'               : $scope.data.address1,
+				'address2'               : $scope.data.address2,
+				'city'                   : $scope.data.city,
+				'county'                 : $scope.data.county,
+				'postcode'               : $scope.data.postcode,
+				'telephoneNumber'        : $scope.data.telephoneNumber,
+				'vatRate'                : $scope.data.vatRate,
+				'defaultKPIQuoteRtndBy'  : $scope.data.defaultKPIQuoteRtndBy,
+				'defaultCreditHardLimit' : $scope.data.defaultCreditHardLimit,
+				'defaultCreditSoftLimit' : $scope.data.defaultCreditSoftLimit
+            },
+            url: './api/settings/update.php'
+        }).then(function successCallback(response) {
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to update the settings record...');
+        });
+    }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
 });

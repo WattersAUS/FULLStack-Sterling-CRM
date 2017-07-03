@@ -2,6 +2,32 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+03/07/2017
+==========
+
+Updates:
+
+1. Updated work_option admin page to use new dialogs and remove Material Design libs
+
+2. Updated job_status admin page to use new dialogs and remove Material Design libs
+
+3. Updated team admin page to use new dialogs and remove Material Design libs
+
+4. Update term to use dialogs pages correctly
+
+5. Updated settings admin page to use new dialogs and remove Material Design libs
+
+Issues:
+
+1. Asset handling work in progress
+
+2. Some date pickers are not displaying date in the text field on an edit correctly
+
+3. Admin updates ongoing
+
+
+---------------------------------------------------------------------------------------------------------------------
+
 29/06/2017
 ==========
 
@@ -21,12 +47,11 @@ Updates:
 
 Issues:
 
-1. Dialog solution needs more styling (although it is currently passable)
+1. Asset handling work in progress
 
-2. Asset handling work in progress
+2. Some date pickers are not displaying date in the text field on an edit correctly
 
-3. Some date pickers are not displaying date in the text field on an edit correctly
-
+3. Admin updates ongoing
 
 ---------------------------------------------------------------------------------------------------------------------
 

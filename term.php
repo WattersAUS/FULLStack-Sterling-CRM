@@ -32,63 +32,20 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Term description</th>
+                                <th>Term</th>
                                 <th>Days</th>
                             </tr>
                         </thead>
                         <tbody ng-init="get()">
-                            <tr dir-paginate="term in terms | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="termx">
-                                <td class="text-align-left">{{ term.description }}</td>
-                                <td class="text-align-left">{{ term.days }}</td>
+                            <tr dir-paginate="t in data.terms | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="termx">
+                                <td class="text-align-left">{{ t.description }}</td>
+                                <td class="text-align-left">{{ t.days }}</td>
                                 <td align="right">
-                                    <a ng-click="read(term.id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
-                                    <a ng-click="delete(term.id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
+                                    <a ng-click="read(t.id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                    <a ng-click="delete(t.id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
-
-                        <!-- new term modal -->
-                        <script type="text/ng-template" id="newTerm.html">
-                            <div class="row modal-header">
-                                <h3 class="modal-title" id="modal-title">Add Term</h4>
-                            </div>
-                            <div class="row modal-body" id="modal-body">
-                                <div class="input-field">
-                                    <label for="Description">description</label>
-                                    <input ng-model="description" type="text" class="validate form-control" placeholder="Description here..." />
-                                </div>
-                                <div class="input-field">
-                                    <label for="Days">days</label>
-                                    <input ng-model="days" type="text" class="validate form-control" placeholder="Days here..." />
-                                </div>
-                            </div>
-                            <div class="row modal-footer">
-                                <a ng-click="save()" class="btn">Save</a>
-                                <a ng-click="cancel()" class="btn">Cancel</a>
-                            </div>
-                        </script>
-
-                        <!-- edit term modal -->
-                        <script type="text/ng-template" id="editTerm.html">
-                            <div class="row modal-header">
-                                <h3 class="modal-title" id="modal-title">Edit Term</h4>
-                            </div>
-                            <div class="row modal-body" id="modal-body">
-                                <div class="input-field">
-                                    <label for="description">description</label>
-                                    <input ng-model="description" type="text" class="validate form-control" placeholder="Description here..." />
-                                </div>
-                                <div class="input-field">
-                                    <label for="days">days</label>
-                                    <input ng-model="days" type="text" class="validate form-control" placeholder="Days here..." />
-                                </div>
-                            </div>
-                            <div class="row modal-footer">
-                                <a ng-click="save()" class="btn">Save</a>
-                                <a ng-click="cancel()" class="btn">Cancel</a>
-                            </div>
-                        </script>
-
                         <!-- angular pagination -->
                         <dir-pagination-controls pagination-id="termx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
                     </table>

@@ -1,100 +1,160 @@
-var app = angular.module('sterlingWorkOptionApp', ['angularUtils.directives.dirPagination']);
-app.controller('workoptionCtrl', function($scope, $http) {
+var app = angular.module('sterlingWorkOptApp', ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
 
-    $scope.updateWorkOption = function() {
-        $http({
-            method: 'POST',
-            data: {
-                'id'              : $scope.id,
-                'category_id'     : $scope.category_id,
-                'code'            : $scope.code,
-                'description'     : $scope.description,
-                'default_pricing' : $scope.default_pricing
-            },
-            url: 'api/work_option/update.php'
-        }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-workoption-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
-        });
-    }
+app.controller('workOptCtrl', function($scope, $http, $uibModal) {
 
-    $scope.readWorkOption = function(id) {
-        $('#modal-workoption-title').text("Rename Work Option");
-        $('#btn-update-workoption').show();
-        $('#btn-create-workoption').hide();
+    $scope.data = {};
 
-        $http({
-            method: 'POST',
-            data: { 'id' : id },
-            url: 'api/work_option/read_one.php'
-        }).then(function successCallback(response) {
-            $scope.id              = response.data[0]["id"];
-            $scope.category_id     = response.data[0]["category_id"];
-            $scope.code            = response.data[0]["code"];
-            $scope.description     = response.data[0]["description"];
-            $scope.default_pricing = response.data[0]["default_pricing"];
-            $('#modal-workoption-form').modal('open');
-        })
-        .error(function(data, status, headers, config){
-            Materialize.toast('Unable to retrieve Work Option record.', 4000);
-        });
-    }
-
-    $scope.getAll = function() {
+    $scope.get = function() {
         $http({
             method: 'GET',
-            url: 'api/work_option/read.php'
+            url: './api/work_option/work_option_get_all.php'
         }).then(function successCallback(response) {
-            $scope.workoptions = response.data.records;
+            $scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+			if ($scope.data.success != 'Ok') {
+	            alert('Unable to access the Work Option records! If this persists please inform support!');
+				return;
+			}
+			if ($scope.data.recordCount == 0) {
+	            alert('No Work Option records were found in the database!');
+			} else {
+    	        $scope.data.workoptions = response.data.records;
+			}
+        }, function errorCallback(response) {
+            alert('Unable to access the Work Option records...');
         });
     }
 
-    $scope.deleteWorkOption = function(id){
+    $scope.read = function(id) {
+        $http({
+            method: 'POST',
+            data: { 'work_option_id' : id },
+            url: './api/work_option/work_option_by_id.php'
+        }).then(function successCallback(response) {
+            $scope.data.recordCount = response.data.count;
+            $scope.data.success     = response.data.success;
+            if ($scope.data.success != 'Ok') {
+                alert('Unable to access the Work Option record! If this persists please inform support!');
+                return;
+            }
+            if ($scope.data.recordCount == 0) {
+                alert('Cannot find the Work Option record in the database!');
+            } else {
+                $scope.data.work_option_id              = response.data.records[0]["work_option_id"];
+                $scope.data.work_option_category_id     = response.data.records[0]["work_option_category_id"];
+                $scope.data.work_option_description     = response.data.records[0]["work_option_description"];
+                $scope.data.work_option_code            = response.data.records[0]["work_option_code"];
+                $scope.data.work_option_default_pricing = response.data.records[0]["work_option_default_pricing"];
+                $scope.getCategories();
+                var modalInstance = $uibModal.open({
+                    animation:   true,
+                    controller:  'workOptEditCtrl',
+                    templateUrl: './dialogs/work_option_edit.html',
+                    scope:       $scope
+                });
+                modalInstance.result.then(function () {
+                    $scope.get();
+                }, function () {
+                });
+            }
+        }, function errorCallback(response) {
+            alert('Unable to access the Work Option records...');
+        });
+    }
+
+    $scope.create = function() {
+        $scope.data.work_option_id              = "";
+        $scope.data.work_option_category_id     = "0";
+        $scope.data.work_option_description     = "";
+        $scope.data.work_option_code            = "";
+        $scope.data.work_option_default_pricing = "0.00";
+        $scope.getCategories();
+        var modalInstance = $uibModal.open({
+            animation:   true,
+            controller:  'workOptNewCtrl',
+            templateUrl: './dialogs/work_option_edit.html',
+            scope:       $scope
+        });
+        modalInstance.result.then(function () {
+            $scope.get();
+        }, function () {
+        });
+    }
+
+    $scope.delete = function(id) {
         if(confirm("Are you sure you want to remove this Work Option from the System?")){
             $http({
                 method: 'POST',
-                data: { 'id' : id },
-                url: 'api/work_option/delete.php'
+                data: { 'work_option_id' : id },
+                url: './api/work_option/work_option_delete.php'
             }).then(function successCallback(response) {
-                Materialize.toast(response.data, 4000);
-                $scope.getAll();
+                $scope.get();
+            }, function errorCallback(response) {
+                alert('Unable to access the Work Option records...');
             });
         }
     }
 
-    $scope.showCreateForm = function() {
-        $scope.clearForm();
-        $('#modal-workoption-title').text("Add a Work Option to System");
-        $('#btn-update-workoption').hide();
-        $('#btn-create-workoption').show();
+	$scope.getCategories = function() {
+        $http({
+            method: 'GET',
+            url: './api/category/read.php'
+        }).then(function successCallback(response) {
+            $scope.data.categories = response.data.records;
+		}, function errorCallback(response) {
+            alert('Unable to access the Category records...');
+        });
     }
 
-    $scope.clearForm = function(){
-        $scope.id              = "";
-        $scope.category_id     = "";
-        $scope.code            = "";
-        $scope.description     = "";
-        $scope.default_pricing = "";
-    }
+});
 
-    $scope.createWorkOption = function() {
+app.controller('workOptNewCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
         $http({
             method: 'POST',
             data: {
-                'id'              : $scope.id,
-                'category_id'     : $scope.category_id,
-                'code'            : $scope.code,
-                'description'     : $scope.description,
-                'default_pricing' : $scope.default_pricing
+                'work_option_category_id'     : $scope.data.work_option_category_id,
+                'work_option_code'            : $scope.data.work_option_code,
+                'work_option_description'     : $scope.data.work_option_description,
+                'work_option_default_pricing' : $scope.data.work_option_default_pricing
             },
-            url: 'api/work_option/create.php'
+            url: './api/work_option/work_option_insert.php'
         }).then(function successCallback(response) {
-            Materialize.toast(response.data, 4000);
-            $('#modal-workoption-form').modal('close');
-            $scope.clearForm();
-            $scope.getAll();
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to add the work option record...');
         });
     }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
+});
+
+app.controller('workOptEditCtrl', function($scope, $http, $uibModalInstance) {
+
+    $scope.save = function() {
+        $http({
+            method: 'POST',
+            data: {
+                'work_option_id'              : $scope.data.work_option_id,
+                'work_option_category_id'     : $scope.data.work_option_category_id,
+                'work_option_code'            : $scope.data.work_option_code,
+                'work_option_description'     : $scope.data.work_option_description,
+                'work_option_default_pricing' : $scope.data.work_option_default_pricing
+            },
+            url: './api/work_option/work_option_update.php'
+        }).then(function successCallback(response) {
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to update the work option record...');
+        });
+    }
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
 });
