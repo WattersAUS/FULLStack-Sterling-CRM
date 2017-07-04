@@ -1,0 +1,52 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">{{data.user_full_name}}: started {{data.user_start_date}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="data.employee_emp_no">Employee No.</label>
+            <input ng-model="data.employee_emp_no" type="text" class="validate form-control" placeholder="Emp no..."/>
+        </div>
+        <div class="input-field">
+            <label for="data.employee_job_title">Job Title</label>
+            <input ng-model="data.employee_job_title" type="text" class="validate form-control" placeholder="Job..." />
+        </div>
+        <div class="input-field">
+            <label for="data.employee_job_role">Job Role</label>
+            <input ng-model="data.employee_job_role" type="text" class="validate form-control" placeholder="Role..." />
+        </div>
+        <div class="input-field">
+            <label for="data.is_manager">Is Manager</label>
+            <input id="data.is_manager" type="checkbox" class="validate form-control" ng-checked="data.employee_is_manager == 1" ng-true-value="1" ng-false-value="0" ng-click="isManager()" />
+        </div>
+        <div class="input-field">
+            <label for="data.employee_manager_id">Managed by</label>
+            <select ng-model="data.employee_manager_id">
+                <option ng-repeat="m in data.managers" value="{{m.employee_user_id}}" ng-selected="m.employee_user_id === data.employee_manager_id">{{m.user_full_name}}</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="data.employee_division_id">Division</label>
+            <select ng-model="data.employee_division_id">
+                <option ng-repeat="d in data.divisions" value="{{d.division_id}}" ng-selected="d.division_id === data.employee_division_id">{{d.division_description}}</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="data.employee_team_id">Team</label>
+            <select ng-model="data.employee_team_id">
+                <option ng-repeat="t in data.teams" value="{{t.team_id}}" ng-selected="t.team_id === data.employee_team_id">{{t.team_description}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>

@@ -11,38 +11,38 @@
     </div>
     <div class="modal-body">
         <div class="input-field">
-            <label for="site_customer_id">Customer</label>
-            <select ng-model="site_customer_id">
-                <option ng-repeat="c in customers" value="{{c.customer_id}}">{{c.customer_name}}</option>
+            <label for="data.site_customer_id">Customer</label>
+            <select ng-model="data.site_customer_id">
+                <option ng-repeat="c in data.customers" value="{{c.customer_id}}">{{c.customer_name}}</option>
             </select>
         </div>
         <div class="input-field">
-            <label for="site_name">Site Name</label>
-            <input ng-model="site_name" type="text" class="validate form-control" placeholder="Site Name..."/>
+            <label for="data.site_name">Site Name</label>
+            <input ng-model="data.site_name" type="text" class="validate form-control" placeholder="Site Name..."/>
         </div>
         <div class="input-field">
-            <label for="site_shortname">Short Name</label>
-            <input ng-model="site_shortname" type="text" class="validate form-control" placeholder="Short..." />
+            <label for="data.site_shortname">Short Name</label>
+            <input ng-model="data.site_shortname" type="text" class="validate form-control" placeholder="Short..." />
         </div>
         <div class="input-field">
-            <label for="site_address1">Address Line 1</label>
-            <input ng-model="site_address1" type="text" class="validate form-control" placeholder="Line 1..." />
+            <label for="data.site_address1">Address Line 1</label>
+            <input ng-model="data.site_address1" type="text" class="validate form-control" placeholder="Line 1..." />
         </div>
         <div class="input-field">
-            <label for="site_address2">Address Line 2</label>
-            <input ng-model="site_address2" type="text" class="validate form-control" placeholder="Line 2..." />
+            <label for="data.site_address2">Address Line 2</label>
+            <input ng-model="data.site_address2" type="text" class="validate form-control" placeholder="Line 2..." />
         </div>
         <div class="input-field">
-            <label for="site_city">City</label>
-            <input ng-model="site_city" type="text" class="validate form-control" placeholder="City..." />
+            <label for="data.site_city">City</label>
+            <input ng-model="data.site_city" type="text" class="validate form-control" placeholder="City..." />
         </div>
         <div class="input-field">
-            <label for="site_county">County</label>
-            <input ng-model="site_county" type="text" class="validate form-control" placeholder="Country..." />
+            <label for="data.site_county">County</label>
+            <input ng-model="data.site_county" type="text" class="validate form-control" placeholder="Country..." />
         </div>
         <div class="input-field">
-            <label for="site_postcode">Postcode</label>
-            <input ng-model="site_postcode" type="text" class="validate form-control" placeholder="Postcode..." />
+            <label for="data.site_postcode">Postcode</label>
+            <input ng-model="data.site_postcode" type="text" class="validate form-control" placeholder="Postcode..." />
         </div>
     </div>
     <div class="modal-footer">

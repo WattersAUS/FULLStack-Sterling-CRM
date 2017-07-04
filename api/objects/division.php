@@ -1,71 +1,122 @@
 <?php
 class Division {
+    // database connection and table name
     private $conn;
-    private $table_name = "division";
 
-    // object properties
-    public $id;
-    public $description;
+    // object properties (asset data first, related after)
+    public $division_id;
+    public $division_description;
+
+    public $query;
+    public $numRows;
+    public $data;
 
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
     }
 
-    function delete () {
-        $query    = "DELETE FROM ".$this->table_name." WHERE id = ?";
-        $stmt     = $this->conn->prepare($query);
-        $this->id = htmlspecialchars(strip_tags($this->id));
-        $stmt->bindParam(1, $this->id);
-        if ($stmt->execute()) {
-            return true;
-        }
-        return false;
+    private function initialiseJSON() {
+        $this->data            = array();
+        $this->data["records"] = array();
+        $this->data["count"]   = 0;
+        $this->data["success"] = "Fail";
+        return;
     }
 
-    function update(){
-        $query = "UPDATE ".$this->table_name." SET description = :description WHERE id = :id";
-        $stmt  = $this->conn->prepare($query);
-        $this->description = htmlspecialchars(strip_tags($this->description));
-        $stmt->bindParam(':description', $this->description);
-        $stmt->bindParam(':id', $this->id);
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+    private function setDefaultQuery() {
+        $this->query =  "SELECT d.id AS division_id,
+                                d.description AS division_description
+                            FROM division d";
     }
 
-    function readOne(){
-        $query = "SELECT id, description FROM ".$this->table_name." WHERE id = ? LIMIT 0,1";
-        $stmt  = $this->conn->prepare( $query );
-        $stmt->bindParam(1, $this->id);
+    private function setDivisionID($division_id) {
+        $this->query .= " WHERE d.id = ".$division_id;
+        return;
+    }
+
+    private function buildRowArray($row) {
+        $item = array(
+            "division_id"          => $row['division_id'],
+            "division_description" => $row['division_description']
+        );
+        return($item);
+    }
+
+    public function getDivisionByID($division_id) {
+        $this->initialiseJSON();
+        $this->setDefaultQuery();
+        $this->setDivisionID($division_id);
+        $stmt = $this->conn->prepare($this->query);
         $stmt->execute();
-        $row         = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->description = $row['description'];
-    }
-
-    function create(){
-        $query = "INSERT INTO ".$this->table_name." SET description=:description";
-        $stmt  = $this->conn->prepare($query);
-
-        $this->description = htmlspecialchars(strip_tags($this->description));
-        $stmt->bindParam(':description', $this->description);
-
-        if ($stmt->execute()) {
-            return true;
+        $this->numRows = 0;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $this->numRows += 1;
+            array_push($this->data["records"], $this->buildRowArray($row));
         }
-        echo "<pre>";
-        print_r($stmt->errorInfo());
-        echo "</pre>";
-        return false;
+        if ($this->numRows > 0) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $this->numRows;
+        }
+        return json_encode($this->data);
     }
 
-    function readAll(){
-        $query = "SELECT id, description FROM ".$this->table_name." ORDER BY id DESC";
-        $stmt = $this->conn->prepare( $query );
+    public function getAllDivisions() {
+        $this->initialiseJSON();
+        $this->setDefaultQuery();
+        $stmt = $this->conn->prepare($this->query);
         $stmt->execute();
-        return $stmt;
+        $this->numRows = 0;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $this->numRows += 1;
+            array_push($this->data["records"], $this->buildRowArray($row));
+        }
+        if ($this->numRows > 0) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $this->numRows;
+        }
+        return json_encode($this->data);
     }
+
+    public function insertDivision() {
+        $this->initialiseJSON();
+        $query = "INSERT INTO division (description) VALUES (:description)";
+        $stmt  = $this->conn->prepare($query);
+        $stmt->bindParam(':description', htmlspecialchars(strip_tags($this->division_description)));
+        if ($stmt->execute()) {
+            $this->data["id"]      = $this->conn->lastInsertId();
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = 1;
+        }
+        return json_encode($this->data);
+    }
+
+    public function updateDivision() {
+        $this->initialiseJSON();
+        $query = "UPDATE division SET description = :description WHERE id = :id";
+        $stmt  = $this->conn->prepare($query);
+        $stmt->bindParam(':description', htmlspecialchars(strip_tags($this->division_description)));
+        $stmt->bindParam(':id',          $this->division_id);
+        if ($stmt->execute()) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $stmt->rowCount();
+        }
+        return json_encode($this->data);
+    }
+
+    public function deleteDivision() {
+        $this->initialiseJSON();
+        $query = "DELETE FROM division WHERE id = :id";
+        $stmt  = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $this->division_id);
+        if ($stmt->execute()) {
+            $this->data["id"]      = $this->division_id;
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $stmt->rowCount();
+        }
+        return json_encode($this->data);
+    }
+
 }
+
 ?>
