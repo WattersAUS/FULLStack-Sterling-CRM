@@ -1,4 +1,5 @@
 var app = angular.module('sterlingJobsListApp', ['angularUtils.directives.dirPagination', 'ngStorage', 'ui.bootstrap']);
+
 app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal) {
 
 	$scope.clearScope = function() {

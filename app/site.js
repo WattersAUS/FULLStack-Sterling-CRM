@@ -2,21 +2,23 @@ var app = angular.module('sterlingSiteApp', ['angularUtils.directives.dirPaginat
 
 app.controller('siteCtrl', function($scope, $http, $uibModal) {
 
+    $scope.data = {};
+
     $scope.get = function() {
         $http({
             method: 'GET',
             url: './api/site/site_get_all.php'
         }).then(function successCallback(response) {
-			$scope.recordCount = response.data.count;
-			$scope.success     = response.data.success;
-			if ($scope.success != 'Ok') {
+			$scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+			if ($scope.data.success != 'Ok') {
 	            alert('There was a problem accessing the database! If this persists please inform support!');
 				return;
 			}
-			if ($scope.recordCount == 0) {
+			if ($scope.data.recordCount == 0) {
 	            alert('No Site records were found in the database!');
 			} else {
-    	        $scope.sites = response.data.records;
+    	        $scope.data.sites = response.data.records;
 			}
 		}, function errorCallback(response) {
             alert('There has been an error accessing the server, unable to retrieve the site records...');
@@ -29,26 +31,26 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
             data: { 'site_id' : id },
             url: './api/site/site_by_id.php'
         }).then(function successCallback(response) {
-            $scope.recordCount = response.data.count;
-			$scope.success     = response.data.success;
-			if ($scope.success != 'Ok') {
+            $scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+			if ($scope.data.success != 'Ok') {
 	            alert('There was a problem accessing the database! If this persists please inform support!');
 				return;
 			}
-			if ($scope.recordCount == 0) {
+			if ($scope.data.recordCount == 0) {
 	            alert('Cannot find the site record in the database!');
 			} else {
-                $scope.site_id          = response.data.records[0]["site_id"];
-                $scope.site_customer_id = response.data.records[0]["site_customer_id"];
-                $scope.site_name        = response.data.records[0]["site_name"];
-                $scope.site_shortname   = response.data.records[0]["site_shortname"];
-                $scope.site_address1    = response.data.records[0]["site_address1"];
-                $scope.site_address2    = response.data.records[0]["site_address2"];
-                $scope.site_city        = response.data.records[0]["site_city"];
-                $scope.site_county      = response.data.records[0]["site_county"];
-                $scope.site_postcode    = response.data.records[0]["site_postcode"];
-                $scope.customer_id      = response.data.records[0]["customer_id"];
-                $scope.customer_name    = response.data.records[0]["customer_name"];
+                $scope.data.site_id          = response.data.records[0]["site_id"];
+                $scope.data.site_customer_id = response.data.records[0]["site_customer_id"];
+                $scope.data.site_name        = response.data.records[0]["site_name"];
+                $scope.data.site_shortname   = response.data.records[0]["site_shortname"];
+                $scope.data.site_address1    = response.data.records[0]["site_address1"];
+                $scope.data.site_address2    = response.data.records[0]["site_address2"];
+                $scope.data.site_city        = response.data.records[0]["site_city"];
+                $scope.data.site_county      = response.data.records[0]["site_county"];
+                $scope.data.site_postcode    = response.data.records[0]["site_postcode"];
+                $scope.data.customer_id      = response.data.records[0]["customer_id"];
+                $scope.data.customer_name    = response.data.records[0]["customer_name"];
                 $scope.getCustomers();
                 var modalInstance = $uibModal.open({
                     animation:   true,
@@ -66,28 +68,19 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
         });
     }
 
-    $scope.getIdOfCurrentCustomer = function($id) {
-        for (i = 0; i < $scope.customers.length; i++) {
-            if ($scope.site_customer_id === $scope.customers[i].customer_id) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     $scope.create = function() {
-        $scope.site_id          = 0;
-        $scope.site_customer_id = 0;
-        $scope.site_name        = "";
-        $scope.site_shortname   = "";
-        $scope.site_address1    = "";
-        $scope.site_address2    = "";
-        $scope.site_city        = "";
-        $scope.site_county      = "";
-        $scope.site_postcode    = "";
-        $scope.customer_id      = "";
-        $scope.customer_name    = "";
-        $scope.customers        = [];
+        $scope.data.site_id          = 0;
+        $scope.data.site_customer_id = 0;
+        $scope.data.site_name        = "";
+        $scope.data.site_shortname   = "";
+        $scope.data.site_address1    = "";
+        $scope.data.site_address2    = "";
+        $scope.data.site_city        = "";
+        $scope.data.site_county      = "";
+        $scope.data.site_postcode    = "";
+        $scope.data.customer_id      = "";
+        $scope.data.customer_name    = "";
+        $scope.data.customers        = [];
         $scope.getCustomers();
         var modalInstance = $uibModal.open({
             animation:   true,
@@ -108,6 +101,8 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
                 data: { 'site_id' : id },
                 url: './api/site/site_delete.php'
             }).then(function successCallback(response) {
+                $scope.data.recordCount = response.data.count;
+    			$scope.data.success     = response.data.success;
                 if ($scope.data.success != 'Ok' || $scope.data.recordCount == 0)  {
                     alert('Unable to access the Site record (ID = ' + id + ') in the database! If this persists please inform support!');
                 }
@@ -123,17 +118,17 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
             method: 'GET',
             url: './api/customers/customer_get_all.php'
         }).then(function successCallback(response) {
-            $scope.recordCount = response.data.count;
-			$scope.success     = response.data.success;
-			if ($scope.success != 'Ok') {
+            $scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+			if ($scope.data.success != 'Ok') {
 	            alert('There was a problem accessing the database! If this persists please inform support!');
 				return;
 			}
-			if ($scope.recordCount == 0) {
+			if ($scope.data.recordCount == 0) {
 	            alert('No Customer records were found in the database!');
                 return;
 			}
-            $scope.customers = response.data.records;
+            $scope.data.customers = response.data.records;
 		}, function errorCallback(response) {
             alert('There has been an error accessing the server, unable to retrieve the customer records...');
         });
@@ -144,20 +139,20 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
 app.controller('siteNewCtrl', function($scope, $http, $uibModalInstance) {
 
     $scope.save = function() {
-        if ($scope.site_customer_id == "") {
+        if ($scope.data.site_customer_id == "") {
             alert('Please select a customer for this site, before attempting to save your changes...');
         } else {
             $http({
                 method: 'POST',
                 data: {
-                    'site_customer_id' : $scope.site_customer_id,
-                    'site_name'        : $scope.site_name,
-                    'site_shortname'   : $scope.site_shortname,
-                    'site_address1'    : $scope.site_address1,
-                    'site_address2'    : $scope.site_address2,
-                    'site_city'        : $scope.site_city,
-                    'site_county'      : $scope.site_county,
-                    'site_postcode'    : $scope.site_postcode
+                    'site_customer_id' : $scope.data.site_customer_id,
+                    'site_name'        : $scope.data.site_name,
+                    'site_shortname'   : $scope.data.site_shortname,
+                    'site_address1'    : $scope.data.site_address1,
+                    'site_address2'    : $scope.data.site_address2,
+                    'site_city'        : $scope.data.site_city,
+                    'site_county'      : $scope.data.site_county,
+                    'site_postcode'    : $scope.data.site_postcode
                 },
                 url: './api/site/site_insert.php'
             }).then(function successCallback(response) {
@@ -185,21 +180,21 @@ app.controller('siteEditCtrl', function($scope, $http, $uibModalInstance) {
         $http({
             method: 'POST',
             data: {
-                'site_id'          : $scope.site_id,
-                'site_customer_id' : $scope.site_customer_id,
-                'site_name'        : $scope.site_name,
-                'site_shortname'   : $scope.site_shortname,
-                'site_address1'    : $scope.site_address1,
-                'site_address2'    : $scope.site_address2,
-                'site_city'        : $scope.site_city,
-                'site_county'      : $scope.site_county,
-                'site_postcode'    : $scope.site_postcode
+                'site_id'          : $scope.data.site_id,
+                'site_customer_id' : $scope.data.site_customer_id,
+                'site_name'        : $scope.data.site_name,
+                'site_shortname'   : $scope.data.site_shortname,
+                'site_address1'    : $scope.data.site_address1,
+                'site_address2'    : $scope.data.site_address2,
+                'site_city'        : $scope.data.site_city,
+                'site_county'      : $scope.data.site_county,
+                'site_postcode'    : $scope.data.site_postcode
             },
             url: './api/site/site_update.php'
         }).then(function successCallback(response) {
-            $scope.recordCount = response.data.count;
-			$scope.success     = response.data.success;
-			if ($scope.success != 'Ok' || $scope.recordCount == 0)  {
+            $scope.data.recordCount = response.data.count;
+			$scope.data.success     = response.data.success;
+			if ($scope.data.success != 'Ok' || $scope.data.recordCount == 0)  {
 	            alert('There was a problem updating the site to the database! If this persists please inform support!');
 			}
             $uibModalInstance.close();

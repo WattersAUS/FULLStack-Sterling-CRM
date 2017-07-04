@@ -2,6 +2,35 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+04/07/2017
+==========
+
+Updates:
+
+1. Bug fix for site admin
+
+2. Correct title for division_edit.html
+
+3. Revamped team to use new JSON handling (for use in Employee/User also better for later)
+
+4. Revamped division to use new JSON handling (for use in Employee/User also better for later)
+
+5. Employee use new dialogs and removed Material Design lib
+
+Issues:
+
+1. Asset handling work in progress
+
+2. Some date pickers are not displaying date in the text field on an edit correctly
+
+3. Admin updates ongoing
+
+4. Need to display only Non employee users in new Employee dialog (ie same user cant have two emp recs)
+
+5. Need a Leaver button on edit Emp form (then need to end date the user rec)
+
+---------------------------------------------------------------------------------------------------------------------
+
 03/07/2017
 ==========
 
@@ -24,7 +53,6 @@ Issues:
 2. Some date pickers are not displaying date in the text field on an edit correctly
 
 3. Admin updates ongoing
-
 
 ---------------------------------------------------------------------------------------------------------------------
 

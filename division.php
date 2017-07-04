@@ -37,10 +37,10 @@
                     </thead>
                     <tbody ng-init="get()">
                         <tr dir-paginate="div in data.divisions | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="divx">
-                            <td class="text-align-left">{{ div.description }}</td>
+                            <td class="text-align-left">{{ div.division_description }}</td>
                             <td align="right">
-                                <a ng-click="read(div.id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
-                                <a ng-click="delete(div.id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
+                                <a ng-click="read(div.division_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                <a ng-click="delete(div.division_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
                             </td>
                         </tr>
                     </tbody>

@@ -38,14 +38,14 @@
                         </tr>
                     </thead>
                     <tbody ng-init="get()">
-                        <tr dir-paginate="site in sites | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="sitex">
-                            <td class="width-30-pct">{{ site.customer_name }}</td>
-                            <td class="width-30-pct">{{ site.site_name }}</td>
-                            <td class="width-30-pct">{{ site.site_address1 }}, {{ site.site_city }}</td>
-                            <td class="width-30-pct">{{ site.site_postcode }}</td>
+                        <tr dir-paginate="s in data.sites | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="sitex">
+                            <td class="width-30-pct">{{ s.customer_name }}</td>
+                            <td class="width-30-pct">{{ s.site_name }}</td>
+                            <td class="width-30-pct">{{ s.site_address1 }}, {{ s.site_city }}</td>
+                            <td class="width-30-pct">{{ s.site_postcode }}</td>
                             <td align="right">
-                                <a ng-click="read(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
-                                <a ng-click="delete(site.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
+                                <a ng-click="read(s.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
+                                <a ng-click="delete(s.site_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
                             </td>
                         </tr>
                     </tbody>
