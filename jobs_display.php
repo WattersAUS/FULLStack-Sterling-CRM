@@ -31,7 +31,7 @@
                         <div class="panel panel-turq">
                             <div class="panel-heading">
                                 <div class="row">
-                                <?php include '../inc/subNav.php';?>
+                                <?php include './inc/subNav.php';?>
                                 </div>
                             </div>
                         </div>
@@ -41,37 +41,34 @@
                         <a ng-click="" class="waves-effect waves-light btn margin-bottom-1em">New note</a>
                         <a ng-click="" class="waves-effect waves-light btn margin-bottom-1em fltrt">Instruction</a>
                     </div>
-
             		<div class="col-lg-3 col-md-6">
-            			<select class="form-control" name="selectstatus" id="selectstatus" ng-model="selectstatus" ng-options="s as s.job_status_description for s in statuses" ng-change="onStatusSelect()">
+            			<select class="form-control" name="selectstatus" id="selectstatus" ng-model="data.selectstatus" ng-options="s as s.job_status_description for s in data.statuses" ng-change="onStatusSelect()">
             					<option value="" disabled selected>Status</option>
             			</select>
             		</div>
-
             		<div class="col-lg-3 col-md-6">
-            			<select class="form-control" name="selectemployee" id="selectemployee" ng-model="selectemployee" ng-options="e as e.full_name for e in employees" ng-change="onEmployeeSelect()">
+            			<select class="form-control" name="selectemployee" id="selectemployee" ng-model="data.selectemployee" ng-options="e as e.user_full_name for e in data.employees" ng-change="onEmployeeSelect()">
             					<option value="" disabled selected>Estimator assigned to</option>
             			</select>
             		</div>
 
                     <!-- RESULT -->
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-12 col-md-12" ng-repeat="jh in data.job_histories" ng-click="read(jh.job_history_id)">
                         <div class="panel panel-black">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-9 text-left">
-                                        <div class="panelTitle">Job Details- {{ job_id }} / {{ employee_first_name }} / {{ employee_last_name }}</div>
+                                        <div class="panelTitle">Job No. {{ jh.job_history_job_id }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel panel-turq panel-margin3">
-                                <span class="result-jobNo fltlft"><span class="smlHd">Date:</span> 28/05/17</span>
-                                <span class="result-site fltlft"><span class="smlHd">Time:</span> 11:01:15</span>
-                                <span class="result-crn fltlft"><span class="smlHd">Status:</span> Jack Stewart</span>
-                                <span class="result-crn fltlft"><span class="smlHd">Cancelled date:</span> 29/05/17</span>
-                                <span class="result-crn fltlft"><span class="smlHd">Cancelled by:</span> Jack Stewart</span>
+                                <span class="result-jobNo fltlft"><span class="smlHd">Desc:</span>{{ jh.job_history_description }}</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Status:</span>{{ jh.job_status_description }}</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Date Updated on:</span>{{ jh.job_history_date_updated }}</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Updated by:</span>{{ jh.employee_last_name }}, {{ jh.employee_first_name }}</span>
                             </div>
-                            <div class="jobInfo">This job has now been cancelled</div>
+                            <!-- <div class="jobInfo">This job has now been cancelled</div>-->
                         </div>
                     </div>
                     <!-- / RESULT  -->

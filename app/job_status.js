@@ -43,6 +43,7 @@ app.controller('jobStatCtrl', function($scope, $http, $uibModal) {
                 $scope.data.job_status_id            = response.data.records[0]["job_status_id"];
                 $scope.data.job_status_description   = response.data.records[0]["job_status_description"];
                 $scope.data.job_status_template_page = response.data.records[0]["job_status_template_page"];
+                $scope.data.job_status_manual_action = response.data.records[0]["job_status_manual_action"];
                 var modalInstance = $uibModal.open({
                     animation:   true,
                     controller:  'jobStatEditCtrl',
@@ -60,9 +61,9 @@ app.controller('jobStatCtrl', function($scope, $http, $uibModal) {
     }
 
     $scope.create = function() {
-        $scope.data.job_status_id            = "";
         $scope.data.job_status_description   = "";
         $scope.data.job_status_template_page = "";
+        $scope.data.job_status_manual_action = 0;
         var modalInstance = $uibModal.open({
             animation:   true,
             controller:  'jobStatNewCtrl',
@@ -98,7 +99,8 @@ app.controller('jobStatNewCtrl', function($scope, $http, $uibModalInstance) {
             method: 'POST',
             data: {
                 'job_status_description'   : $scope.data.job_status_description,
-                'job_status_template_page' : $scope.data.job_status_template_page
+                'job_status_template_page' : $scope.data.job_status_template_page,
+                'job_status_manual_action' : $scope.data.job_status_manual_action
             },
             url: './api/job_status/job_status_insert.php'
         }).then(function successCallback(response) {
@@ -112,6 +114,14 @@ app.controller('jobStatNewCtrl', function($scope, $http, $uibModalInstance) {
         $uibModalInstance.dismiss('cancel');
     }
 
+    $scope.isManualAction = function () {
+        if (document.getElementById("data.is_manual_action").checked == true) {
+            $scope.data.job_status_manual_action = 1;
+        } else {
+            $scope.data.job_status_manual_action = 0;
+        }
+    }
+
 });
 
 app.controller('jobStatEditCtrl', function($scope, $http, $uibModalInstance) {
@@ -122,7 +132,8 @@ app.controller('jobStatEditCtrl', function($scope, $http, $uibModalInstance) {
             data: {
                 'job_status_id'            : $scope.data.job_status_id,
                 'job_status_description'   : $scope.data.job_status_description,
-                'job_status_template_page' : $scope.data.job_status_template_page
+                'job_status_template_page' : $scope.data.job_status_template_page,
+                'job_status_manual_action' : $scope.data.job_status_manual_action
             },
             url: './api/job_status/job_status_update.php'
         }).then(function successCallback(response) {
@@ -134,6 +145,14 @@ app.controller('jobStatEditCtrl', function($scope, $http, $uibModalInstance) {
 
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
+    }
+
+    $scope.isManualAction = function () {
+        if (document.getElementById("data.is_manual_action").checked == true) {
+            $scope.data.job_status_manual_action = 1;
+        } else {
+            $scope.data.job_status_manual_action = 0;
+        }
     }
 
 });

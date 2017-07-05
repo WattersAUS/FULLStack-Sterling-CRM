@@ -2,6 +2,137 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+05/07/2017
+==========
+
+Updates: DDL Updates to support Job Updating and Display Screen
+
+1. DDL - job_status
+
+ALTER TABLE job_status ADD manual_action BOOLEAN NOT NULL DEFAULT true;
+
+UPDATE job_status SET manual_action = false WHERE id = 1;
+UPDATE job_status SET manual_action = true  WHERE id = 2;
+UPDATE job_status SET manual_action = false WHERE id = 3;
+UPDATE job_status SET manual_action = true  WHERE id = 4;
+UPDATE job_status SET manual_action = true  WHERE id = 5;
+UPDATE job_status SET manual_action = true  WHERE id = 6;
+UPDATE job_status SET manual_action = false WHERE id = 8;
+UPDATE job_status SET manual_action = false WHERE id = 9;
+UPDATE job_status SET manual_action = true  WHERE id = 10;
+UPDATE job_status SET manual_action = true  WHERE id = 11;
+UPDATE job_status SET manual_action = true  WHERE id = 12;
+
+2. DDL - cpo_type
+
+CREATE TABLE IF NOT EXISTS cpo_type (
+  id int(11) NOT NULL,
+  description varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE cpo_type
+ADD PRIMARY KEY (id) USING BTREE;
+
+ALTER TABLE cpo_type
+MODIFY id int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+
+INSERT INTO cpo_type (description) VALUES ('CPO');
+INSERT INTO cpo_type (description) VALUES ('EPO - Same Day');
+INSERT INTO cpo_type (description) VALUES ('EPO - 10 Day');
+INSERT INTO cpo_type (description) VALUES ('EPO - 30 Day');
+INSERT INTO cpo_type (description) VALUES ('PPM');
+INSERT INTO cpo_type (description) VALUES ('Contract');
+INSERT INTO cpo_type (description) VALUES ('CAO');
+
+3. DDL - job
+
+ALTER TABLE job MODIFY description VARCHAR(512);
+ALTER TABLE job ADD status_change DATETIME NOT NULL AFTER status_id;
+
+4. DDL - job_history
+
+ALTER TABLE job_history ADD status_change DATETIME NOT NULL AFTER status_id;
+ALTER TABLE job_history ADD customer_ref_no VARCHAR(32) NULL DEFAULT NULL AFTER status_change;
+ALTER TABLE job_history ADD site_contact_id int(11) NOT NULL AFTER customer_ref_no;
+ALTER TABLE job_history ADD description VARCHAR(512) NULL DEFAULT NULL AFTER site_contact_id;
+ALTER TABLE job_history ADD closed tinyint(1) NOT NULL AFTER description;
+
+ALTER TABLE job_history
+ ADD KEY job_history_ibfk_2 (site_id), ADD KEY job_history_ibfk_3 (employee_id), ADD KEY job_history_ibfk_4 (status_id), ADD KEY job_history_ibfk_5 (site_contact_id);
+
+ALTER TABLE job
+ ADD CONSTRAINT job_history_ibfk_2 FOREIGN KEY (site_id) REFERENCES site (id) ON DELETE CASCADE ON UPDATE CASCADE,
+ ADD CONSTRAINT job_history_ibfk_3 FOREIGN KEY (employee_id) REFERENCES employee (id) ON DELETE CASCADE ON UPDATE CASCADE,
+ ADD CONSTRAINT job_history_ibfk_4 FOREIGN KEY (status_id) REFERENCES job_status (id) ON DELETE CASCADE ON UPDATE CASCADE,
+ ADD CONSTRAINT job_history_ibfk_5 FOREIGN KEY (site_contact_id) REFERENCES site_contact (id);
+
+5. DDL - job_history (Triggers)
+
+DROP TRIGGER update_job;
+
+DELIMITER //
+CREATE TRIGGER update_job AFTER UPDATE ON job
+ FOR EACH ROW BEGIN
+ INSERT INTO job_history (
+   job_id,
+   site_id,
+   employee_id,
+   status_id,
+   status_change,
+   customer_ref_no,
+   site_contact_id,
+   description,
+   closed
+ ) VALUES (
+   NEW.id,
+   NEW.site_id,
+   NEW.employee_id,
+   NEW.status_id,
+   NEW.status_change,
+   NEW.customer_ref_no,
+   NEW.site_contact_id,
+   NEW.description,
+   NEW.closed
+ );
+     END
+//
+DELIMITER ;
+
+DROP TRIGGER insert_job;
+DELIMITER //
+CREATE TRIGGER insert_job AFTER INSERT ON job
+ FOR EACH ROW BEGIN
+ INSERT INTO job_history (
+   job_id,
+   site_id,
+   employee_id,
+   status_id,
+   status_change,
+   customer_ref_no,
+   site_contact_id,
+   description,
+   closed
+ ) VALUES (
+   NEW.id,
+   NEW.site_id,
+   NEW.employee_id,
+   NEW.status_id,
+   NEW.status_change,
+   NEW.customer_ref_no,
+   NEW.site_contact_id,
+   NEW.description,
+   NEW.closed
+ );
+     END
+//
+DELIMITER ;
+
+6. Add manual_action to job_status admin etc.
+
+7. JobHistory temp api files
+
+8. Added form for Job Cancellation to proof of concept Job Statuses progressing
+
 04/07/2017
 ==========
 

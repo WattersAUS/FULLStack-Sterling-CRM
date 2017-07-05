@@ -1,0 +1,53 @@
+<style>
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Enter New Job Details</h4>
+    </div>
+    <div class="modal-body">
+        <div class="input-field">
+            <label for="data.selectcustomer">Customer</label>
+            <select ng-model="data.selectcustomer" ng-options="customer.customer_name for customer in data.customers" ng-change="onCustomerSelect()">
+                <option value="" disabled selected>Select customer...</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="data.selectsite">Site</label>
+            <select ng-model="data.selectsite" ng-options="site.site_name for site in data.sites" ng-change="onSiteSelect()">
+                <option value="" disabled selected>Select site...</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="data.selectsitecontact">Contact</label>
+            <select ng-model="data.selectsitecontact" ng-options="sitecontact.contact_name for sitecontact in data.sitecontacts" ng-change="onSiteContactSelect()">
+                <option value="" disabled selected>Select contact...</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="data.job_customer_ref_no">Customer Ref</label>
+            <input ng-model="data.job_customer_ref_no" type="text" class="validate form-control" placeholder="Ref..." maxlength="32" size="32"/>
+        </div>
+        <div class="input-field">
+            <labelfor="data.job_description" >Description</label>
+            <input ng-model="data.job_description" type="text" class="validate form-control" placeholder="Desc..." maxlength="512" size="32"/>
+        </div>
+        <div class="input-field">
+            <label for="asset_purchase_date">Date</label>
+            <p class="input-group" id="data.job_status_change">
+                <input type="text" class="form-control" uib-datepicker-popup="{{ data.format }}" ng-model="data.job_status_change" is-open="data.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="calendar()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </div>
+</div>

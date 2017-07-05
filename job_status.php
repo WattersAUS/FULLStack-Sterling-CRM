@@ -35,12 +35,14 @@
                             <tr>
                                 <th>Status</th>
                                 <th>Template Page</th>
+                                <th>Step Type</th>
                             </tr>
                         </thead>
                         <tbody ng-init="get()">
                             <tr dir-paginate="js in data.jobstatuses | filter:search | orderBy:sortKey | itemsPerPage:5" pagination-id="jobx">
                                 <td class="width-30-pct">{{ js.job_status_description }}</td>
                                 <td class="width-30-pct">{{ js.job_status_template_page }}</td>
+                                <td class="width-30-pct">{{ js.job_status_step_text }}</td>
                                 <td align="right">
                                     <a ng-click="read(js.job_status_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
                                     <a ng-click="delete(js.job_status_id)" class="waves-effect waves-light btn margin-bottom-1em">Delete</a>
