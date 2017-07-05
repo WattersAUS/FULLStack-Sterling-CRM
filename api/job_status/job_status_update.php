@@ -12,6 +12,7 @@ $js                           = new JobStatus($db);
 $js->job_status_id            = $data->job_status_id;
 $js->job_status_description   = $data->job_status_description;
 $js->job_status_template_page = $data->job_status_template_page;
+$js->job_status_manual_action = $data->job_status_manual_action;
 $json                         = $js->updateJobStatus();
 echo($json);
 ?>

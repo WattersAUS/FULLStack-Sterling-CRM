@@ -48,18 +48,18 @@
                     </div>
                     <div class="col-lg-12 col-md-6 panel">
                         <input class="form-control ng-pristine ng-untouched ng-valid ng-empty" type="text" placeholder="Search records..." ng-model="search">
-                        <div>{{recordCountText}}</div>
+                        <div>{{ data.jobsLoadedText }}</div>
                     </div>
 
                     <div class="col-lg-12 col-md-6 panel" ng-init="get()">
                         <!-- START : RECORDS RESULTS -->
-                        <a href="./jobs_display.php" ng-repeat="job in jobs | filter:search" ng-click="set(job.job_id)" on>
+                        <a href="./jobs_display.php" ng-repeat="j in data.jobs | filter:search" ng-click="set(j.job_id)" on>
                             <div class="panel panel-green panel-margin3 panelHeight30">
-                                <span class="result-crn fltlft"><span class="smlHd">CRN:</span>{{job.customer_ref_no}}</span>
-                                <span class="result-jobNo fltlft"><span class="smlHd">Job No.:</span>{{job.job_id}}</span>
-                                <span class="result-site fltlft"><span class="smlHd">Site:</span>{{job.site_name}}</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Customer Ref:</span>{{j.customer_ref_no}}</span>
+                                <span class="result-jobNo fltlft"><span class="smlHd">Job No:</span>{{j.job_id}}</span>
+                                <span class="result-site fltlft"><span class="smlHd">Site:</span>{{j.site_name}}</span>
                                 <div class="clear"></div>
-                                <span class="result-crn fltlft"><span class="smlHd">Status:</span>{{job.job_status_description}}</span>
+                                <span class="result-crn fltlft"><span class="smlHd">Status:</span>{{j.job_status_description}}</span>
                                 <span class="result-jobNo fltlft"><span class="smlHd">Job Type:</span> JOB TYPE GOES HERE</span>
                             </div>
                         </a>

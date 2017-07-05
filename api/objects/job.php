@@ -5,14 +5,15 @@ class Job {
 
     // object properties (job data first, related after)
     public $job_id;
-    public $site_id;
-    public $employee_id;
-    public $status_id;
-    public $customer_ref_no;
-    public $site_contact_id;
+    public $job_site_id;
+    public $job_employee_id;
+    public $job_status_id;
+    public $job_status_change;
+    public $job_customer_ref_no;
+    public $job_site_contact_id;
     public $job_description;
-    public $closed;
-    public $date_updated;
+    public $job_closed;
+    public $job_date_updated;
 
     public $site_name;
     public $customer_id;
@@ -39,7 +40,22 @@ class Job {
     }
 
     private function setDefaultQuery() {
-        $this->query  = "SELECT j.id AS job_id, j.site_id, j.employee_id, j.status_id, COALESCE(j.customer_ref_no, '') AS customer_ref_no, j.site_contact_id AS site_contact_id, COALESCE(j.description, '') as job_description, j.closed, j.date_updated, s.name AS site_name, c.id AS customer_id, c.name AS customer_name, u.last_name AS employee_last_name, u.first_name AS employee_first_name, js.description AS job_status_description";
+        $this->query  = "SELECT j.id AS job_id,
+                                j.site_id AS job_site_id,
+                                j.employee_id AS job_employee_id,
+                                j.status_id AS job_status_id,
+                                j.status_change AS job_status_change,
+                                COALESCE(j.customer_ref_no, '') AS job_customer_ref_no,
+                                j.site_contact_id AS job_site_contact_id,
+                                COALESCE(j.description, '') AS job_description,
+                                j.closed AS job_closed,
+                                j.date_updated AS job_date_updated,
+                                s.name AS site_name,
+                                c.id AS customer_id,
+                                c.name AS customer_name,
+                                u.last_name AS employee_last_name,
+                                u.first_name AS employee_first_name,
+                                js.description AS job_status_description";
         $this->query .= " FROM job j";
         $this->query .= " LEFT JOIN site s ON j.site_id = s.id";
         $this->query .= " LEFT JOIN customer c ON s.customer_id = c.id";
@@ -62,14 +78,15 @@ class Job {
     private function buildRowArray($row) {
         $item = array(
             "job_id"                 => $row['job_id'],
-            "site_id"                => $row['site_id'],
-            "employee_id"            => $row['employee_id'],
-            "status_id"              => $row['status_id'],
-            "customer_ref_no"        => $row['customer_ref_no'],
-            "site_contact_id"        => $row['site_contact_id'],
+            "job_site_id"            => $row['job_site_id'],
+            "job_employee_id"        => $row['job_employee_id'],
+            "job_status_id"          => $row['job_status_id'],
+            "job_status_change"      => $row['job_status_change'],
+            "job_customer_ref_no"    => $row['job_customer_ref_no'],
+            "job_site_contact_id"    => $row['job_site_contact_id'],
             "job_description"        => $row['job_description'],
-            "closed"                 => $row['closed'],
-            "date_updated"           => $row['date_updated'],
+            "job_closed"             => $row['job_closed'],
+            "job_date_updated"       => $row['job_date_updated'],
             "site_name"              => $row['site_name'],
             "customer_id"            => $row['customer_id'],
             "customer_name"          => $row['customer_name'],
@@ -135,19 +152,67 @@ class Job {
 
     public function insertJob() {
         $this->initialiseJSON();
-        $this->query = "INSERT INTO job (site_id, employee_id, status_id, customer_ref_no, site_contact_id, description, closed) VALUES (:site_id, :employee_id, :status_id, :customer_ref_no, :site_contact_id, :description, :closed)";
+        $this->query = "INSERT INTO job (
+                            site_id,
+                            employee_id,
+                            status_id,
+                            status_change,
+                            customer_ref_no,
+                            site_contact_id,
+                            description,
+                            closed
+                        ) VALUES (
+                            :site_id,
+                            :employee_id,
+                            :status_id,
+                            :status_change,
+                            :customer_ref_no,
+                            :site_contact_id,
+                            :description,
+                            :closed
+                        )";
         $stmt  = $this->conn->prepare($this->query);
-        $stmt->bindParam(':site_id',         $this->site_id);
-        $stmt->bindParam(':employee_id',     $this->employee_id);
-        $stmt->bindParam(':status_id',       $this->status_id);
-        $stmt->bindParam(':customer_ref_no', $this->customer_ref_no);
-        $stmt->bindParam(':site_contact_id', $this->site_contact_id);
+        $stmt->bindParam(':site_id',         $this->job_site_id);
+        $stmt->bindParam(':employee_id',     $this->job_employee_id);
+        $stmt->bindParam(':status_id',       $this->job_status_id);
+        $stmt->bindParam(':status_change',   $this->job_status_change);
+        $stmt->bindParam(':customer_ref_no', $this->job_customer_ref_no);
+        $stmt->bindParam(':site_contact_id', $this->job_site_contact_id);
         $stmt->bindParam(':description',     htmlspecialchars(strip_tags($this->job_description)));
-        $stmt->bindParam(':closed',          $this->closed);
+        $stmt->bindParam(':closed',          $this->job_closed);
         if ($stmt->execute()) {
             $this->data["id"]      = $this->conn->lastInsertId();
             $this->data["success"] = "Ok";
             $this->data["count"]   = 1;
+        }
+        return json_encode($this->data);
+    }
+
+    public function updateJob() {
+        $this->initialiseJSON();
+        $this->query = "UPDATE job SET
+                            site_id          = :site_id,
+                            employee_id      = :employee_id,
+                            status_id        = :status_id,
+                            status_change    = :status_change,
+                            customer_ref_no  = :customer_ref_no,
+                            site_contact_id  = :site_contact_id,
+                            description      = :description,
+                            closed           = :closed
+                        WHERE id = :id";
+        $stmt  = $this->conn->prepare($this->query);
+        $stmt->bindParam(':site_id',         $this->job_site_id);
+        $stmt->bindParam(':employee_id',     $this->job_employee_id);
+        $stmt->bindParam(':status_id',       $this->job_status_id);
+        $stmt->bindParam(':status_change',   $this->job_status_change);
+        $stmt->bindParam(':customer_ref_no', $this->job_customer_ref_no);
+        $stmt->bindParam(':site_contact_id', $this->job_site_contact_id);
+        $stmt->bindParam(':description',     htmlspecialchars(strip_tags($this->job_description)));
+        $stmt->bindParam(':closed',          $this->job_closed);
+        $stmt->bindParam(':id',              $this->job_id);
+        if ($stmt->execute()) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   =  $stmt->rowCount();
         }
         return json_encode($this->data);
     }
