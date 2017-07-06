@@ -58,12 +58,12 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-9 text-left">
-                                        <div class="panelTitle">Job: {{ data.job_history_job_id }} / {{ data.customer_name }} / {{ data.site_name }} / {{ data.job_status_description }}</div>
+                                        <div class="panelTitle">Job No. {{ data.job_history_job_id }} - {{ data.job_status_description }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel panel-turq panel-margin3">
-                                <span class="result-jobNo fltlft"><span class="smlHd">Narrative:</span>{{ data.job_history_description }}</span>
+                                <span class="result-jobNo fltlft"><span class="smlHd">Desc:</span>{{ data.job_history_description }}</span>
                                 <span class="result-crn fltlft"><span class="smlHd">Changed:</span>{{ data.job_history_status_change }}</span>
                                 <span class="result-crn fltlft"><span class="smlHd">Updated by:</span>{{ data.employee_last_name }}, {{ data.employee_first_name }} on {{ data.job_history_date_updated }}</span>
                             </div>
@@ -78,12 +78,12 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-9 text-left">
-                                        <div class="panelTitle">Job: {{ jh.job_history_job_id }} / {{ jh.customer_name }} / {{ jh.site_name }} / {{ jh.job_status_description }}</div>
+                                        <div class="panelTitle">Job No. {{ jh.job_history_job_id }} - {{ jh.job_status_description }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel panel-turq panel-margin3">
-                                <span class="result-jobNo fltlft"><span class="smlHd">Narrative:</span>{{ jh.job_history_description }}</span>
+                                <span class="result-jobNo fltlft"><span class="smlHd">Desc:</span>{{ jh.job_history_description }}</span>
                                 <span class="result-crn fltlft"><span class="smlHd">Changed:</span>{{ jh.job_history_status_change }}</span>
                                 <span class="result-crn fltlft"><span class="smlHd">Updated by:</span>{{ jh.employee_last_name }}, {{ jh.employee_first_name }} on {{ jh.job_history_date_updated }}</span>
                             </div>

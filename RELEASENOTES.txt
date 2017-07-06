@@ -5,6 +5,37 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 05/07/2017
 ==========
 
+Updates:
+
+1. Enable 'status_change' ORDER when data retrieved for jobs_display page
+
+2. Enforced correct date save during job creation (stopped weird date offset issue)
+
+3. Changed some job dynamic dialogs to use 'exit' buttons (and function) to close dialog
+
+4. Added a new temp customer add/edit (with temp customer api)
+
+5. Added new 'VISITED' status_change dialog for Job
+
+6. On Jobs Display page only the first history entry is now using the black header, all the rest use white
+
+Issues:
+
+1. Asset handling work in progress
+
+2. Some date pickers are not displaying date in the text field on an edit correctly
+
+3. Admin updates ongoing
+
+4. Need more validation in accepting dat via forms
+
+5. Need to use checkboxes where applicable (on customer for eg)
+
+---------------------------------------------------------------------------------------------------------------------
+
+05/07/2017
+==========
+
 Updates: DDL Updates to support Job Updating and Display Screen
 
 1. DDL - job_status

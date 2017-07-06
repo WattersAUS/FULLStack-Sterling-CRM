@@ -9,6 +9,7 @@ class JobHistory {
     public $job_history_site_id;
     public $job_history_employee_id;
     public $job_history_status_id;
+    public $job_history_status_change;
     public $job_history_customer_ref_no;
     public $job_history_site_contact_id;
     public $job_history_job_description;
@@ -45,6 +46,7 @@ class JobHistory {
                                 jh.site_id AS job_history_site_id,
                                 jh.employee_id AS job_history_employee_id,
                                 jh.status_id AS job_history_status_id,
+                                jh.status_change AS job_history_status_change,
                                 COALESCE(jh.customer_ref_no, '') AS job_history_customer_ref_no,
                                 jh.site_contact_id AS job_history_site_contact_id,
                                 COALESCE(jh.description, '') AS job_history_description,
@@ -75,6 +77,10 @@ class JobHistory {
         return;
     }
 
+    private function setDataOrderByStatusChange() {
+        $this->query .= " ORDER BY jh.status_change DESC";
+    }
+
     private function buildRowArray($row) {
         $item = array(
             "job_history_id"              => $row['job_history_id'],
@@ -82,6 +88,7 @@ class JobHistory {
             "job_history_site_id"         => $row['job_history_site_id'],
             "job_history_employee_id"     => $row['job_history_employee_id'],
             "job_history_status_id"       => $row['job_history_status_id'],
+            "job_history_status_change"   => $row['job_history_status_change'],
             "job_history_customer_ref_no" => $row['job_history_customer_ref_no'],
             "job_history_site_contact_id" => $row['job_history_site_contact_id'],
             "job_history_description"     => $row['job_history_description'],
@@ -101,6 +108,7 @@ class JobHistory {
         $this->initialiseJSON();
         $this->setDefaultQuery();
         $this->setJobID($job_id);
+        $this->setDataOrderByStatusChange();
         $stmt = $this->conn->prepare($this->query);
         $stmt->execute();
         $this->numRows = 0;

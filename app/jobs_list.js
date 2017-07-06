@@ -3,6 +3,26 @@ var app = angular.module('sterlingJobsListApp', ['angularUtils.directives.dirPag
 app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal) {
 
 	$scope.data = {};
+	$scope.data.dateFormat     = 'yyyy-MM-dd HH:mm';
+	$scope.data.altDateFormats = [];
+	$scope.data.datePicker = {
+		date: new Date()
+	};
+
+	// date handling
+	$scope.dateOptions = {
+		dateDisabled: disabledDates,
+		formatYear: 'yy',
+		maxDate: new Date(2099,12, 31),
+		minDate: new Date(2016, 1, 1),
+		startingDay: 1
+	};
+
+	// disable weekend selection
+	function disabledDates(data) {
+		var date = data.date, mode = data.mode;
+		return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+	}
 
 	$scope.setJobsLoadedText = function() {
 		if ($scope.data.recordCount == 0) {
@@ -42,7 +62,7 @@ app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal)
 	$scope.getCustomers = function() {
 		$http({
 			method: 'GET',
-			url: './api/customers/customer_get_all.php'
+			url: './api/customer/customer_get_all.php'
 		}).then(function successCallback(response) {
 			$scope.data.recordCount = response.data.count;
 			$scope.data.success     = response.data.success;
@@ -84,27 +104,28 @@ app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal)
 
 app.controller('jobsListNewCtrl', function($scope, $http, $localStorage, $uibModalInstance) {
 
+//	$scope.data.format          = 'yyyy-MM-dd';
+// 	$scope.data.altInputFormats = [];
+
 	// date handling
- 	$scope.dateOptions = {
- 		dateDisabled: disabled,
- 		formatYear: 'yy',
- 		maxDate: new Date(2099,12, 31),
- 		minDate: new Date(2016, 1, 1),
- 		startingDay: 1
- 	};
+//	$scope.dateOptions = {
+// 		dateDisabled: disabled,
+//		formatYear: 'yy',
+// 		maxDate: new Date(2099,12, 31),
+// 		minDate: new Date(2016, 1, 1),
+// 		startingDay: 1
+// 	};
 
  	// disable weekend selection
- 	function disabled(data) {
- 		var date = data.date, mode = data.mode;
- 		return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
- 	}
+// 	function disabled(data) {
+// 		var date = data.date, mode = data.mode;
+// 		return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+// 	}
 
  	$scope.calendar = function($event) {
  		$scope.data.opened = true;
  	};
 
- 	$scope.data.format          = 'yyyy-MM-dd';
- 	$scope.data.altInputFormats = [];
 
 	// dropdowns to select customer/site/contact
 	$scope.onCustomerSelect = function() {
@@ -174,6 +195,8 @@ app.controller('jobsListNewCtrl', function($scope, $http, $localStorage, $uibMod
 	}
 
 	$scope.save = function() {
+		var month = $scope.data.datePicker.getMonth() + 1;
+		$scope.data.job_status_change = $scope.data.datePicker.getFullYear() + '-' + month + '-' + $scope.data.datePicker.getDate() + ' 00:00';
         $http({
             method: 'POST',
             data: {

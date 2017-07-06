@@ -36,15 +36,13 @@
             <labelfor="data.job_description" >Description</label>
             <input ng-model="data.job_description" type="text" class="validate form-control" placeholder="Desc..." maxlength="512" size="32"/>
         </div>
-        <div class="input-field">
-            <label for="asset_purchase_date">Date</label>
-            <p class="input-group" id="data.job_status_change">
-                <input type="text" class="form-control" uib-datepicker-popup="{{ data.format }}" ng-model="data.job_status_change" is-open="data.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="calendar()"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-            </p>
-        </div>
+        <label for="data.datePicker">Job Start Date</label>
+        <p class="input-group" id="data.datePicker">
+            <input type="text" class="form-control" uib-datepicker-popup="{{ data.dateFormat }}" ng-model="data.datePicker" is-open="data.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altDateFormats" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="calendar()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>

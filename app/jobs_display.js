@@ -122,9 +122,37 @@ app.controller('jobsDisplayCtrl', function($scope, $http, $localStorage, $uibMod
             data: { 'job_id' : job_id },
             url: './api/job_history/job_history_for_job.php'
         }).then(function successCallback(response) {
-			$scope.data.recordCount   = response.data.count;
-			$scope.data.success       = response.data.success;
-			$scope.data.job_histories = response.data.records;
+			$scope.data.recordCount        = response.data.count;
+			$scope.data.success            = response.data.success;
+			$scope.data.job_histories      = [];
+			// need to strip first entry to give first line to be displayed then rest are handled by ng-repeat
+			$scope.data.job_history_id              = response.data.records[0]['job_history_id'];
+			$scope.data.job_history_job_id          = response.data.records[0]['job_history_job_id'];
+			$scope.data.job_history_site_id         = response.data.records[0]['job_history_site_id'];
+			$scope.data.job_history_employee_id     = response.data.records[0]['job_history_employee_id'];
+			$scope.data.job_history_status_id       = response.data.records[0]['job_history_status_id'];
+			$scope.data.job_history_status_change   = response.data.records[0]['job_history_status_change'];
+			$scope.data.job_history_customer_ref_no = response.data.records[0]['job_history_customer_ref_no'];
+			$scope.data.job_history_site_contact_id = response.data.records[0]['job_history_site_contact_id'];
+			$scope.data.job_history_description     = response.data.records[0]['job_history_description'];
+			$scope.data.job_history_closed          = response.data.records[0]['job_history_closed'];
+			$scope.data.job_history_date_updated    = response.data.records[0]['job_history_date_updated'];
+			$scope.data.site_name                   = response.data.records[0]['site_name'];
+			$scope.data.customer_id                 = response.data.records[0]['customer_id'];
+			$scope.data.customer_name               = response.data.records[0]['customer_name'];
+			$scope.data.employee_first_name         = response.data.records[0]['employee_first_name'];
+			$scope.data.employee_last_name          = response.data.records[0]['employee_last_name'];
+			$scope.data.job_status_description      = response.data.records[0]['job_status_description'];
+			// now put the rest (if any) in object array for rest of displayed
+			console.log("recs: " + $scope.data.recordCount);
+			if ($scope.data.recordCount > 1) {
+				var i;
+				for (i = 1; i < $scope.data.recordCount; i++) {
+					console.log("push: " + i);
+					$scope.data.job_histories.push(response.data.records[i]);
+				}
+			}
+
 		}, function errorCallback(response) {
 			alert('There has been an error accessing the server, Code: ' + response.status + ', Message: ' + response.statusText);
 		});
@@ -151,7 +179,6 @@ app.controller('jobsDisplayCtrl', function($scope, $http, $localStorage, $uibMod
             scope:       $scope
         });
         modalInstance.result.then(function () {
-			console.log("get new job history: " + $scope.data.job_id);
             $scope.getJobHistoryByJobID($scope.data.job_id);
         }, function () {
         });
@@ -165,7 +192,7 @@ app.controller('awaitJobDisplayCtrl', function($scope, $http, $localStorage, $ui
 		$uibModalInstance.close();
     }
 
-    $scope.cancel = function() {
+    $scope.exit = function() {
         $uibModalInstance.dismiss('cancel');
     }
 
@@ -173,11 +200,36 @@ app.controller('awaitJobDisplayCtrl', function($scope, $http, $localStorage, $ui
 
 app.controller('visitJobDisplayCtrl', function($scope, $http, $localStorage, $uibModalInstance) {
 
+	$scope.calendar = function($event) {
+		$scope.data.opened = true;
+	};
+
 	$scope.save = function() {
-		$uibModalInstance.close();
+		var month = $scope.data.datePicker.getMonth() + 1;
+		$scope.data.job_status_change = $scope.data.datePicker.getFullYear() + '-' + month + '-' + $scope.data.datePicker.getDate() + ' 00:00';
+		$scope.data.job_description   = "Site visit carried out by " + $scope.data.visitor.user_full_name;
+		$http({
+            method: 'POST',
+            data: {
+				'job_id'              : $scope.data.job_id,
+				'job_site_id'         : $scope.data.job_site_id,
+                'job_employee_id'     : 1,
+                'job_status_id'       : 2,
+				'job_status_change'   : $scope.data.job_status_change,
+				'job_customer_ref_no' : $scope.data.job_customer_ref_no,
+				'job_site_contact_id' : $scope.data.job_site_contact_id,
+				'job_description'     : $scope.data.job_description,
+				'job_closed'          : 1
+            },
+            url: './api/job/job_update.php'
+        }).then(function successCallback(response) {
+            $uibModalInstance.close();
+        }, function errorCallback(response) {
+            alert('There has been an error accessing the server, unable to update the job record...');
+        });
     }
 
-    $scope.cancel = function() {
+    $scope.exit = function() {
         $uibModalInstance.dismiss('cancel');
     }
 
@@ -305,12 +357,11 @@ app.controller('cancelJobDisplayCtrl', function($scope, $http, $localStorage, $u
         }).then(function successCallback(response) {
             $uibModalInstance.close();
         }, function errorCallback(response) {
-            alert('There has been an error accessing the server, unable to add the job record...');
+            alert('There has been an error accessing the server, unable to update the job record...');
         });
-		$uibModalInstance.close();
     }
 
-    $scope.leave = function() {
+    $scope.exit = function() {
         $uibModalInstance.dismiss('cancel');
     }
 

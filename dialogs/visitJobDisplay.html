@@ -6,14 +6,28 @@
 </style>
 <div class="modal-content">
     <div class="modal-header">
-        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
-        <h4 class="modal-title">Visited Status Change</h4>
+        <button type="button" class="close" aria-hidden="true" ng-click="exit()">&times;</button>
+        <h4 class="modal-title">Site Visit Confirmed</h4>
     </div>
     <div class="modal-body">
-
+        <div class="input-field">
+            <label for="data.visitor">Visited by</label>
+            <select class="form-control" name="data.visitor" id="data.visitor" ng-model="data.visitor" ng-options="e as e.user_full_name for e in data.employees">
+                    <option value="" disabled selected>Select Employee</option>
+            </select>
+        </div>
+        <div class="input-field">
+            <label for="data.datePicker">Visit Date</label>
+            <p class="input-group" id="data.datePicker">
+                <input type="text" class="form-control" uib-datepicker-popup="{{ data.dateFormat }}" ng-model="data.datePicker" is-open="data.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altDateFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="calendar()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-default" ng-click="exit()">Exit</button>
         <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
     </div>
 </div>
