@@ -116,7 +116,7 @@ app.controller('siteCtrl', function($scope, $http, $uibModal) {
 	$scope.getCustomers = function() {
         $http({
             method: 'GET',
-            url: './api/customers/customer_get_all.php'
+            url: './api/customer/customer_get_all.php'
         }).then(function successCallback(response) {
             $scope.data.recordCount = response.data.count;
 			$scope.data.success     = response.data.success;
