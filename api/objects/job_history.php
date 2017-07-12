@@ -72,13 +72,18 @@ class JobHistory {
         return;
     }
 
+    private function setJobHistoryFirstRecordForJobID($id) {
+        $this->query .= " WHERE jh.id = (SELECT MIN(jh1.id) FROM job_history jh1 WHERE jh1.job_id = ".$id.")";
+        return;
+    }
+
     private function setJobHistoryID($id) {
         $this->query .= " WHERE jh.id = ".$id;
         return;
     }
 
-    private function setDataOrderByStatusChange() {
-        $this->query .= " ORDER BY jh.status_change DESC";
+    private function setDataOrderByID() {
+        $this->query .= " ORDER BY jh.id DESC";
     }
 
     private function buildRowArray($row) {
@@ -108,7 +113,25 @@ class JobHistory {
         $this->initialiseJSON();
         $this->setDefaultQuery();
         $this->setJobID($job_id);
-        $this->setDataOrderByStatusChange();
+        $this->setDataOrderByID();
+        $stmt = $this->conn->prepare($this->query);
+        $stmt->execute();
+        $this->numRows = 0;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $this->numRows += 1;
+            array_push($this->data["records"], $this->buildRowArray($row));
+        }
+        if ($this->numRows > 0) {
+            $this->data["success"] = "Ok";
+            $this->data["count"]   = $this->numRows;
+        }
+        return json_encode($this->data);
+    }
+
+    public function getJobHistoryForJobFirstRecord($job_id) {
+        $this->initialiseJSON();
+        $this->setDefaultQuery();
+        $this->setJobHistoryFirstRecordForJobID($job_id);
         $stmt = $this->conn->prepare($this->query);
         $stmt->execute();
         $this->numRows = 0;

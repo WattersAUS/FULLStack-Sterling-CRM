@@ -104,28 +104,9 @@ app.controller('jobsListCtrl', function($scope, $http, $localStorage, $uibModal)
 
 app.controller('jobsListNewCtrl', function($scope, $http, $localStorage, $uibModalInstance) {
 
-//	$scope.data.format          = 'yyyy-MM-dd';
-// 	$scope.data.altInputFormats = [];
-
-	// date handling
-//	$scope.dateOptions = {
-// 		dateDisabled: disabled,
-//		formatYear: 'yy',
-// 		maxDate: new Date(2099,12, 31),
-// 		minDate: new Date(2016, 1, 1),
-// 		startingDay: 1
-// 	};
-
- 	// disable weekend selection
-// 	function disabled(data) {
-// 		var date = data.date, mode = data.mode;
-// 		return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-// 	}
-
  	$scope.calendar = function($event) {
  		$scope.data.opened = true;
  	};
-
 
 	// dropdowns to select customer/site/contact
 	$scope.onCustomerSelect = function() {
