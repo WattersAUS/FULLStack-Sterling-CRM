@@ -9,6 +9,6 @@ $data     = json_decode(file_get_contents("php://input"));
 $database = new Database();
 $db       = $database->getConnection();
 $jh       = new JobHistory($db);
-$json     = $jh->getJobHistoryByID($data->job_history_id);
+$json     = $jh->getJobHistoryForJobFirstRecord($data->job_history_job_id);
 echo($json);
 ?>

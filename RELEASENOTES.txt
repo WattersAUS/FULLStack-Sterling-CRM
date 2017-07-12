@@ -2,6 +2,78 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+12/07/2017
+==========
+
+Updates: DDL Updates for shuffling old statuses and introducing new ones
+
+1. DDL - job_status
+
+ALTER TABLE job_status MODIFY description VARCHAR(64);
+
+2. SQL - job_status (introduce new statuses and reorder 'Completed' statuses)
+
+INSERT INTO job_status (description, template_page, manual_action) SELECT description, template_page, manual_action FROM job_status WHERE id = 11;
+INSERT INTO job_status (description, template_page, manual_action) SELECT description, template_page, manual_action FROM job_status WHERE id = 12;
+
+UPDATE job_status SET description = 'Job Completed-Awaiting Job Sheet', template_page = 'awaitJobSheetJobDisplay', manual_action = 1 WHERE id = 10;
+UPDATE job_status SET description = 'Job Completed-Further Work Required', template_page = 'furtherWorkReqJobDisplay', manual_action = 1 WHERE id = 11;
+UPDATE job_status SET description = 'Job Completed-Please INVOICE', template_page = 'completedJobDisplay', manual_action = 1 WHERE id = 12;
+
+3. SQL - job / job_status data update (need to disable TRIGGERS to ensure data updates do not spawn job_history recs)
+
+DROP TRIGGER update_job;
+
+UPDATE job_history SET status_id = 14 WHERE status_id = 12;
+UPDATE job_history SET status_id = 13 WHERE status_id = 11;
+
+UPDATE job SET status_id = 14 WHERE status_id = 12;
+UPDATE job SET status_id = 13 WHERE status_id = 11;
+
+4. DDL - reinstate job TRIGGERS
+
+DELIMITER //
+CREATE TRIGGER update_job AFTER UPDATE ON job
+ FOR EACH ROW BEGIN
+ INSERT INTO job_history (
+   job_id,
+   site_id,
+   employee_id,
+   status_id,
+   status_change,
+   customer_ref_no,
+   site_contact_id,
+   description,
+   closed
+ ) VALUES (
+   NEW.id,
+   NEW.site_id,
+   NEW.employee_id,
+   NEW.status_id,
+   NEW.status_change,
+   NEW.customer_ref_no,
+   NEW.site_contact_id,
+   NEW.description,
+   NEW.closed
+ );
+     END
+//
+DELIMITER ;
+
+5. Changed dialogs from 'cancel' to 'exit' to match cancellation dialog
+
+6. Added status changes for Completed Status types.
+
+    a) Invoice
+    b) No Job Sheet
+    c) Further Work Required
+
+Issues:
+
+As below
+
+---------------------------------------------------------------------------------------------------------------------
+
 05/07/2017
 ==========
 
