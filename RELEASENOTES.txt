@@ -2,6 +2,46 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+13/07/2017
+==========
+
+1. Following main pages merged into site
+
+calendar.php
+employee_holiday.php
+files.php - NEEDS MORE WORK ON LIBS
+job_invoices.php
+main_po.php
+new-purchase-order.php
+purchase-order.php
+purchaseorder_list.php
+quotation-option-PDF.php
+quotation.php
+quotations_list.php
+reports.php
+tracker.php
+* view_contact.php
+* view_site.php
+
+* need merging in dialog code for respective admin pages
+
+2. Modified nav pages to support some of the new pages
+
+3. Added to assets the following
+
+fullcalendar
+PDFMaker
+
+4. Update jQuery (min) used in assets to v3.2.1 from v3.1.1
+
+5. Removed non compressed angular.js and jQuery.js files from assets
+
+Issues:
+
+As before
+
+---------------------------------------------------------------------------------------------------------------------
+
 12/07/2017
 ==========
 
