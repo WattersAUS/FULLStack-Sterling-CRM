@@ -30,7 +30,7 @@
       <li> <a href="../calendar/sterling/basic-views.html"> <i class="fa fa-user fa-fw"></i>
         <div class="nav_txt">Resources</div>
         </a> </li>
-      <li> <a href="/reports.html"> <i class="fa fa-list fa-fw"></i>
+      <li> <a href="./reports.php"> <i class="fa fa-list fa-fw"></i>
         <div class="nav_txt">Reports</div>
         </a> </li>
       <li> <a href="#"> <i class="fa fa-book fa-fw"></i>
@@ -39,7 +39,7 @@
       <li> <a href="#"> <i class="fa fa-money fa-fw"></i>
         <div class="nav_txt">Payroll</div>
         </a> </li>
-      <li> <a href="#"> <i class="fa fa-gbp fa-fw"></i>
+      <li> <a href="./quotations_list.php"> <i class="fa fa-gbp fa-fw"></i>
         <div class="nav_txt">Quotes</div>
         </a> </li>
       <li> <a href="#"> <i class="fa fa-user fa-fw"></i>
