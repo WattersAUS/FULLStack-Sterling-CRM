@@ -2,6 +2,64 @@ The site archive can be expanded (into another dir for eg) and all links etc sho
 
 ---------------------------------------------------------------------------------------------------------------------
 
+19/07/2017
+==========
+
+1. Quotation Options Creation Prototype (on 'New Option' on quotation.php)
+
+2. DDL change to work_option / quote_work_option (add a default_quantity) and UPDATE existing data
+
+ALTER TABLE work_option ADD default_quantity int(11) NOT NULL AFTER description;
+UPDATE work_option SET default_quantity = 1;
+
+ALTER TABLE quote_work_option ADD quantity int(11) NOT NULL AFTER description;
+UPDATE quote_work_option SET quantity = 1;
+
+3. DDL Change to quote_option (add a description field)
+
+ALTER TABLE quote_option ADD description VARCHAR(128) NOT NULL AFTER job_id;
+ALTER TABLE quote_option ADD created_date DATE NOT NULL AFTER description;
+ALTER TABLE quote_option ADD end_date DATE AFTER created_date;
+UPDATE quote_option SET description = CONCAT('ID: ', CONVERT(id, char(128))), created_date = now(), end_date = NULL;
+
+4. DDL changes for quote/quote_history (add desc field)
+
+ALTER TABLE quote ADD description VARCHAR(128) NOT NULL AFTER employee_id;
+ALTER TABLE quote_history ADD description VARCHAR(128) NOT NULL AFTER employee_id;
+
+5. Update data (if it exists)
+
+DROP TRIGGER update_quote;
+
+UPDATE quote SET description = CONCAT('ID: ', CONVERT(id, char(128)));
+UPDATE quote_history SET description = CONCAT('ID: ', CONVERT(id, char(128)));
+
+6. Reinstate the trigger
+
+DELIMITER //
+CREATE TRIGGER `update_quote` AFTER UPDATE ON `quote`
+ FOR EACH ROW BEGIN
+    INSERT INTO quote_history (
+      quote_id,
+      quote_option_id,
+      employee_id,
+      description,
+      status
+    ) VALUES (
+      NEW.id,
+      NEW.quote_option_id,
+      NEW.employee_id,
+      NEW.description,
+      NEW.status
+    );
+END
+//
+DELIMITER ;
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
 13/07/2017
 ==========
 

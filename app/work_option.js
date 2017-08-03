@@ -40,11 +40,12 @@ app.controller('workOptCtrl', function($scope, $http, $uibModal) {
             if ($scope.data.recordCount == 0) {
                 alert('Cannot find the Work Option record in the database!');
             } else {
-                $scope.data.work_option_id              = response.data.records[0]["work_option_id"];
-                $scope.data.work_option_category_id     = response.data.records[0]["work_option_category_id"];
-                $scope.data.work_option_description     = response.data.records[0]["work_option_description"];
-                $scope.data.work_option_code            = response.data.records[0]["work_option_code"];
-                $scope.data.work_option_default_pricing = response.data.records[0]["work_option_default_pricing"];
+                $scope.data.work_option_id               = response.data.records[0]["work_option_id"];
+                $scope.data.work_option_category_id      = response.data.records[0]["work_option_category_id"];
+                $scope.data.work_option_description      = response.data.records[0]["work_option_description"];
+                $scope.data.work_option_code             = response.data.records[0]["work_option_code"];
+                $scope.data.work_option_default_quantity = response.data.records[0]["work_option_default_quantity"];
+                $scope.data.work_option_default_pricing  = response.data.records[0]["work_option_default_pricing"];
                 $scope.getCategories();
                 var modalInstance = $uibModal.open({
                     animation:   true,
@@ -63,11 +64,12 @@ app.controller('workOptCtrl', function($scope, $http, $uibModal) {
     }
 
     $scope.create = function() {
-        $scope.data.work_option_id              = "";
-        $scope.data.work_option_category_id     = "0";
-        $scope.data.work_option_description     = "";
-        $scope.data.work_option_code            = "";
-        $scope.data.work_option_default_pricing = "0.00";
+        $scope.data.work_option_id               = "";
+        $scope.data.work_option_category_id      = "0";
+        $scope.data.work_option_description      = "";
+        $scope.data.work_option_code             = "";
+        $scope.data.work_option_default_quantity = "1";
+        $scope.data.work_option_default_pricing  = "0.00";
         $scope.getCategories();
         var modalInstance = $uibModal.open({
             animation:   true,
@@ -114,10 +116,11 @@ app.controller('workOptNewCtrl', function($scope, $http, $uibModalInstance) {
         $http({
             method: 'POST',
             data: {
-                'work_option_category_id'     : $scope.data.work_option_category_id,
-                'work_option_code'            : $scope.data.work_option_code,
-                'work_option_description'     : $scope.data.work_option_description,
-                'work_option_default_pricing' : $scope.data.work_option_default_pricing
+                'work_option_category_id'      : $scope.data.work_option_category_id,
+                'work_option_code'             : $scope.data.work_option_code,
+                'work_option_description'      : $scope.data.work_option_description,
+                'work_option_default_quantity' : $scope.data.work_option_default_quantity,
+                'work_option_default_pricing'  : $scope.data.work_option_default_pricing
             },
             url: './api/work_option/work_option_insert.php'
         }).then(function successCallback(response) {
@@ -139,11 +142,12 @@ app.controller('workOptEditCtrl', function($scope, $http, $uibModalInstance) {
         $http({
             method: 'POST',
             data: {
-                'work_option_id'              : $scope.data.work_option_id,
-                'work_option_category_id'     : $scope.data.work_option_category_id,
-                'work_option_code'            : $scope.data.work_option_code,
-                'work_option_description'     : $scope.data.work_option_description,
-                'work_option_default_pricing' : $scope.data.work_option_default_pricing
+                'work_option_id'               : $scope.data.work_option_id,
+                'work_option_category_id'      : $scope.data.work_option_category_id,
+                'work_option_code'             : $scope.data.work_option_code,
+                'work_option_description'      : $scope.data.work_option_description,
+                'work_option_default_quantity' : $scope.data.work_option_default_quantity,
+                'work_option_default_pricing'  : $scope.data.work_option_default_pricing
             },
             url: './api/work_option/work_option_update.php'
         }).then(function successCallback(response) {

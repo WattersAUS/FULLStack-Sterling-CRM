@@ -1,0 +1,76 @@
+<style>
+    .modal-dialog {
+        width: 90%;
+    }
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+    .horizontal-collapse {
+        height: 70px;
+    }
+    .navbar-collapse.in {
+        overflow-y: hidden;
+    }
+</style>
+<div class="modal-dialog">
+    <div class="modal-content" ng-init="initDialog()">
+        <div class="modal-header">
+            <button type="button" class="close" aria-hidden="true" ng-click="exit()">&times;</button>
+            <h4 class="modal-title">Quotation Option Control</h4>
+        </div>
+        <div class="modal-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Select an Option</th>
+                        <th>Modify / Add</th>
+                        <th>Currently Selected</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="category" ng-repeat="c in data.categories">
+                                <p ng-click="isCollapsed = !isCollapsed">{{c.category_description}}</p>
+                            	<div uib-collapse="isCollapsed">
+                            		<div class="well well-sm" ng-repeat="w in data.workoptions | filter:matchCategory(c.category_id)">
+                                        <p ng-click="selectWorkOption(w.work_option_id)">{{w.work_option_description}}</p>
+                                    </div>
+                            	</div>
+                                <hr>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-field">
+                                <label for="data.selected.wo_description">Work Option Description</label>
+                                <input ng-model="data.selected.wo_description" type="text" class="validate" id="form-name" />
+                            </div>
+                            <div class="input-field">
+                                <label for="data.selected.wo_pricing">Pricing</label>
+                                <input ng-model="data.selected.wo_pricing" type="text" class="validate" id="form-name" />
+                            </div>
+                            <div class="input-field">
+                                <button type="button" class="btn btn-primary" ng-click="addWorkOption()">Add Option</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="options">
+                            	<div>
+                            		<div class="well well-sm" ng-repeat="o in data.options">
+                                        <p>{{o.wo_description}} / {{o.wo_pricing}}</p>
+                                    </div>
+                            	</div>
+                                <hr>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="exit()">Exit</button>
+            <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+        </div>
+    </div>
+</div>

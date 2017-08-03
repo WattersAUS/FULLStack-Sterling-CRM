@@ -8,6 +8,7 @@ class WorkOption {
     public $work_option_category_id;
     public $work_option_code;
     public $work_option_description;
+    public $work_option_default_quantity;
     public $work_option_default_pricing;
 
     public $category_id;
@@ -37,6 +38,7 @@ class WorkOption {
                             w.category_id AS work_option_category_id,
                             w.code AS work_option_code,
                             w.description AS work_option_description,
+                            w.default_quantity AS work_option_default_quantity,
                             w.default_pricing AS work_option_default_pricing,
                             c.id AS category_id,
                             c.code AS category_code,
@@ -53,14 +55,15 @@ class WorkOption {
 
     private function buildRowArray($row) {
         $item = array(
-            "work_option_id"              => $row['work_option_id'],
-            "work_option_category_id"     => $row['work_option_category_id'],
-            "work_option_code"            => $row['work_option_code'],
-            "work_option_description"     => $row['work_option_description'],
-            "work_option_default_pricing" => $row['work_option_default_pricing'],
-            "category_id"                 => $row['category_id'],
-            "category_code"               => $row['category_code'],
-            "category_description"        => $row['category_description']
+            "work_option_id"               => $row['work_option_id'],
+            "work_option_category_id"      => $row['work_option_category_id'],
+            "work_option_code"             => $row['work_option_code'],
+            "work_option_description"      => $row['work_option_description'],
+            "work_option_default_quantity" => $row['work_option_default_quantity'],
+            "work_option_default_pricing"  => $row['work_option_default_pricing'],
+            "category_id"                  => $row['category_id'],
+            "category_code"                => $row['category_code'],
+            "category_description"         => $row['category_description']
         );
         return($item);
     }
@@ -102,13 +105,14 @@ class WorkOption {
 
     public function insertWorkOption() {
         $this->initialiseJSON();
-        $query  = "INSERT INTO work_option (category_id, code, description, default_pricing) ";
-        $query .= " VALUES (:category_id, :code, :description, :default_pricing)";
+        $query  = "INSERT INTO work_option (category_id, code, description, default_quantity, default_pricing) ";
+        $query .= " VALUES (:category_id, :code, :description, :default_quantity, :default_pricing)";
         $stmt  = $this->conn->prepare($query);
-        $stmt->bindParam(':category_id',     $this->work_option_category_id);
-        $stmt->bindParam(':code',            htmlspecialchars(strip_tags($this->work_option_code)));
-        $stmt->bindParam(':description',     htmlspecialchars(strip_tags($this->work_option_description)));
-        $stmt->bindParam(':default_pricing', htmlspecialchars(strip_tags($this->work_option_default_pricing)));
+        $stmt->bindParam(':category_id',      $this->work_option_category_id);
+        $stmt->bindParam(':code',             htmlspecialchars(strip_tags($this->work_option_code)));
+        $stmt->bindParam(':description',      htmlspecialchars(strip_tags($this->work_option_description)));
+        $stmt->bindParam(':default_quantity', $this->work_option_default_quantity);
+        $stmt->bindParam(':default_pricing',  $this->work_option_default_pricing);
         if ($stmt->execute()) {
             $this->data["id"]      = $this->conn->lastInsertId();
             $this->data["success"] = "Ok";
@@ -120,17 +124,19 @@ class WorkOption {
     public function updateWorkOption() {
         $this->initialiseJSON();
         $query = "UPDATE work_option SET
-                        category_id     = :category_id,
-                        code            = :code,
-                        description     = :description,
-                        default_pricing = :default_pricing
+                        category_id      = :category_id,
+                        code             = :code,
+                        description      = :description,
+                        default_quantity = :default_quantity,
+                        default_pricing  = :default_pricing
                     WHERE id = :id";
         $stmt  = $this->conn->prepare($query);
-        $stmt->bindParam(':category_id',     $this->work_option_category_id);
-        $stmt->bindParam(':code',            htmlspecialchars(strip_tags($this->work_option_code)));
-        $stmt->bindParam(':description',     htmlspecialchars(strip_tags($this->work_option_description)));
-        $stmt->bindParam(':default_pricing', htmlspecialchars(strip_tags($this->work_option_default_pricing)));
-        $stmt->bindParam(':id',              $this->work_option_id);
+        $stmt->bindParam(':category_id',      $this->work_option_category_id);
+        $stmt->bindParam(':code',             htmlspecialchars(strip_tags($this->work_option_code)));
+        $stmt->bindParam(':description',      htmlspecialchars(strip_tags($this->work_option_description)));
+        $stmt->bindParam(':default_quantity', $this->work_option_default_quantity);
+        $stmt->bindParam(':default_pricing',  $this->work_option_default_pricing);
+        $stmt->bindParam(':id',               $this->work_option_id);
         if ($stmt->execute()) {
             $this->data["success"] = "Ok";
             $this->data["count"]   = $stmt->rowCount();
