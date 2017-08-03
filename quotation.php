@@ -21,7 +21,7 @@
         <link href="./assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Sterling CSSS -->
         <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
-
+    
 
 </head>
 
@@ -41,16 +41,16 @@
           </div>
         </div>
         <div class="col-lg-12 col-md-12 panel">
-        <div class="row">
-          <a ng-click="" class="waves-effect waves-light btn margin-bottom-1em">Quotation Details</a> <a ng-click="" href="quotation-option-PDF.php"  class="waves-effect waves-light btn margin-bottom-1em">Quotation PDF</a>
-          <!-- /.col-lg-12 -->
+        <div class="row"> 
+          <a ng-click="" class="waves-effect waves-light btn margin-bottom-1em">Quotation Details</a> <a ng-click="" class="waves-effect waves-light btn margin-bottom-1em">Quotation PDF</a>
+          <!-- /.col-lg-12 --> 
         </div>
         </div>
-
+        
         <!-- START : OUTER PANEL 1&2  -->
         <div class="col-lg-8 col-md-6">
-          <div class="row">
-
+          <div class="row"> 
+            
             <!-- START : COVER PANEL 1  -->
             <div class="col-lg-6 col-md-6">
               <div class="panel panel-turq">
@@ -74,7 +74,7 @@
                 </div>
               </div>
             </div>
-            <!-- END : COVER PANEL 1  -->
+            <!-- END : COVER PANEL 1  --> 
             <!-- START : COVER PANEL 2  -->
             <div class="col-lg-6 col-md-6">
               <div class="panel panel-turq">
@@ -108,15 +108,15 @@
                 </div>
               </div>
             </div>
-
-            <!-- END : COVER PANEL 2  -->
+            
+            <!-- END : COVER PANEL 2  --> 
           </div>
         </div>
-        <!-- END : OUTER PANEL 1&2  -->
-
+        <!-- END : OUTER PANEL 1&2  --> 
+        
         <!-- START : COVER PANEL 3  -->
-        <div class="col-lg-4 col-md-6">
-
+        <div class="col-lg-4 col-md-6"> 
+          
           <!-- START : PANEL -->
           <div class="panel panel-turq">
             <div class="panel-heading">
@@ -128,8 +128,8 @@
             </div>
             <div class="panel-body"> INFO </div>
           </div>
-          <!-- END : PANEL -->
-
+          <!-- END : PANEL --> 
+          
           <!-- START : PANEL -->
           <div class="panel panel-black">
             <div class="panel-heading">
@@ -209,21 +209,21 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.table-responsive -->
+              <!-- /.table-responsive --> 
             </div>
           </div>
-          <!-- END : PANEL -->
-
+          <!-- END : PANEL --> 
+          
         </div>
-        <!-- END : COVER PANEL 2  -->
-
+        <!-- END : COVER PANEL 2  --> 
+        
       </div>
     </div>
     <!-- /.row -->
-
-    <div class="row">
+    
+    <div class="row"> 
       <!-- /.col-lg-6 -->
-      <div class="col-lg-12">
+      <div class="col-lg-12"> 
         <!-- START : COVER PANEL 1A  -->
         <div class="col-lg-4 col-md-6">
           <div class="panel panel-turq">
@@ -240,8 +240,8 @@
             </div>
           </div>
         </div>
-        <!-- END : COVER PANEL 1A  -->
-
+        <!-- END : COVER PANEL 1A  --> 
+        
         <!-- START : COVER PANEL 2A  -->
         <div class="col-lg-3 col-md-6">
           <div class="panel panel-turq">
@@ -266,8 +266,8 @@
             </div>
           </div>
         </div>
-        <!-- END : COVER PANEL 2A  -->
-
+        <!-- END : COVER PANEL 2A  --> 
+        
         <!-- START : COVER PANEL 3A  -->
         <div class="col-lg-5 col-md-6">
           <div class="panel panel-turq">
@@ -333,22 +333,22 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.table-responsive -->
+              <!-- /.table-responsive --> 
             </div>
           </div>
         </div>
-        <!-- END : COVER PANEL 3A  -->
+        <!-- END : COVER PANEL 3A  --> 
       </div>
     </div>
     <!-- /.col-lg-12 -->
-
-    <div class="row">
+    
+    <div class="row"> 
       <!-- /.col-lg-12 -->
       <div class="col-lg-12">
         <div class="panel panel-default">
-
+      
           <!-- /.panel-heading -->
-          <div class="panel-body">
+          <div class="panel-body"> 
             <!-- Nav tabs -->
             <ul class="nav nav-pills">
               <li class="active"><a href="#tab1-pills" data-toggle="tab">Materials</a> </li>
@@ -360,10 +360,10 @@
               <li><a href="#tab7-pills" data-toggle="tab">Other</a> </li>
               <li><a href="#tab8-pills" data-toggle="tab">Labour</a> </li>
             </ul>
-
+            
             <!-- Tab panes -->
             <div class="tab-content">
-              <div class="tab-pane fade in active" id="tab1-pills">
+              <div class="tab-pane fade in active" id="tab1-pills"> 
               <p>&nbsp;</p>
                 <!-- START : MATERIALS PANEL 1  -->
                 <div class="col-lg-3 col-md-6">
@@ -403,12 +403,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : MATERIALS PANEL 1  -->
-
+                
                 <!-- START : MATERIALS PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -455,8 +455,8 @@
                               <td>//RATE//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
-
+                            
+                            
                             <tr>
                               <td colspan="4"></td>
                               <td><strong>Total Materials</strong></td>
@@ -475,7 +475,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -521,12 +521,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : PLANT PANEL 1  -->
-
+                
                 <!-- START : PLANT PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -561,8 +561,8 @@
                               <td>//RATE//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
-
+                            
+                            
                             <tr>
                               <td colspan="5"></td>
                               <td><strong>Total Plant</strong></td>
@@ -581,7 +581,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -627,12 +627,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : TRANSPORT PANEL 1  -->
-
+                
                 <!-- START : TRANSPORT PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -668,8 +668,8 @@
                               <td>//COST//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
-
+                            
+                            
                             <tr>
                               <td colspan="3"></td>
                               <td><strong>Total Transport</strong></td>
@@ -688,7 +688,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -734,12 +734,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : ACCOMMODATION PANEL 1  -->
-
+                
                 <!-- START : ACCOMMODATION PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -790,7 +790,7 @@
                               <td>//PD//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
+                            
                             <tr>
                               <td colspan="5"></td>
                               <td><strong>Total Transport</strong></td>
@@ -809,7 +809,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -855,12 +855,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : SUB CON PANEL 1  -->
-
+                
                 <!-- START : SUB CON PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -899,7 +899,7 @@
                               <td>//MARKUP//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
+                            
                             <tr>
                               <td colspan="4"></td>
                               <td><strong>Total Sub Con</strong></td>
@@ -918,7 +918,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -964,12 +964,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : WASTE PANEL 1  -->
-
+                
                 <!-- START : WASTE PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -1012,7 +1012,7 @@
                               <td>//RATE//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
+                            
                             <tr>
                               <td colspan="3"></td>
                               <td><strong>Total Waste</strong></td>
@@ -1031,7 +1031,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -1077,12 +1077,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : OTHER PANEL 1  -->
-
+                
                 <!-- START : OTHER PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -1125,7 +1125,7 @@
                               <td>//RATE//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
+                            
                             <tr>
                               <td colspan="3"></td>
                               <td><strong>Total Other</strong></td>
@@ -1144,7 +1144,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -1190,12 +1190,12 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
                 <!-- END : LABOUR PANEL 1  -->
-
+                
                 <!-- START : LABOUR PANEL 2  -->
                 <div class="col-lg-9 col-md-6">
                   <div class="panel panel-turq">
@@ -1250,7 +1250,7 @@
                               <td>//TOTAL HRS//</td>
                               <td>//TOTAL//</td>
                             </tr>
-
+                            
                             <tr>
                               <td colspan="6"></td>
                               <td><strong>Total Labour</strong></td>
@@ -1269,7 +1269,7 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- /.table-responsive -->
+                      <!-- /.table-responsive --> 
                     </div>
                   </div>
                 </div>
@@ -1277,35 +1277,35 @@
               </div>
             </div>
           </div>
-          <!-- /.panel-body -->
+          <!-- /.panel-body --> 
         </div>
-        <!-- /.panel -->
+        <!-- /.panel --> 
       </div>
-      <!-- /.col-lg-12 -->
+      <!-- /.col-lg-12 --> 
     </div>
-    <!-- /.row -->
-
+    <!-- /.row --> 
+    
   </div>
-  <!-- /#page-wrapper -->
-
+  <!-- /#page-wrapper --> 
+  
 </div>
-<!-- /#wrapper -->
+<!-- /#wrapper --> 
 
-<!-- jQuery -->
-<script src="./assets/vendor/jquery/jquery.min.js"></script>
+<!-- jQuery --> 
+<script src="/assets/vendor/jquery/jquery.min.js"></script> 
 
-<!-- Bootstrap Core JavaScript -->
-<script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript --> 
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script> 
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="./assets/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- Metis Menu Plugin JavaScript --> 
+<script src="/assets/vendor/metisMenu/metisMenu.min.js"></script> 
 
-<!-- Morris Charts JavaScript -->
-<script src="./assets/vendor/raphael/raphael.min.js"></script>
-<script src="./assets/vendor/morrisjs/morris.min.js"></script>
-<script src="./assets/vendor/data/morris-data.js"></script>
+<!-- Morris Charts JavaScript --> 
+<script src="/assets/vendor/raphael/raphael.min.js"></script> 
+<script src="/assets/vendor/morrisjs/morris.min.js"></script> 
+<script src="/assets/data/morris-data.js"></script> 
 
-<!-- Custom Theme JavaScript -->
-<script src="./assets/vendor/dist/js/sb-admin-2.js"></script>
+<!-- Custom Theme JavaScript --> 
+<script src="/dist/js/sb-admin-2.js"></script>
 </body>
 </html>

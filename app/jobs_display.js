@@ -411,7 +411,7 @@ app.controller('furtherWorkReqJobDisplayCtrl', function($scope, $http, $localSto
 					$scope.data.recordCount = response.data.count;
 					$scope.data.success     = response.data.success;
 					if ($scope.data.success != 'Ok') {
-			            alert('1. There was a problem accessing the database! If this persists please inform support!');
+			            alert('There was a problem accessing the database! If this persists please inform support!');
 						return;
 					}
 					if ($scope.data.recordCount == 0) {

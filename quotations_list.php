@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Jobs List</title>
+        <title>Quotations List</title>
         <!-- include custom CSS -->
         <link rel="stylesheet" href="./assets/css/custom.css" />
         <!-- Bootstrap Core CSS -->
@@ -75,45 +75,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-        <!-- new job modal -->
-        <script type="text/ng-template" id="newJob.html">
-            <div class="row modal-header">
-                <h3 class="modal-title" id="modal-title">Add New Job</h4>
-            </div>
-            <div class="row modal-body" id="modal-body">
-                <div class="row">
-                    <label>Customer</label>
-                    <select ng-model="selectcustomer" ng-options="customer.customer_name for customer in customers" ng-change="onCustomerSelect()">
-                        <option value="" disabled selected>Select customer...</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <label>Site</label>
-                    <select ng-model="selectsite" ng-options="site.site_name for site in sites" ng-change="onSiteSelect()">
-                        <option value="" disabled selected>Select site...</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <label>Contact</label>
-                    <select ng-model="selectsitecontact" ng-options="sitecontact.contact_name for sitecontact in sitecontacts" ng-change="onSiteContactSelect()">
-                        <option value="" disabled selected>Select contact...</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <label>Customer Ref</label>
-                    <input ng-model="job_customer_ref_no" type="text" class="validate form-control" placeholder="Customer Ref..." maxlength="32" size="32"/>
-                </div>
-                <div class="row">
-                    <label>Description</label>
-                    <input ng-model="job_description" type="text" class="validate form-control" placeholder="Description..." maxlength="128" size="32"/>
-                </div>
-            </div>
-            <div class="row modal-footer">
-                <a ng-click="save()" class="btn">Save</a>
-                <a ng-click="cancel()" class="btn">Cancel</a>
-            </div>
-        </script>
 
         <script src="./assets/js/angular.min.js"></script>
         <!-- include angular js -->

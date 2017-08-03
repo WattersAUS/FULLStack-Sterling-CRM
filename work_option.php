@@ -36,6 +36,7 @@
                                 <th>Work Options</th>
                                 <th>Category</th>
                                 <th>Code</th>
+                                <th>Default Quantity</th>
                                 <th>Default Pricing</th>
                             </tr>
                         </thead>
@@ -44,6 +45,7 @@
                                 <td>{{ wopt.work_option_description }}</td>
                                 <td>{{ wopt.category_description }}</td>
                                 <td>{{ wopt.work_option_code }}</td>
+                                <td>{{ wopt.work_option_default_quantity }}</td>
                                 <td>{{ wopt.work_option_default_pricing }}</td>
                                 <td align="right">
                                     <a ng-click="read(wopt.work_option_id)" class="waves-effect waves-light btn margin-bottom-1em">Edit</a>
